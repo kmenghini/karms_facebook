@@ -12,6 +12,3 @@ app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);
 });
 
-app.post('/', function(req, res) {
-  res.send('hello world')
-})
