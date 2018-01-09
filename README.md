@@ -1,13 +1,14 @@
-# Project Name
+# KARMS FACEBOOK
 
 > Pithy project description
 
 ## Team
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Albert Chang
+  - Kaitlyn Menghini
+  - Matt Upham
+  - Ryan Ngo
+  - Shubhra Jain
 
 ## Table of Contents
 

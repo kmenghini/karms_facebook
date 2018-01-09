@@ -7,9 +7,6 @@
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/index.js"
   },
-  "engines": {
-    "node": "7.7.4"
-  },
   "author": "Albert Chang",
   "license": "ISC",
   "devDependencies": {
