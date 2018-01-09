@@ -6,7 +6,7 @@ class Post extends React.Component {
     super(props);
     this.state = {
       liked: false,
-      likeCount: 0
+      likeCount: 1
     };
   }
   toggleLike() {
@@ -35,7 +35,7 @@ class Post extends React.Component {
               <Button className="likeButton" onClick={this.toggleLike.bind(this)} as='div' labelPosition='right'>
                 <Button className="likeHeartButton">
                   <Icon name="heart" />
-                  {(this.state.liked) ? this.state.likeCount-- : this.state.likeCount++} Likes
+                  {(this.state.liked) ? this.state.likeCount-- : this.state.likeCount++} {(this.state.likeCount === 1) ? 'Likes' : 'Like'}
                 </Button>
               </Button>
               <Button className="commentButton">
