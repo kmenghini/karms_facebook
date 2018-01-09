@@ -1,0 +1,70 @@
+body {
+  background: #D8D8D8 !important;
+}
+.postCard {
+  width: 35%;
+}
+.postPic, .commentPic {
+  width: 100%;
+  padding-right: 0px;
+}
+.postOverall, .postCommentOverall {
+  padding: 15px;
+}
+.postHeader, .commentHeader {
+  display: grid;
+  grid-template-columns: 0.25fr 2fr;
+  grid-template-areas: "postPic postBody";
+}
+.postPic, .commentPic {
+  display: grid;
+  grid-area: postPic;
+}
+.postBody, .commentBody {
+  display: grid;
+  grid-area: postBody;
+}
+.postName, .commentName {
+  padding-top: 1.75%;
+  font-size: 15px;
+  padding-left: 4%;
+}
+.postTimestamp {
+  color :#A4A4A4;
+}
+.postHorizontal {
+  border: 0.5px solid #E9E9E9;
+  margin-top: 15px;
+}
+.postBottomHorizontal {
+  border: 0.5px solid #E9E9E9;
+  margin-top: 20px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.postText {
+  padding-top: 1.5%;
+}
+.postButtonRow {
+  padding-top: 1.25%;
+}
+.likeHeartButton {
+  background-color: rgb(235, 235, 235) !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+.commentButton {
+  background-color: rgb(235, 235, 235) !important;
+  margin-left: 2% !important;
+}
+.commentName {
+  padding-top: 1%;
+}
+.commentText {
+  padding-top: 1%;
+}
+.postCommentOverall {
+  margin-top: -20px;
+  padding-left: 7%;
+  padding-bottom: 4%;
+}
