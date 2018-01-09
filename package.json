@@ -4,8 +4,8 @@
   "description": "Facebook clone",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
     "react-dev": "webpack -d --watch",
+    "start": "node server/index.js",
     "postinstall": "npm run react-dev"
   },
   "author": "Albert Chang",
