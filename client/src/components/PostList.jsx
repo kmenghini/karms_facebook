@@ -1,5 +1,6 @@
 import React from 'react';
 import Post from './Post.jsx';
+import CreatePost from './CreatePost.jsx';
 
 class PostList extends React.Component {
   constructor(props) {
@@ -7,14 +8,17 @@ class PostList extends React.Component {
   }
   render() {
     return (
+
       <div>
-      {
-        <div>
-        <Post />
+        <CreatePost />
         <br />
-        <Post />
-        </div>
-      }
+        {
+          <div>
+          <Post />
+          <br />
+          <Post />
+          </div>
+        }
       </div>
     )
   }

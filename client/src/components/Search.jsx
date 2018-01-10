@@ -9,10 +9,10 @@ class Search extends React.Component {
   render() {
     return (
       <div className="header"> 
-      <Icon icon="facebook"/>     
-      <div className="search-bar">
-        <Input icon="search" className="search-input" type="text" placeholder="Search" ref="search" />
-      </div>
+        <Icon icon="facebook"/>     
+        <div className="search-bar">
+          <Input icon="search" className="search-input" type="text" placeholder="Search" ref="search" />
+        </div>
       </div>
     )
   }
