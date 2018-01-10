@@ -17,9 +17,8 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        { this.state.view === 'profile' ? <Profile /> : <PostList /> }
+        { this.state.view === 'feed' ? <PostList /> : <Profile /> }
         <br />
-        <PostList />
       </div>
     )
   }
