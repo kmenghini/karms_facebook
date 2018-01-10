@@ -7,7 +7,7 @@
     "react-dev": "webpack -d --watch",
     "start": "node server/index.js",
     "react-prod": "webpack -p",
-    "postinstall": "npm run react-prod"
+    "postinstall": "npm install && npm run react-prod"
   },
   "author": "Albert Chang",
   "license": "ISC",
