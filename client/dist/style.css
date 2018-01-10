@@ -5,6 +5,15 @@
   float: left;
 }
 
+.profile {
+  display: grid;
+  grid-template-rows: 5fr 1fr 15fr;
+  grid-template-columns: 4fr 4fr 7fr 2fr;
+  background-color: grey;
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
+}
+
 .header {
   height: 55px;
   background-color: #4267b2;
@@ -30,6 +39,17 @@
 .logo {
   /*background-image: url(../../ricon.png);*/
 }
+
+.backgroundPhoto {
+  grid-row-start: 1;
+  grid-column-start: 2;
+  border: 2px solid black;
+}
+
+.profileNavigation {
+  border: 2px solid black;
+}
+
 
 body {
   background: #F2F2F2 !important;

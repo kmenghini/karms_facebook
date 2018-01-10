@@ -7,7 +7,12 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile">
-        <img className="backgroundPhoto" src="http://clv.h-cdn.co/assets/15/31/980x490/landscape-1438196158-indexgettyimages-175075399.jpg"/>
+        <div className="backgroundPhoto">
+          <h1> Background photo here </h1>
+        </div>  
+        <div class="profileNavigation">
+          <h2> Profile navigation here </h2>
+        </div>
       </div>
     );
   }
