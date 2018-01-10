@@ -6,11 +6,19 @@
 
 .profile {
   text-align: center;
+  width: 380px;
+  height: 30px;
+  margin: 12px 0 12px 150px;
 }
 
 .header {
-  height: 60px;
+  height: 55px;
   background-color: #4267b2;
+  margin-bottom: 20px;
+}
+
+.fb-icon {
+  margin-left: 100px; 
 }
 
 .backgroundPhoto {

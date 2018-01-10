@@ -6,13 +6,14 @@ class Search extends React.Component {
     super(props);
   }
 
+  handleSearch(e) {
+    console.log(e.target.value);
+  }
+
   render() {
     return (
-      <div className="header"> 
-        <Icon icon="facebook"/>     
-        <div className="search-bar">
-          <Input icon="search" className="search-input" type="text" placeholder="Search" ref="search" />
-        </div>
+      <div className="search-bar">
+        <Input onClick={this.handleSearch.bind(this)} icon="search" className="search-input" type="text" placeholder="Search" ref="search" />
       </div>
     )
   }
