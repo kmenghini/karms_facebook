@@ -1,0 +1,15 @@
+{
+  "name": "karms_facebook",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
