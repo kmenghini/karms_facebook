@@ -17,6 +17,8 @@ class App extends React.Component {
       <div>
         <Search />
         { this.state.view === 'profile' ? <Profile /> : <PostList /> }
+        <br />
+        <PostList />
       </div>
     )
   }
