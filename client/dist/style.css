@@ -5,9 +5,18 @@
   /*margin: 2px 50px 8px 10px;*/
 }
 
+.profile {
+  text-align: center;
+}
+
 .header {
   height: 60px;
   background-color: #4267b2;
+}
+
+.backgroundPhoto {
+  height: 400px;
+  width: 70%;
 }
 
 body {
