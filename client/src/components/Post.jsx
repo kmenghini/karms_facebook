@@ -6,7 +6,7 @@ class Post extends React.Component {
     super(props);
     this.state = {
       liked: false,
-      likeCount: 1
+      likeCount: 0
     };
   }
   toggleLike() {
@@ -30,7 +30,7 @@ class Post extends React.Component {
               </div>
             </div>
             <hr className="postHorizontal" />
-            <p className="postText">This is my first post! I'd like to thank my family, all my fans, and my coach for helping me achieve this long-time goal.</p>
+            <p className="postText">{this.props.postText}</p>
             <div className="postButtonRow">
               <Button className="likeButton" onClick={this.toggleLike.bind(this)} as='div' labelPosition='right'>
                 <Button className="likeHeartButton">
