@@ -100,8 +100,8 @@ body {
   margin-top: -20px;
   padding-left: 7%;
   padding-bottom: 4%;
-<<<<<<< HEAD
 }
+
 .createPostHeader {
   background-color: #D8D8D8;
 }
@@ -138,6 +138,4 @@ body {
 }
 .createPostBody {
   width: 35%;
-=======
->>>>>>> WIP on Header component. Search bar is now at right position
 }
