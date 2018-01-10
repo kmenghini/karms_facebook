@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image, Button } from 'semantic-ui-react';
+import CreatePost from './CreatePost.jsx';
+import Post from './Post.jsx';
+import { Image, Button, Header, List } from 'semantic-ui-react';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -19,19 +21,42 @@ class Profile extends React.Component {
           <Button className="more"> More </Button>
         </div>
         <div className="intro">
-          <h2> Intro here </h2>
-        </div>
-        <div className="photos">
-          <h2> Photos here </h2>
-        </div>
-        <div className="makePost">
-          <h2> Post here </h2>
-        </div>
-        <div className="postList">
-          <h2> Posts rendered here </h2>
+          <Header className="header"> Intro </Header>
+          <List className="items">
+            <List.Item> From San Francisco, CA </List.Item>
+            <List.Item> Hack Reactor </List.Item>
+            <List.Item> 25 years old </List.Item>
+          </List>
         </div>
         <div className="friendsList">
-          <h2> Friends list here </h2>
+          <Header className="header"> Friends </Header>
+          <List className="items">
+            <List.Item> Friend 1 </List.Item>
+            <List.Item> Friend 2 </List.Item>
+            <List.Item> Friend 3 </List.Item>
+          </List>
+        </div>
+        <div className="photos">
+          <Header className="header"> Photos </Header>
+          <List className="items">
+            <List.Item> Photo 1 </List.Item>
+            <List.Item> Photo 2 </List.Item>
+            <List.Item> Photo 3 </List.Item>
+          </List>
+        </div>
+        <div className="makePost">
+          <CreatePost />
+        </div>
+        <div className="postList">
+          <List className="items">
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+          </List>
         </div>
         <div className="messageFriends"> 
           <h2> Message Friends Here </h2>

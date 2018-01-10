@@ -33,7 +33,7 @@
 
 .profile {
   display: grid;
-  grid-template-rows: 7fr 1fr 5fr 8fr 9fr;
+  grid-template-rows: 7fr 1fr 5fr 7fr 7fr 9fr;
   grid-template-columns: 0.1fr 1.3fr 2fr 1.5fr;
   background-color: white;
   grid-gap: 5px 5px;
@@ -83,35 +83,78 @@
   border: 2px solid black;
   grid-row: 3;
   grid-column: 2;
+  padding-left: 5%;
+}
+
+.intro > .header {
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
+}
+
+.friendsList {
+  border: 2px solid black;
+  grid-row: 5;
+  grid-column: 2;
+  padding-left: 5%;
+}
+
+.friendsList > .header {
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
 }
 
 .photos {
   border: 2px solid black;
-  grid-row: 5;
+  grid-row: 4;
   grid-column: 2;
+  padding-left: 5%;
+}
+
+.photos > .header {
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
 }
 
 .makePost {
   border: 2px solid black;
   grid-row: 3;
   grid-column: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.makePost .createPostBody {
+  max-height: 100%;
+  width: 100%;
 }
 
 .postList {
   border: 2px solid black;
-  grid-row: 4 / 6;
+  grid-row: 4 / 9;
   grid-column: 3;
 }
 
-.friendsList {
-  border: 2px solid black;
-  grid-row: 4;
-  grid-column: 2;
+.postList .items {
+  overflow-y: auto;
+  height: 150vh;
+}
+
+.postList .postCard {
+  max-height: 100%;
+  width: 100%;
+  margin-bottom: 2.5%;
 }
 
 .messageFriends {
   border: 2px solid black;
-  grid-row: 1 / 6;
+  grid-row: 1 / 9;
   grid-column: 4;
 }
 
