@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image, Button } from 'semantic-ui-react';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -8,10 +9,14 @@ class Profile extends React.Component {
     return (
       <div className="profile">
         <div className="backgroundPhoto">
-          <h1> Background photo here </h1>
+          <Image src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"/>
         </div>  
         <div className="profileNavigation">
-          <h2> Profile navigation here </h2>
+          <Button className="timeline"> Timeline </Button>
+          <Button className="about"> About </Button>
+          <Button className="friends"> Friends </Button>
+          <Button className="photo"> Photo </Button> 
+          <Button className="more"> More </Button>
         </div>
         <div className="intro">
           <h2> Intro here </h2>
