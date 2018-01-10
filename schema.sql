@@ -21,6 +21,8 @@ CREATE TABLE posts (
 --insert or update on table "user_friends" violates foreign key constraint "user_friends_friend_fkey"
 --refactor, issue due to possible foreign key constraint
 CREATE TABLE user_friends (
+    --add primary key to user_friends table
+    id SERIAL PRIMARY KEY,
     username VARCHAR(25) REFERENCES users(username),
     friend VARCHAR(25) REFERENCES users(username)
 );
