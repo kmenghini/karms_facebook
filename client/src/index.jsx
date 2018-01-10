@@ -5,6 +5,7 @@ import PostList from './components/PostList.jsx';
 import Search from './components/Search.jsx';
 import Profile from './components/Profile.jsx';
 import Header from './components/Header.jsx';
+import { Router, Route, Switch, Link } from 'react-router-dom'
 
 class App extends React.Component {
   constructor(props) {
