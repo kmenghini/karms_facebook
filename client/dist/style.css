@@ -1,14 +1,8 @@
 .search-input {
-  width: 300px;
-  height: 40px;
-  margin-left: 50px;
-}
-
-.profile {
-  text-align: center;
   width: 380px;
   height: 30px;
   margin: 12px 0 12px 150px;
+  float: left;
 }
 
 .header {
@@ -17,17 +11,28 @@
   margin-bottom: 20px;
 }
 
-.fb-icon {
-  margin-left: 100px; 
+.header-btn {
+  margin-right: 150px;
+  margin: 12px 100 12px 0;
+
 }
 
-.backgroundPhoto {
-  height: 400px;
-  width: 70%;
+.btn {
+  margin-top: 12px;
+  float: right;
+  width: 70px;
+  height: 30px;
+  border-radius: 4px;
+  margin-left: 5px;
+  color: grey;
+}
+
+.logo {
+  /*background-image: url(../../ricon.png);*/
 }
 
 body {
-  background: #F4F4F4 !important;
+  background: #D8D8D8 !important;
 }
 .postCard {
   width: 35%;
@@ -95,40 +100,4 @@ body {
   margin-top: -20px;
   padding-left: 7%;
   padding-bottom: 4%;
-}
-.createPostHeader {
-  background-color: #D8D8D8;
-}
-.createPostLabel {
-  padding-top: 2%;
-  padding-bottom: 2%;
-  margin-left: 3%;
-  font-size: 16px;
-}
-.createPostInput {
-  margin-left: 3%;
-  margin-right: 3%;
-  margin-top: 20px;
-  border: 1px solid #A4A4A4;
-  border-radius: 5px;
-}
-.createPostButtonRow {
-  display: grid;
-  grid-area: postButton;
-  grid-template-columns: 0.815fr 0.15fr 0.15fr 0.15fr;
-  grid-template-areas: "postButton postButton postButton postButton";
-  margin-top: 3%;
-  margin-bottom: 3%;
-  padding-left: 1% !important;
-  align-items: end;
-}
-.createPostButton {
-  background-color: #4267b2 !important;
-  color: white !important;
-}
-.cancelPostButton {
-  margin-left: 5% !important;
-}
-.createPostBody {
-  width: 35%;
 }
