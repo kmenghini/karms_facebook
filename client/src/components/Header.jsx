@@ -18,5 +18,3 @@ class Header extends React.Component {
 }
 
 export default Header;
-
-        // <Icon icon="facebook square" className="fb-icon" />     
