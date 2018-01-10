@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Icon } from 'semantic-ui-react';
+import { Button, Input, Icon } from 'semantic-ui-react';
 
 class Search extends React.Component {
   constructor(props) {
@@ -26,3 +26,9 @@ export default Search;
 // post request to /:username/search/:otherUsername
 // query db: select * from user where username === otherUsername
         // <Icon className="search-icon" name="search" />
+
+
+ // <Button icon>
+ //    <Icon name='world' />
+ //  </Button>
+

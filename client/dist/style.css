@@ -1,14 +1,8 @@
 .search-input {
-  width: 300px;
-  height: 40px;
-  margin-left: 50px;
-}
-
-.profile {
-  text-align: center;
   width: 380px;
   height: 30px;
   margin: 12px 0 12px 150px;
+  float: left;
 }
 
 .header {
@@ -17,17 +11,28 @@
   margin-bottom: 20px;
 }
 
-.fb-icon {
-  margin-left: 100px; 
+.header-btn {
+  margin-right: 150px;
+  margin: 12px 100 12px 0;
+
 }
 
-.backgroundPhoto {
-  height: 400px;
-  width: 70%;
+.btn {
+  margin-top: 12px;
+  float: right;
+  width: 70px;
+  height: 30px;
+  border-radius: 4px;
+  margin-left: 5px;
+  color: grey;
+}
+
+.logo {
+  /*background-image: url(../../ricon.png);*/
 }
 
 body {
-  background: #F4F4F4 !important;
+  background: #D8D8D8 !important;
 }
 .postCard {
   width: 35%;
@@ -95,6 +100,7 @@ body {
   margin-top: -20px;
   padding-left: 7%;
   padding-bottom: 4%;
+<<<<<<< HEAD
 }
 .createPostHeader {
   background-color: #D8D8D8;
@@ -132,4 +138,6 @@ body {
 }
 .createPostBody {
   width: 35%;
+=======
+>>>>>>> WIP on Header component. Search bar is now at right position
 }
