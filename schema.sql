@@ -5,74 +5,38 @@ CREATE DATABASE fb_database;
 
 -- SERIAL- adds not null constraint, should increment by 1 for each new entry
 CREATE TABLE users (
-    username VARCHAR (25) PRIMARY KEY,
+    id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+    username VARCHAR (25) NOT NULL UNIQUE,
     first_name VARCHAR (25),
     last_name VARCHAR (25),
     picture_url VARCHAR(255)
 );
 
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'matt', 'upham', 'http://fb.com/mattuphamImage');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'albert', 'chang', 'http://fb.com/albertchangedImage');
+
 CREATE TABLE posts (
-    id SERIAL PRIMARY KEY,
-    post_text VARCHAR (1000),
-    post_timestamp TIMESTAMP WITH TIME ZONE,
-    username VARCHAR (25) REFERENCES users(username)
+    id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+    user_id INTEGER REFERENCES users(id) NOT NULL,
+    post_text VARCHAR (1000) NOT NULL,
+    post_timestamp TIMESTAMP WITH TIME ZONE
 );
 
---insert or update on table "user_friends" violates foreign key constraint "user_friends_friend_fkey"
---refactor, issue due to possible foreign key constraint
+INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (1, 1, 'matt upham post', '2004-10-19 10:23:54+02');
+
 CREATE TABLE user_friends (
-    username VARCHAR(25) REFERENCES users(username),
-    friend VARCHAR(25) REFERENCES users(username)
+    id SERIAL PRIMARY KEY UNIQUE,
+    username VARCHAR(25) REFERENCES users(username) NOT NULL,
+    friend_id INTEGER REFERENCES users(id) NOT NULL
 );
+
+INSERT INTO user_friends (id, username, friend_id) VALUES (1, 'mattupham', 2);
+INSERT INTO user_friends (id, username, friend_id) VALUES (2, 'albertchanged', 1);
 
 CREATE TABLE user_posts_liked (
-    username VARCHAR(25) REFERENCES users(username),
+    id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+    user_id INTEGER REFERENCES users(id),
     post_id INTEGER REFERENCES posts(id)
 );
 
---dummy data
-INSERT INTO users (username, first_name, last_name, picture_url) VALUES ('mattupham', 'Matt', 'Upham', 'http://myImage');
-INSERT INTO posts (post_text, username) VALUES ('my post', 'mattupham');
-INSERT INTO user_friends (username, friend) VALUES ('mattupham', 'bobsmith');
-INSERT INTO user_posts_liked (username, post_id) VALUES ('mattupham', 1);
-
-
-
-
-
-
--- -- create a db
--- --DROP DATABASE IF EXISTS fb_database;
--- -- CREATE DATABASE fb_database;
-
--- --connects to database
--- \connect fb_database;
-
--- -- DEFINE SCHEMA
--- CREATE SCHEMA fb_schema;
--- -- CREATE TABLES
-
--- -- SERIAL- adds not null constraint, should increment by 1 for each new entry
--- CREATE TABLE fb_schema.users (
---     id SERIAL PRIMARY KEY,
---     username VARCHAR (25),
---     picture_url VARCHAR(255)
--- )
-
--- CREATE TABLE fb_schema.posts (
---     id SERIAL PRIMARY KEY,
---     post_text VARCHAR (255),
---     post_timestamp TIMESTAMP WITH TIME ZONE,
---     user_id INTEGER REFERENCES users(id)
--- )
-
--- CREATE TABLE fb_schema.user_friends (
---     user_id INTEGER REFERENCES users(id),
---     friend_id INTEGER REFERENCES users(id)
--- )
-
--- CREATE TABLE fb_schema.user_posts_liked (
---     user_id INTEGER REFERENCES users(id),
---     post_id INTEGER REFERENCES posts(id)
--- )
-
+INSERT INTO user_posts_liked (id, user_id, post_id) VALUES (1, 2, 1);
