@@ -2245,7 +2245,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10:
+prop-types@^15.5.10, prop-types@^15.5.8:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -2352,6 +2352,12 @@ react-dom@^15.4.2:
 react-fade-in@^0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/react-fade-in/-/react-fade-in-0.1.5.tgz#cb487e2f695ed536ec29d80b963570e29276b4df"
+
+react-scroll@^1.7.5:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.7.5.tgz#7f04c7f5d7f4f420730914184b32dd4c471e607e"
+  dependencies:
+    prop-types "^15.5.8"
 
 react@^15.4.2:
   version "15.6.2"
