@@ -27,7 +27,7 @@ module.exports = {
       // client.end();
     });		
   },
-  searchSomeone: function(name, callback) {
+  searchSomeone: (name, callback) => {
     const queryStr = ''; // selects all names that begin with searched query
     client.query(queryStr, (err, res) => {
       if (err) {
