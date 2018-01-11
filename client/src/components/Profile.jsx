@@ -1,6 +1,8 @@
 import React from 'react';
 import CreatePost from './CreatePost.jsx';
 import Post from './Post.jsx';
+import PostList from './PostList.jsx';
+import FBHeader from './Header.jsx'
 import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
 class Profile extends React.Component {
@@ -14,7 +16,11 @@ class Profile extends React.Component {
         <div className="backgroundAndProfilePic">
           <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
-          <Header inverted color="grey" textAlign="center" className="name">Puppers </Header>
+          <Header inverted color="grey" textAlign="center" className="name"> Puppers </Header>
+          <Button compact inverted size="small" className="addFriend">
+            <Icon name='add user'/>
+            Add Friend
+          </Button>
         </div>
         <div className="profileNavigation">
           <span className="timeline"> Timeline </span>
@@ -29,8 +35,11 @@ class Profile extends React.Component {
             Intro 
           </Header>
           <List className="items">
-            <List.Item> I like to woof and eat treats </List.Item>
-            <Divider></Divider>
+            <Divider fitted></Divider>
+            <List.Item> 
+              <Icon name="user"></Icon>
+              &nbsp; I like to woof and eat treats
+            </List.Item>
             <List.Item>
               <Icon name="home"></Icon>
               &nbsp; Lives in San Francisco, CA 
@@ -51,6 +60,7 @@ class Profile extends React.Component {
             Friends 
           </Header>
           <List className="items">
+            <Divider fitted></Divider>
             <List.Item> Friend 1 </List.Item>
             <List.Item> Friend 2 </List.Item>
             <List.Item> Friend 3 </List.Item>
@@ -62,6 +72,7 @@ class Profile extends React.Component {
             Photos 
           </Header>
           <List className="items">
+            <Divider fitted></Divider>
             <List.Item> Photo 1 </List.Item>
             <List.Item> Photo 2 </List.Item>
             <List.Item> Photo 3 </List.Item>
@@ -72,16 +83,7 @@ class Profile extends React.Component {
         </div>
         <div className="postList">
           <List className="items">
-            {/* <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post /> */}
+            <PostList />
           </List>
         </div>
       </div>
