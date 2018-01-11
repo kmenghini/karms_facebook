@@ -19,10 +19,10 @@ app.get('/:username/posts/:otherusername', function(req, res) {
 });
 
 // Add new post to database
-app.post('/:username/posts', function(req, res) {		  app.post('/:username/posts', function(req, res) {
-  console.log(req.params.username);		 +  res.send(`hi from POST new post, ${req.params.username}, I made a post with this text "${req.body.text}"`);
+app.post('/:username/posts', function(req, res) {
+  console.log(req.params.username);
   console.log(req.body.text);		
-  db.createPost(req.params.username, req.body.text, (err, data) => {		
+  db.createPost(req.params.username, req.body.text, (err, data) => {
     if (err) {		
       res.sendStatus(404);		
     } else {		
