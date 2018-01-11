@@ -1,7 +1,7 @@
 import React from 'react';
 import CreatePost from './CreatePost.jsx';
 import Post from './Post.jsx';
-import { Image, Button, Header, List } from 'semantic-ui-react';
+import { Image, Button, Header, List, Item } from 'semantic-ui-react';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -10,9 +10,10 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile">
-        <div className="backgroundPhoto">
-          <Image src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"/>
-        </div>  
+        <div className="backgroundAndProfile">
+          <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
+          <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
+        </div>
         <div className="profileNavigation">
           <Button className="timeline"> Timeline </Button>
           <Button className="about"> About </Button>
@@ -21,7 +22,9 @@ class Profile extends React.Component {
           <Button className="more"> More </Button>
         </div>
         <div className="intro">
-          <Header className="header"> Intro </Header>
+          <Header className="header"> 
+            Intro 
+          </Header>
           <List className="items">
             <List.Item> From San Francisco, CA </List.Item>
             <List.Item> Hack Reactor </List.Item>
@@ -49,6 +52,9 @@ class Profile extends React.Component {
         </div>
         <div className="postList">
           <List className="items">
+            <Post />
+            <Post />
+            <Post />
             <Post />
             <Post />
             <Post />

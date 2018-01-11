@@ -39,13 +39,28 @@
   grid-gap: 5px 5px;
 }
 
-.backgroundPhoto {
+.backgroundAndProfile {
   grid-row: 1 / 2;
   grid-column: 2 / 4;
   border: 2px solid black;
+  display: grid;
+  grid-template-columns: 2% repeat(10, 1fr);
+  grid-template-rows: 6fr 4fr;
 }
 
-.backgroundPhoto > img {
+.backgroundPicture {
+  grid-row: 1 / 3;
+  grid-column: 1 / 12;
+  border: 2px solid black;
+  max-height: 100%;
+  width: 100%;
+}
+
+.profilePicture {
+  border: 2px solid black;
+  grid-row: 2 / 3;
+  grid-column: 2 / 4;
+  z-index: 1;
   max-height: 100%;
   width: 100%;
 }
@@ -83,14 +98,14 @@
   border: 2px solid black;
   grid-row: 3;
   grid-column: 2;
-  padding-left: 5%;
+  padding: 5%;
+  display: grid;
+  grid-template-rows: 0.5fr 2fr;
 }
 
 .intro > .header {
   background-color: transparent;
   height: auto;
-  margin-top: 5% !important;
-  margin-bottom: 5%;
 }
 
 .friendsList {
