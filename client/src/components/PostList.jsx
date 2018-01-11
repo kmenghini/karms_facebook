@@ -2,6 +2,7 @@ import React from 'react';
 import Post from './Post.jsx';
 import CreatePost from './CreatePost.jsx';
 import axios from 'axios';
+import Header from './Header.jsx';
 import UserList from './UserList.jsx';
 
 class PostList extends React.Component {
@@ -35,8 +36,10 @@ class PostList extends React.Component {
     })
   }
   render() {
+    console.log(this.props);
     return (
       <div>
+        <Header />
         <CreatePost onClick={this.receivePostText.bind(this)} getNewPosts={this.getNewPosts.bind(this)} />
         <br />
         {
