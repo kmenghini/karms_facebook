@@ -37,7 +37,6 @@ class PostList extends React.Component {
   render() {
     return (
       <div>
-        <UserList />
         <CreatePost onClick={this.receivePostText.bind(this)} getNewPosts={this.getNewPosts.bind(this)} />
         <br />
         {
