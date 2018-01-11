@@ -1,6 +1,6 @@
 const { Client } = require('pg');
 console.log('Initializing client');
-console.log(process.env.DATABASE_URL);
+console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
   connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
 });
@@ -25,7 +25,7 @@ module.exports = {
       console.log('Posting!');
       callback(null, res.rows);
       // client.end();
-    });		
+    });
   },
   searchSomeone: (name, callback) => {
     const queryStr = ''; // selects all names that begin with searched query
