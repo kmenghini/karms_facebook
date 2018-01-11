@@ -1,6 +1,6 @@
 const { Client } = require('pg');
-const config = require('../process.env');
 console.log('Initializing client');
+console.log(process.env.DATABASE_URL);
 const client = new Client({
   connectionString: 'postgres://postgres@localhost:5432/fb_database' || process.env.DATABASE_URL
 });
