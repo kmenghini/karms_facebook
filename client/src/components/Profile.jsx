@@ -1,7 +1,7 @@
 import React from 'react';
 import CreatePost from './CreatePost.jsx';
 import Post from './Post.jsx';
-import { Image, Button, Header, List, Item } from 'semantic-ui-react';
+import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -10,29 +10,45 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile">
-        <div className="backgroundAndProfile">
+        <div className="backgroundAndProfilePic">
           <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
+          <Header inverted color="grey" textAlign="center" className="name"> Puppers </Header>
         </div>
         <div className="profileNavigation">
-          <Button className="timeline"> Timeline </Button>
-          <Button className="about"> About </Button>
-          <Button className="friends"> Friends </Button>
-          <Button className="photo"> Photo </Button> 
-          <Button className="more"> More </Button>
+          <span className="timeline"> Timeline </span>
+          <span className="about"> About </span>
+          <span className="friends"> Friends </span>
+          <span className="photo"> Photo </span> 
+          <span className="more"> More </span>
         </div>
         <div className="intro">
           <Header className="header"> 
+            <Icon loading name="globe"></Icon>
             Intro 
           </Header>
           <List className="items">
-            <List.Item> From San Francisco, CA </List.Item>
-            <List.Item> Hack Reactor </List.Item>
-            <List.Item> 25 years old </List.Item>
+            <List.Item> I like to woof and eat treats </List.Item>
+            <Divider></Divider>
+            <List.Item>
+              <Icon name="home"></Icon>
+              &nbsp; Lives in San Francisco, CA 
+            </List.Item>
+            <List.Item> 
+              <Icon name="student"></Icon>
+              &nbsp; Hack Reactor 
+            </List.Item>
+            <List.Item>
+              <Icon name="heart outline"></Icon>
+              &nbsp; Single 
+             </List.Item>
           </List>
         </div>
         <div className="friendsList">
-          <Header className="header"> Friends </Header>
+          <Header className="header"> 
+            <Icon name="users"></Icon>
+            Friends 
+          </Header>
           <List className="items">
             <List.Item> Friend 1 </List.Item>
             <List.Item> Friend 2 </List.Item>
@@ -40,7 +56,10 @@ class Profile extends React.Component {
           </List>
         </div>
         <div className="photos">
-          <Header className="header"> Photos </Header>
+          <Header className="header"> 
+            <Icon name="photo"></Icon>
+            Photos 
+          </Header>
           <List className="items">
             <List.Item> Photo 1 </List.Item>
             <List.Item> Photo 2 </List.Item>
@@ -63,9 +82,6 @@ class Profile extends React.Component {
             <Post />
             <Post />
           </List>
-        </div>
-        <div className="messageFriends"> 
-          <h2> Message Friends Here </h2>
         </div>
       </div>
     );
