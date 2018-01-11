@@ -10,16 +10,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'postList'
+      view: 'feed'
     };
   }
   render() {
     return (
       <div>
         <Header />
-        { this.state.view === 'profile' ? <Profile /> : <PostList /> }
+        { this.state.view === 'feed' ? <PostList /> : <Profile /> }
         <br />
-        <PostList />
       </div>
     )
   }

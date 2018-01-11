@@ -14,7 +14,6 @@
 .header-btn {
   margin-right: 150px;
   margin: 12px 100 12px 0;
-
 }
 
 .btn {
@@ -29,6 +28,190 @@
 
 .logo {
   /*background-image: url(../../ricon.png);*/
+}
+
+.profile {
+  display: grid;
+  grid-template-rows: 7fr 1fr 5fr 7fr 7fr 9fr;
+  grid-template-columns: 0.5fr 1.3fr 2fr 0.5fr;
+  background-color: #f2f2f2;
+  grid-gap: 10px;
+}
+
+.backgroundAndProfilePic {
+  grid-row: 1 / 2;
+  grid-column: 2 / 4;
+  display: grid;
+  grid-template-rows: 5.5fr 4fr 1fr 1fr;
+  grid-template-columns: 2% repeat(10, 1fr);
+}
+
+.backgroundPicture {
+  grid-row: 1 / 5;
+  grid-column: 1 / 12;
+  max-height: 100%;
+  width: 100%;
+}
+
+.profilePicture {
+  border: 4px solid #f2f2f2;
+  grid-row: 2 / 5;
+  grid-column: 2 / 4;
+  z-index: 1;
+  max-height: 100%;
+  width: 100%;
+}
+
+.backgroundAndProfilePic .name {
+  grid-column: 4 / 5;
+  grid-row: 3 / 5;
+  z-index: 1;
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
+  justify-self: end;
+}
+
+.profileNavigation {
+  border: 2px solid #e6e6e6;
+  grid-row: 2;
+  grid-column: 2 / 4;
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  justify-items: center;
+  align-items: center;
+  background-color: white;
+}
+
+.profileNavigation > span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.profileNavigation .timeline {
+  grid-column: 4;
+}
+
+.profileNavigation .about {
+  grid-column: 5;
+}
+
+.profileNavigation .friends {
+  grid-column: 6;
+}
+
+.profileNavigation .photo {
+  grid-column: 7;
+}
+
+.profileNavigation .more {
+  grid-column: 8;
+}
+
+.intro {
+  grid-row: 3;
+  grid-column: 2;
+  padding: 5%;
+  display: grid;
+  grid-template-rows: 0.5fr 3fr;
+  background-color: white;
+  border: 2px solid #e6e6e6;
+  padding: 3%;
+}
+
+.intro > .header {
+  background-color: transparent;
+  height: auto;
+  padding-left: 1% !important;
+  padding-top: 1% !important;
+  margin-bottom: 0px !important;
+}
+
+.intro > .header > .introLogo {
+  width: 70%;
+  height: auto;
+  margin-right: 2% !important;
+}
+
+.friendsList {
+  grid-row: 5;
+  grid-column: 2;
+  padding-left: 5%;
+  border: 2px solid #e6e6e6;
+  background-color: white;
+}
+
+.friendsList > .header {
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
+}
+
+.photos {
+  grid-row: 4;
+  grid-column: 2;
+  padding-left: 5%;
+  border: 2px solid #e6e6e6;
+  background-color: white;
+}
+
+.photos > .header {
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
+}
+
+.makePost {
+  grid-row: 3;
+  grid-column: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.makePost .createPostBody {
+  max-height: 100%;
+  width: 100%;
+}
+
+.postList {
+  grid-row: 4 / 9;
+  grid-column: 3;
+}
+
+.postList .items {
+  overflow-y: auto;
+  height: 150vh;
+}
+
+.postList .postCard {
+  max-height: 100%;
+  width: 100%;
+  margin-bottom: 2.5%;
+}
+
+.placeHolder {
+  grid-row: 1 / 9;
+  grid-column: 4 / 5;
+}
+
+.messageFriends > .placeHolder1 {
+  border: 2px solid #e6e6e6;
+  grid-row: 1;
+}
+
+.messageFriends > .placeHolder2 {
+  border: 2px solid #e6e6e6;
+  grid-row: 2;
+}
+
+.messageFriends > .friendsList {
+  margin-top: 0px !important;
+  border: 2px solid #e6e6e6;
+  background-color: #f2f2f2;
 }
 
 body {

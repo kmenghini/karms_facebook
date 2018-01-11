@@ -25,6 +25,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-fade-in": "^0.1.5",
+    "react-scroll": "^1.7.5",
     "request": "^2.81.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.1",
