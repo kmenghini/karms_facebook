@@ -2,6 +2,7 @@ const express = require('express');
 let app = express();
 const bodyParser = require('body-parser');
 const db = require('../database-posgtres/index.js');
+// const sequelize =
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client/dist'));
@@ -13,9 +14,12 @@ let port = 3000;
 app.get('/:username/posts', function(req, res) {
   console.log("getting all posts");
   db.getAllPosts((err, data) => {
+    console.log("Error", err, "data", data);
     if (err) {
+      console.log('This is my error', err);
       res.sendStatus(404);
     } else {
+      console.log('This is my error', data);
       res.status(200).json(data);
     }
   })
