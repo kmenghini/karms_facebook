@@ -1,7 +1,7 @@
 .search-input {
-  width: 380px;
-  height: 30px;
-  margin: 12px 0 12px 150px;
+  width: 380px !important;
+  height: 10px;
+  margin: 8px 0 12px 150px;
   float: left;
 }
 
@@ -13,22 +13,22 @@
 
 .header-btn {
   margin-right: 150px;
-  margin: 12px 100 12px 0;
-
 }
 
 .btn {
   margin-top: 12px;
   float: right;
   width: 70px;
-  height: 30px;
-  border-radius: 4px;
+  height: 35px;
   margin-left: 5px;
-  color: grey;
+  color: white;
+  background: transparent;
+  border-style: none;
+  cursor: pointer;
 }
 
-.logo {
-  /*background-image: url(../../ricon.png);*/
+.btn:hover {
+  background-color: #365899;
 }
 
 body {
