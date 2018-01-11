@@ -5,22 +5,8 @@ import PostList from './components/PostList.jsx';
 import Search from './components/Search.jsx';
 import Profile from './components/Profile.jsx';
 import Header from './components/Header.jsx';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import SignIn from './components/SignIn.jsx';
 import { Router, Route, Switch, Link } from 'react-router-dom';
-=======
-import { Router, Route, Switch, Link } from 'react-router-dom'
->>>>>>> added react-route-dom dependency
-=======
-import SignIn from './components/SignIn.jsx';
-import { Router, Route, Switch, Link } from 'react-router-dom';
->>>>>>> added NewUser component
-=======
-import SignIn from './components/SignIn.jsx';
-import { Router, Route, Switch, Link } from 'react-router-dom';
->>>>>>> 538e9d047d731191346ba9f35b1ee2fb1e091647
 
 class App extends React.Component {
   constructor(props) {
