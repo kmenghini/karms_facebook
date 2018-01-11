@@ -11,7 +11,7 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-      <FBHeader />
+      {/* <FBHeader /> */}
       <div className="profile">
         <div className="backgroundAndProfilePic">
           <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>

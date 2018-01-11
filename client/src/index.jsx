@@ -21,14 +21,14 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Feed />
+        {/* <Feed /> */}
         {/* { this.state.view === 'profile' ? <Profile /> : <PostList /> }
         <br />
         <PostList /> */}
         <Main />
         {/* <Header /> */}
         {/* <SignIn /> */}
-        { this.state.view === 'feed' ? <PostList /> : <Profile /> }
+        {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}
         <br />
       </div>
     )

@@ -39,7 +39,7 @@ class PostList extends React.Component {
     console.log(this.props);
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
         <CreatePost onClick={this.receivePostText.bind(this)} getNewPosts={this.getNewPosts.bind(this)} />
         <br />
         {
