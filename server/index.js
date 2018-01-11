@@ -78,6 +78,25 @@ app.post('/:username', (req, res) => {
   res.json(`new user: ${newUserData.username} adding to db`);
 });
 
+// Get info about single user to load their profile
+app.get('/:username', (req, res) => {
+  var username = req.params.username;
+  res.json(`searching db for user ${username}`);
+  //if db includes username, respond with their info
+});
+
+// Add new user to db
+app.post('/:username', (req, res) => {
+  var username = req.params.username;
+  var newUserData = {
+    username: req.body.username,
+    pictureUrl: req.body.pictureUrl,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName
+  }
+  res.json(`new user: ${newUserData.username} adding to db`);
+});
+
 app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);
 });
