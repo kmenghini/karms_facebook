@@ -12,14 +12,14 @@ CREATE TABLE users (
     picture_url VARCHAR(255)
 );
 
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'matt', 'upham', 'http://fb.com/mattuphamImage');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'albert', 'chang', 'http://fb.com/albertchangedImage');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'Matt', 'Upham', 'http://fb.com/mattuphamImage');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'Albert', 'Chang', 'http://fb.com/albertchangedImage');
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
     user_id INTEGER REFERENCES users(id) NOT NULL,
     post_text VARCHAR (1000) NOT NULL,
-    post_timestamp TIMESTAMP WITH TIME ZONE
+    post_timestamp TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (1, 1, 'matt upham post', '2004-10-19 10:23:54+02');
