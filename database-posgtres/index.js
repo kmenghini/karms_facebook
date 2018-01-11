@@ -12,10 +12,6 @@ module.exports = {
     client.query('SELECT * FROM users;', (err, res) => {
       if (err) callback(err, null);
       callback(null, res.rows);
-      // for (let row of res.rows) {
-      //   console.log(JSON.stringify(row));
-      // }
-      // client.end();
     });
   },
   createPost: (username, text, callback) => {
