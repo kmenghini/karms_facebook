@@ -55,6 +55,7 @@ app.get('/:username/search/:otherusername', function(req, res) {
   })
 });
 
+<<<<<<< HEAD
 app.get('/:username/:user', function(req, res) {
   // db.
 });
@@ -77,6 +78,11 @@ app.post('/:username', (req, res) => {
   }
   res.json(`new user: ${newUserData.username} adding to db`);
 });
+=======
+// app.get('/:username/:user', function(req, res) {
+//   db.
+// })
+>>>>>>> merge updates
 
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
