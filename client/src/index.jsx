@@ -5,6 +5,8 @@ import PostList from './components/PostList.jsx';
 import Search from './components/Search.jsx';
 import Profile from './components/Profile.jsx';
 import Header from './components/Header.jsx';
+import SignIn from './components/SignIn.jsx';
+import { Router, Route, Switch, Link } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
+        <SignIn />
         { this.state.view === 'feed' ? <PostList /> : <Profile /> }
         <br />
       </div>
