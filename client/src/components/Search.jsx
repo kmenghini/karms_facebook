@@ -41,6 +41,7 @@ class Search extends React.Component {
 
   handleKeyPress(event) {
     if (event.key !== 'Enter') {
+      console.log('hi');
       // call to db to show results related to search string
     }
   }
