@@ -1,33 +1,49 @@
 .search-input {
-  width: 380px;
+  width: 350px !important;
   height: 30px;
-  margin: 12px 0 12px 150px;
+  margin: 8px 0 7px 150px;
+  float: left;
+  border: none;
+  padding-left: 10px;
+  color: grey;
+}
+
+.search-btn {
+  height: 30px;
+  width: 45px;
+  border: none;
+  margin: 8px 0 7px 0;
+  background-color: #f6f7f9;
+  cursor: pointer;
+}
+
+.search-bar {
   float: left;
 }
 
 .header {
-  height: 55px;
+  height: 47px;
   background-color: #4267b2;
   margin-bottom: 20px;
 }
 
 .header-btn {
   margin-right: 150px;
-  margin: 12px 100 12px 0;
 }
 
 .btn {
-  margin-top: 12px;
+  margin-top: 6px;
   float: right;
   width: 70px;
-  height: 30px;
-  border-radius: 4px;
-  margin-left: 5px;
-  color: grey;
+  height: 35px;
+  color: white;
+  background: transparent;
+  border-style: none;
+  cursor: pointer;
 }
 
-.logo {
-  /*background-image: url(../../ricon.png);*/
+.btn:hover {
+  background-color: #365899;
 }
 
 .profile {

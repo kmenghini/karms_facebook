@@ -6,6 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client/dist'));
 
+
 let port = 3000;
 
 // Get all posts
@@ -37,7 +38,22 @@ app.post('/:username/posts', function(req, res) {
     }		
   })		
   // res.send(`hi from POST new post, ${req.params.username}, I made a post with this text "${req.body.text}"`);		
-})
+  res.send(`hi from POST new post, ${req.params.username}, I made a post with this text "${req.body.text}"`);
+});
+
+app.get('/:username/search/:otherusername', function(req, res) {
+  db.searchSomeone(req.params.otherusername, (err, res) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(res);
+    }
+  })
+});
+
+app.get('/:username/:user', function(req, res) {
+  // db.
+});
 
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
