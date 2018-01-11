@@ -5,6 +5,7 @@ import PostList from './components/PostList.jsx';
 import Search from './components/Search.jsx';
 import Profile from './components/Profile.jsx';
 import Header from './components/Header.jsx';
+import Feed from './components/Feed.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,9 +18,10 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        { this.state.view === 'profile' ? <Profile /> : <PostList /> }
+        <Feed />
+        {/* { this.state.view === 'profile' ? <Profile /> : <PostList /> }
         <br />
-        <PostList />
+        <PostList /> */}
       </div>
     )
   }
