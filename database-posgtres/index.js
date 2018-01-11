@@ -26,12 +26,19 @@ module.exports = {
       VALUES ('${text}', (SELECT id FROM users WHERE username = '${username}'))`;
     console.log('This is my query string', queryStr);
     client.query(queryStr, (err, res) => {
+      if (err) callback(err, null);
+      console.log('Posting!');
+      callback(null, res.rows);
+      // client.end();
+    });		
+  },
+  searchSomeone = function(name, callback) {
+    const queryStr = ''; // selects all names that begin with searched query
+    client.query(queryStr, (err, res) => {
       if (err) {
-        console.log('Error', err);
         callback(err, null);
       } else {
-        console.log('Posting!');
-        callback(null, res.rows);
+        callback(null, res);
       }
     });
   },
@@ -49,3 +56,12 @@ module.exports = {
     });
   }
 }
+
+// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
+
