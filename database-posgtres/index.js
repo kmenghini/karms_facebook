@@ -15,16 +15,16 @@ client.connect();
 //   client.end();
 // });
 
-var createPost = (username, text, callback) => {		
-  let queryStr = 		
-    `INSERT INTO posts (post_text, user_id) \ 		
-     VALUES (${text}, (SELECT id FROM users \ 		
-     WHERE username = ${username}))`		
-  client.query(queryStr, (err, res) => {		
-    if (err) callback(err, null);				
-    callback(null, res.rows);
-    // client.end();
-  });		
-}
+// var createPost = (username, text, callback) => {		
+//   let queryStr = 		
+//     `INSERT INTO posts (post_text, user_id) \ 		
+//      VALUES (${text}, (SELECT id FROM users \ 		
+//      WHERE username = ${username}))`		
+//   client.query(queryStr, (err, res) => {		
+//     if (err) callback(err, null);				
+//     callback(null, res.rows);
+//     // client.end();
+//   });		
+// }
 
-module.exports.createPost = createPost; 
+// module.exports.createPost = createPost; 
