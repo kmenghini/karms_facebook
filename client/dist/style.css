@@ -110,6 +110,8 @@
   justify-items: center;
   align-items: center;
   background-color: white;
+  max-height: 100%;
+  width: 100%;
 }
 
 .profileNavigation > span {

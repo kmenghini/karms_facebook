@@ -1,11 +1,18 @@
 const { Client } = require('pg');
 console.log('Initializing client');
+<<<<<<< HEAD
 console.log('This is the database url', process.env.DATABASE_URL);
+=======
+>>>>>>> commit before rebasing
 const client = new Client({
   connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database',
 });
 
 client.connect();
+<<<<<<< HEAD
+=======
+console.log('CLIENT HERE...', client);
+>>>>>>> commit before rebasing
 module.exports = {
   getAllUsers: (callback) => {
     client.query('SELECT * FROM users;', (err, res) => {
