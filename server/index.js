@@ -52,8 +52,8 @@ app.get('/:username/search/:otherusername', function(req, res) {
 });
 
 app.get('/:username/:user', function(req, res) {
-  db.
-})
+  // db.
+});
 
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {

@@ -26,12 +26,9 @@ class Header extends React.Component {
       <div className="header"> 
         <Search />
         <div className="header-btn">
-          <button className="btn" onClick={this.handleLogOutClick.bind(this)}>Log Out</button>
-          <button className="btn" onClick={this.handleProfileClick.bind(this)}>Profile</button>
-          <button className="btn" onClick={this.handleFeedClick.bind(this)}>Feed</button>
-          <Link to='/login'><button className="btn">Log Out</button></Link>
-          <Link to='/profile'><button className="btn">Profile</button></Link>
-          <Link to='/feed'><button className="btn">Feed</button></Link>
+          <Link to='/login'><button className="btn" onClick={this.handleLogOutClick.bind(this)}>Log Out</button></Link>
+          <Link to='/profile'><button className="btn" onClick={this.handleProfileClick.bind(this)}>Profile</button></Link>
+          <Link to='/feed'><button className="btn" onClick={this.handleFeedClick.bind(this)}>Feed</button></Link>
         </div>
       </div>
     );
