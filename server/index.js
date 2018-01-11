@@ -1,6 +1,5 @@
 const express = require('express');
 let app = express();
-const db = require('../database-postgres/index.js');
 const bodyParser = require('body-parser');
 const db = require('../database-posgtres/index.js');
 app.use(bodyParser.json());
