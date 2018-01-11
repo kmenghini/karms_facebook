@@ -6,7 +6,8 @@ class UserList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userList: [{text: 'Albert Chang'}, 'Kaitlyn Menghini', 'Matt Upham', 'Ryan Ngo', 'Shubhra Jain']
+      userList: [{text: 'Albert Chang'}, 'Kaitlyn Menghini', 'Matt Upham', 'Ryan Ngo', 'Shubhra Jain'],
+      selectedUser: ''
     }
   }
   componentDidMount() {
@@ -21,10 +22,17 @@ class UserList extends React.Component {
 
       })
   }
+  selectUser(e) {
+    this.setState({
+      selectedUser: e.target.textContent
+    })
+  }
   render() {
+    const { value } = this.state.selectedUser;
+    console.log(value);
     return (
       <div>
-        <Dropdown placeholder='Select Country' fluid search selection options={this.state.userList} />
+        <Dropdown onChange={this.selectUser.bind(this)} placeholder='Select Country' fluid search selection options={this.state.userList} value={value}/>
       </div>
     )
   }

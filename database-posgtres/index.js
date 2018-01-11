@@ -1,7 +1,8 @@
 const { Client } = require('pg');
-
+console.log('Initializing client');
+console.log(process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.PG_DATABASE_URL,
   ssl: true
 });
 
@@ -22,8 +23,7 @@ module.exports = {
     console.log('This is my client', client);
     let queryStr =
       `INSERT INTO posts (post_text, user_id) 
-      VALUES ("${text}", (SELECT id FROM users 
-      WHERE username = "${username}"))`;
+      VALUES ('${text}', (SELECT id FROM users WHERE username = '${username}'))`;
     console.log('This is my query string', queryStr);
     client.query(queryStr, (err, res) => {
       if (err) callback(err, null);
@@ -39,6 +39,19 @@ module.exports = {
         callback(err, null);
       } else {
         callback(null, res);
+      }
+    });
+  },
+  getAllPosts: (callback) => {
+    let queryStr = 'SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC';
+    console.log(queryStr);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err);
+        callback(err, null);
+      } else {
+        console.log('Got all posts!!!!');
+        callback(null, res.rows);
       }
     });
   }
