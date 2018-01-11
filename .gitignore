@@ -30,4 +30,3 @@ bower_components/
 package-lock.json
 yarn.lock
 .vscode/
-process.env
