@@ -42,6 +42,7 @@ module.exports = {
     });
   },
   getAllPosts: (callback) => {
+    console.log('This is my client', client);
     let queryStr = 'SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC';
     console.log(queryStr);
     client.query(queryStr, (err, res) => {
