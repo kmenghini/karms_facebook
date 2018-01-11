@@ -20,7 +20,7 @@ class PostList extends React.Component {
     let username = 'albertchanged';
     axios.get(`/${username}/posts`)
       .then((res) => {
-        console.log(res.data);
+        console.log('res.data', res.data);
         this.setState({
           postList: res.data
         })
