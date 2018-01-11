@@ -10,7 +10,14 @@ let port = 3000;
 
 // Get all posts
 app.get('/:username/posts', function(req, res) {
-  res.json(`hi from GET all posts, ${req.params.username}, here are all the posts`);
+  console.log("getting all posts");
+  db.getAllPosts((err, data) => {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(data);
+    }
+  })
 });
 
 // Get posts by a certain user
@@ -26,7 +33,7 @@ app.post('/:username/posts', function(req, res) {
     if (err) {		
       res.sendStatus(404);		
     } else {		
-      res.status(200).json(data);		
+      res.sendStatus(200);		
     }		
   })		
   // res.send(`hi from POST new post, ${req.params.username}, I made a post with this text "${req.body.text}"`);		

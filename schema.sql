@@ -19,7 +19,7 @@ CREATE TABLE posts (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
     user_id INTEGER REFERENCES users(id) NOT NULL,
     post_text VARCHAR (1000) NOT NULL,
-    post_timestamp TIMESTAMP WITH TIME ZONE
+    post_timestamp TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (1, 1, 'matt upham post', '2004-10-19 10:23:54+02');

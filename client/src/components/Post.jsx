@@ -25,12 +25,12 @@ class Post extends React.Component {
               <div className="postBody">
                 <p className="postName">
                   <strong><a href="">Albert Chang</a></strong>
-                  <br /><span className="postTimestamp">a few minutes ago</span>
+                  <br /><span className="postTimestamp">{this.props.post.post_timestamp}</span>
                 </p>
               </div>
             </div>
             <hr className="postHorizontal" />
-            <p className="postText">{this.props.postText}</p>
+            <p className="postText">{this.props.post.post_text}</p>
             <div className="postButtonRow">
               <Button className="likeButton" onClick={this.toggleLike.bind(this)} as='div' labelPosition='right'>
                 <Button className="likeHeartButton">
