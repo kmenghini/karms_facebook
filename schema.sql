@@ -12,8 +12,8 @@ CREATE TABLE users (
     picture_url VARCHAR(255)
 );
 
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'matt', 'upham', 'http://fb.com/mattuphamImage');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'albert', 'chang', 'http://fb.com/albertchangedImage');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'Matt', 'Upham', 'http://fb.com/mattuphamImage');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'Albert', 'Chang', 'http://fb.com/albertchangedImage');
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
