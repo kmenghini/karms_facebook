@@ -1,6 +1,5 @@
 const express = require('express');
 let app = express();
-const db = require('../database-postgres/index.js');
 const bodyParser = require('body-parser');
 const db = require('../database-posgtres/index.js');
 app.use(bodyParser.json());
@@ -53,8 +52,8 @@ app.get('/:username/search/:otherusername', function(req, res) {
 });
 
 app.get('/:username/:user', function(req, res) {
-  db.
-})
+  // db.
+});
 
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {

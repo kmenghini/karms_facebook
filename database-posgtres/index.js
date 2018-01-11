@@ -2,8 +2,7 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log(process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.PG_DATABASE_URL,
-  ssl: true
+  connectionString: 'postgres://postgres@localhost:5432/fb_database' || process.env.DATABASE_URL
 });
 
 client.connect();
@@ -13,10 +12,6 @@ module.exports = {
     client.query('SELECT * FROM users;', (err, res) => {
       if (err) callback(err, null);
       callback(null, res.rows);
-      // for (let row of res.rows) {
-      //   console.log(JSON.stringify(row));
-      // }
-      // client.end();
     });
   },
   createPost: (username, text, callback) => {
@@ -32,7 +27,7 @@ module.exports = {
       // client.end();
     });		
   },
-  searchSomeone = function(name, callback) {
+  searchSomeone: (name, callback) => {
     const queryStr = ''; // selects all names that begin with searched query
     client.query(queryStr, (err, res) => {
       if (err) {
@@ -43,6 +38,7 @@ module.exports = {
     });
   },
   getAllPosts: (callback) => {
+    console.log('This is my client', client);
     let queryStr = 'SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC';
     console.log(queryStr);
     client.query(queryStr, (err, res) => {
