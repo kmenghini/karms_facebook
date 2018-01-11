@@ -6,11 +6,16 @@ import Search from './components/Search.jsx';
 import Profile from './components/Profile.jsx';
 import Header from './components/Header.jsx';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import SignIn from './components/SignIn.jsx';
 import { Router, Route, Switch, Link } from 'react-router-dom';
 =======
 import { Router, Route, Switch, Link } from 'react-router-dom'
 >>>>>>> added react-route-dom dependency
+=======
+import SignIn from './components/SignIn.jsx';
+import { Router, Route, Switch, Link } from 'react-router-dom';
+>>>>>>> added NewUser component
 
 class App extends React.Component {
   constructor(props) {
