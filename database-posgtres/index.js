@@ -2,7 +2,8 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log(process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: 'postgres://postgres@localhost:5432/fb_database' || process.env.DATABASE_URL
+  connectionString: 'postgres://postgres@localhost:5432/fb_database' || process.env.DATABASE_URL,
+  ssl: true
 });
 
 client.connect();
@@ -28,7 +29,8 @@ module.exports = {
     });		
   },
   searchSomeone: (name, callback) => {
-    const queryStr = ''; // selects all names that begin with searched query
+    const queryStr = 'SELECT * FROM users WHERE username LIKE `%${user}%`'; // selects all names that begin with searched query
+    // const queryStr = "SELECT * FROM users WHERE username LIKE '%'+user+'%';"; // if back ticks does not work
     client.query(queryStr, (err, res) => {
       if (err) {
         callback(err, null);

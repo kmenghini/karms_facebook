@@ -24,9 +24,9 @@ class Search extends React.Component {
     event.preventDefault();
     console.log('form submit');
     let user = this.refs.searchUser.value;
-    let userName = 'ShubhraJain'
+    let userName = 'ShubhraJain';
     if (user) {
-      axios.get(`/${userName}/user`)
+      axios.get(`/${userName}/profile/${user}`)
       .then((res) => {
         console.log(res);
         this.setState ({
@@ -39,12 +39,16 @@ class Search extends React.Component {
     }
   }
 
-  handleKeyPress(event) {
-    if (event.key !== 'Enter') {
-      console.log('hi');
-      // call to db to show results related to search string
-    }
-  }
+  // TODO if enough time
+  // handleKeyPress(event) {
+  //   if (event.key !== 'Enter') {
+  //     console.log('hi');
+  //     axios.get(`/${userName}/user`)
+      
+      
+  //     // call to db to show results related to search string
+  //   }
+  // }
 
   render() {
     return (
