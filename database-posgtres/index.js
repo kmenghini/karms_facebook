@@ -51,6 +51,29 @@ module.exports = {
       }
     })
   },
+  getLikeAmount: (username, text, callback) => {
+    let queryStr = 
+    `SELECT user_id FROM user_posts_liked WHERE post_id = 
+    (SELECT id FROM users WHERE username = ${username})`;
+    let queryStr =
+    `SELECT user_id FROM user_posts_liked WHERE post_id = 
+    (SELECT id FROM posts WHERE post_text = 
+      'Posting from Feed again!');`
+    let queryStr =
+    `(SELECT posts.id FROM posts INNER JOIN users ON users.id = 
+      posts.user_id AND posts.post_text = 
+      '${text}' AND posts.user_id = 
+      (SELECT id FROM users WHERE username = '${username}')`;
+
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log('Getting number of likes!');
+        callback(null, res.rows);
+      }
+    });
+  },
   searchSomeone: (name, callback) => {
     const queryStr = `SELECT * FROM users WHERE username LIKE '%${name}%';`; // selects all names that begin with searched query
     client.query(queryStr, (err, res) => {

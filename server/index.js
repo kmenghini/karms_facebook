@@ -76,6 +76,18 @@ app.post('/:username/likes/:username', function(req, res) {
   })
 })
 
+app.get('/:username/likes', function(req, res) {
+  console.log('Getting number of likes!');
+  db.getLikeAmount(req.params.user, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log('Successfully got like count', data);
+      res.status(200).json(data);
+    }
+  })
+})
+
 app.get('/:username/profile/:user', function(req, res) {
   db.searchSomeone(req.params.user, (err, data) => {
     if (err) {
