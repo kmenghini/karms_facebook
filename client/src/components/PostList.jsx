@@ -14,17 +14,6 @@ class PostList extends React.Component {
   }
   getNewPosts() {
     this.props.getAllPosts();
-    let username = 'albertchanged';
-    axios.get(`/${username}/posts`)
-      .then((res) => {
-        console.log('new posts...', res.data);
-        this.setState({
-          postList: res.data
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
   receivePostText(text) {
     console.log(text);
