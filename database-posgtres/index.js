@@ -165,7 +165,7 @@ module.exports = {
   },
   //add 2 rows to user_friends table
   addFriend: (username1, username2, callback) => {
-    // console.log('in db addFriend')
+    console.log('in db addFriend')
     let queryStr = `INSERT INTO user_friends (username, friend_id)
       VALUES ('${username1}', (SELECT id FROM users WHERE username='${username2}')),
       ('${username2}', (SELECT id FROM users WHERE username='${username1}'));`
