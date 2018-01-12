@@ -9,6 +9,7 @@ import Header from './components/Header.jsx';
 import Feed from './components/Feed.jsx';
 import SignIn from './components/SignIn.jsx';
 import { BrowserRouter, Router, Route, Switch, Link } from 'react-router-dom';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,8 +21,9 @@ class App extends React.Component {
   }
 
   getProfile(user) {
-    // axiox call to db to get profile
+    // axios call to db to get profile
     console.log('from index.jsx: ', user); 
+    axios.get()
   }
 
   render() {

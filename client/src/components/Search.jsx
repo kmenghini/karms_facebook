@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -22,10 +21,6 @@ class Search extends React.Component {
       .then((res) => {
         console.log('res: ', res.data);
         this.props.getUserProfile(user);
-        console.log('hello');
-        // this.setState ({
-        //   users: res
-        // }) 
       })
       .catch((err) => {
         console.log('err: ', err);

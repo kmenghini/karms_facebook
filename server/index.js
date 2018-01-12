@@ -155,15 +155,4 @@ app.listen(process.env.PORT || port, function() {
 
 
 
-// app.get('/:username/search/:otherusername', function(req, res) {
-//   db.searchSomeone(req.params.otherusername, (err, res) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.status(200).json(res);
-//     }
-//   })
-// });
-
-
 
