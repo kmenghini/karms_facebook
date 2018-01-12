@@ -2,7 +2,7 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database',
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres:1234@localhost:5432/fb_database',
 });
 
 client.connect();
@@ -29,8 +29,28 @@ module.exports = {
       // client.end();
     });
   },
+  likePost: (username, friendname, text, callback) => {
+    let queryStr = 
+    `INSERT INTO user_posts_liked (user_id, post_id) 
+    VALUES ((SELECT id FROM users WHERE username = '${username}'), 
+    (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
+      posts.user_id AND posts.post_text = 
+      '${text}' AND posts.user_id = 
+      (SELECT id FROM users WHERE username = '${friendname}')))`;
+      console.log('This is my queryStr', queryStr);
+      console.log('In DB', username);
+      console.log('In DB', friendname);
+      console.log('In DB', text);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log('Liking post!');
+        callback(null, res.rows);
+      }
+    })
+  },
   searchSomeone: (name, callback) => {
-
     const queryStr = `SELECT * FROM users WHERE username LIKE '%${name}%';`; // selects all names that begin with searched query
     client.query(queryStr, (err, res) => {
       if (err) {
@@ -77,6 +97,22 @@ module.exports = {
         console.log('added user in db!')
         callback(null, res.rows);
       }  
+    });
+  },
+  getUserPosts: (username, callback) => {
+    // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
+    // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
+    var query = {
+      text: 'SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = $1)',
+      values: [username]
+    };
+    client.query(query, (err, res) => {
+      if (err) {
+        console.log('error...', err);
+        callback(err, null);
+      } else {
+        callback(null, res.rows);
+      }
     });
   }
 }

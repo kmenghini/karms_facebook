@@ -27,7 +27,15 @@ app.get('/:username/posts', function(req, res) {
 
 // Get posts by a certain user
 app.get('/:username/posts/:otherusername', function(req, res) {
-  res.json(`hi from GET user posts, ${req.params.username}, here are ${req.params.otherusername}'s posts`);
+  console.log('username...', req.params.otherusername);
+  db.getUserPosts(req.params.otherusername, (error, data) => {
+    if (error) {
+      console.log(`error retrieving ${req.params.otherusername}'s posts`, error);
+    } else {
+      console.log('data....', data);
+      res.status(200).json(data);
+    }
+  });
 });
 
 // Add new post to database
@@ -46,6 +54,24 @@ app.post('/:username/posts', function(req, res) {
   })		
 });
 
+app.post('/:username/likes/:username', function(req, res) {
+  console.log('Are you liking');
+  console.log(req.params.username);
+  console.log(req.params.username);
+  console.log(req.body.text);
+  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+    if (err) {
+      console.log(res);
+      console.log('This is my error', err);
+      res.sendStatus(404);    
+    } else {
+      console.log('This is my data', data);
+      res.status(200).json(data); 
+    }   
+  })
+})
+
+
 app.get('/:username/profile/:user', function(req, res) {
   db.searchSomeone(req.params.user, (err, data) => {
     if (err) {
@@ -59,12 +85,14 @@ app.get('/:username/profile/:user', function(req, res) {
 
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
+  console.log('inside get username');
   var username = req.params.username;
   if (username !== 'favicon.ico') {
     db.getUser(username, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
+        console.log('data from /username route', data);
         res.status(200).json(data);
       }
     })  
@@ -92,11 +120,11 @@ app.post('/:username', (req, res) => {
 });
 
 // Get info about single user to load their profile
-app.get('/:username', (req, res) => {
-  var username = req.params.username;
-  res.json(`searching db for user ${username}`);
-  //if db includes username, respond with their info
-});
+// app.get('/:username', (req, res) => {
+//   var username = req.params.username;
+//   res.json(`searching db for user ${username}`);
+//   //if db includes username, respond with their info
+// });
 
 // Add new user to db
 app.post('/:username', (req, res) => {

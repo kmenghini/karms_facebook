@@ -7,6 +7,7 @@ import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    console.log('props inside profile.jsx: ', props);
   }
   render() {
     return (
