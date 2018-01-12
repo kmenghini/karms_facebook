@@ -57,6 +57,7 @@
   margin: 8px 0 7px 140px;
   border-radius: 1px;
 }
+/******************************************** Profile page ******************************************************/
 
 .profile {
   display: grid;
@@ -88,53 +89,53 @@
   z-index: 1;
   max-height: 100%;
   width: 100%;
+  margin-top: 20%;
 }
 
 .backgroundAndProfilePic .name {
-  grid-column: 4 / 5;
+  grid-column: 4 / 6;
   grid-row: 3 / 5;
   z-index: 1;
   background-color: transparent;
   height: auto;
   margin-top: 5% !important;
   margin-bottom: 5%;
-  justify-self: end;
+  justify-self: left;
+  margin-left: 10% !important;
+}
+
+.backgroundAndProfilePic .addFriend {
+  grid-column: 8 / 10;
+  grid-row: 3 / 4;
+  z-index: 1;
+  width: 75%;
+  justify-self: center;
+}
+
+.backgroundAndProfilePic .messageFriend {
+  grid-column: 10 / 12;
+  grid-row: 3 / 4;
+  z-index: 1;
+  width: 75%;
+  justify-self: left;
 }
 
 .profileNavigation {
-  border: 2px solid #e6e6e6;
   grid-row: 2;
   grid-column: 2 / 4;
   display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  justify-items: center;
-  align-items: center;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  border: 2px solid #e6e6e6;
   background-color: white;
+  max-height: 100%;
+  width: 100%;
 }
 
-.profileNavigation > span {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.profileNavigation .timeline {
-  grid-column: 4;
-}
-
-.profileNavigation .about {
-  grid-column: 5;
-}
-
-.profileNavigation .friends {
-  grid-column: 6;
-}
-
-.profileNavigation .photo {
-  grid-column: 7;
-}
-
-.profileNavigation .more {
-  grid-column: 8;
+.profileNavigation > .navigationButtons {
+  width: 100%;
+  max-height: 100%
+  grid-column: 2 / 4;
+  margin-left: 38% !important;
 }
 
 .intro {
@@ -146,6 +147,16 @@
   background-color: white;
   border: 2px solid #e6e6e6;
   padding: 3%;
+}
+
+.intro > .items > .introduction {
+  vertical-align: center;
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+.intro > .list {
+  margin: 3% !important; 
 }
 
 .intro > .header {
@@ -163,7 +174,7 @@
 }
 
 .friendsList {
-  grid-row: 5;
+  grid-row: 4;
   grid-column: 2;
   padding-left: 5%;
   border: 2px solid #e6e6e6;
@@ -177,8 +188,12 @@
   margin-bottom: 5%;
 }
 
+.friendsList > .list {
+  margin: 3% !important; 
+}
+
 .photos {
-  grid-row: 4;
+  grid-row: 5;
   grid-column: 2;
   padding-left: 5%;
   border: 2px solid #e6e6e6;
@@ -192,17 +207,21 @@
   margin-bottom: 5%;
 }
 
+.photos > .list {
+  margin: 3% !important; 
+}
+
 .makePost {
   grid-row: 3;
   grid-column: 3;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .makePost .createPostBody {
-  max-height: 100%;
-  width: 100%;
+  /*height: 1000px !important;*/
+  /*width: 100%;*/
+  flex-grow: 1;
 }
 
 .postList {
@@ -241,6 +260,8 @@
   border: 2px solid #e6e6e6;
   background-color: #f2f2f2;
 }
+
+/******************************************** Profile page ******************************************************/
 
 body {
   background: #F2F2F2 !important;

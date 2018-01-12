@@ -33,7 +33,15 @@ app.get('/:username/posts', function(req, res) {
 
 // Get posts by a certain user
 app.get('/:username/posts/:otherusername', function(req, res) {
-  res.json(`hi from GET user posts, ${req.params.username}, here are ${req.params.otherusername}'s posts`);
+  console.log('username...', req.params.otherusername);
+  db.getUserPosts(req.params.otherusername, (error, data) => {
+    if (error) {
+      console.log(`error retrieving ${req.params.otherusername}'s posts`, error);
+    } else {
+      console.log('data....', data);
+      res.status(200).json(data);
+    }
+  });
 });
 
 // Add new post to database
@@ -45,9 +53,8 @@ app.post('/:username/posts', function(req, res) {
       console.log(res);
       console.log('This is my error', err);
       res.sendStatus(404);		
-    } else {
-      console.log('This is my data', data);
-      res.status(200).json(data);	
+    } else {		
+      res.status(200).json(data);		
     }		
   })		
 });
