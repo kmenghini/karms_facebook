@@ -208,6 +208,7 @@ module.exports = {
       }  
     });
   },
+<<<<<<< HEAD
   addFriend: (username, friendToAdd, callback) => {
     console.log('adding friend...');
     var queryOne = `INSERT INTO user_friends (username, friend_id) VALUES ('${username}', (SELECT id FROM users WHERE username = '${friendToAdd}'))`;
@@ -243,6 +244,8 @@ module.exports = {
       }  
     });
   }
+=======
+>>>>>>> complete addFriend function in db
 }
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
