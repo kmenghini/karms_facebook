@@ -14,7 +14,8 @@ class SignIn extends React.Component {
 
   handleUsernameInput (e) { 
     this.setState({
-      username: e.target.value
+      username: e.target.value,
+      newUser: false
     });
   }
 
@@ -38,18 +39,18 @@ class SignIn extends React.Component {
   
   render() {
     return(
-      <div className="signIn">
-        <h3> Sign In: </h3>
-        <Card>
-          <h5>Username</h5>
-          <Input className="username-input" type="text" onChange={this.handleUsernameInput.bind(this)}/>
+      <div className="signIn-page">
+        <div className="right-column">
+          <h3 id="sign-in"> Sign In </h3>
+          <Card className="signIn-card">
+            <h5 className="bottom aligned content">Username</h5>
+            <Input className="username-input" type="text" onChange={this.handleUsernameInput.bind(this)}/>
 
-          <Button onClick={this.handleLogIn.bind(this)}> Log In </Button>
-        </Card>
-        <Card>
+            <Button className="login-button" onClick={this.handleLogIn.bind(this)}> Log In </Button>
+          </Card>
           {this.state.newUser ? <NewUser username={this.state.username}/> : null }
-        </Card>
-      </div>
+        </div>
+      </div>  
     )
   }
 }

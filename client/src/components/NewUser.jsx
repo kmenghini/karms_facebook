@@ -31,18 +31,17 @@ class NewUser extends React.Component {
   render() {
     return(
       <div className="newUser">
-        <h3> Username '{this.props.username}' not found </h3>
-        <h4>Sign Up: </h4>
-        <Image className="ui tiny images">
-          <img src="/images/profile_default.jpg" />
-        </Image>
-
-        <Form className="input-form" onSubmit={this.handleSubmit.bind(this)}>
-          <Input name="username" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Username"/>
-          <Input name="firstName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="First name"/>
-          <Input name="lastName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Last name"/>
-          <Input type="submit" value="Create Account"/>
-        </Form>
+        <h3><font color="red"> Username '{this.props.username}' not found </font></h3>
+        <h4 id="new-account-title">Create a New Account</h4>
+        <Card className="new-user-card">
+          <Image className="ui tiny images" src="/images/profile_default.jpg"/>
+          <Form className="input-form" onSubmit={this.handleSubmit.bind(this)}>
+            <Input name="username" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Username"/>
+            <Input name="firstName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="First name"/>
+            <Input name="lastName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Last name"/>
+            <Input className="login-button" id="create-account" type="submit" value="Create Account"/>
+          </Form>
+        </Card>
       </div>
     )
   }
