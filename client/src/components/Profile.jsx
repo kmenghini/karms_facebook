@@ -3,12 +3,35 @@ import CreatePost from './CreatePost.jsx';
 import Post from './Post.jsx';
 import PostList from './PostList.jsx';
 import FBHeader from './Header.jsx'
+import axios from 'axios';
 import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      posts: []
+    }
   }
+
+  componentDidMount() {
+    this.getUserPosts();
+  }  
+
+  getUserPosts() {
+    var username = 'albertchanged'; 
+    axios.get(`/${username}/posts/${username}`)
+      .then((response) => {
+        console.log('response body...', response.body);
+        this.setState({
+          posts: response.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+  } 
+
   render() {
     return (
       <div>
@@ -16,10 +39,14 @@ class Profile extends React.Component {
         <div className="backgroundAndProfilePic">
           <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
-          <Header inverted color="grey" textAlign="center" className="name"> Puppers </Header>
+          <Header size="large" inverted color="grey" textAlign="center" className="name"> Puppers </Header>
           <Button compact inverted size="small" className="addFriend">
             <Icon name='add user'/>
             Add Friend
+          </Button>
+          <Button compact inverted size="small" className="messageFriend">
+            <Icon name='comments'/>
+            Message Friend
           </Button>
         </div>
         <div className="profileNavigation">
@@ -83,7 +110,14 @@ class Profile extends React.Component {
         </div>
         <div className="postList">
           <List className="items">
-            <PostList />
+            {
+              this.state.posts.map((post) => (
+                <div>
+                  <Post post={post} key={post.id} />
+                  <br />
+                </div>
+              ))
+            }
           </List>
         </div>
       </div>
