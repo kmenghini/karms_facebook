@@ -22,6 +22,20 @@ class Search extends React.Component {
     this.refs.searchUser.value = '';
   }
 
+  // filter results with each letter entered
+  // handleInputText(event) {
+  //   event.preventDefault();
+  //   let user = this.refs.searchUser.value;
+  //   let userName = 'Shubhra';
+  //   axios.get(`/${userName}/search/${user}`)
+  //   .then((res) => {
+
+  //   })
+  //   .catch((err) => {
+  //     console.log('err: ', err);
+  //   })
+  // }
+
   render() {
     return (
       <form className="search-bar" onSubmit={this.handleSearch.bind(this)}>
