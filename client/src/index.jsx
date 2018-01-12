@@ -16,6 +16,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       view: 'feed',
+      profile: false,
       name: '',
       picture_url: '',
       username: ''
@@ -29,6 +30,7 @@ class App extends React.Component {
       console.log('res: ', res.data[0]);
       this.setState({
         view: 'profile',
+        profile: true,
         name: res.data[0].first_name,
         picture_url: res.data[0].picture_url,
         username: res.data[0].username
@@ -53,7 +55,7 @@ class App extends React.Component {
         {/* <SignIn /> */}
         {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}
         <br />
-        {(this.state.view === 'profile')  ? <Profile 
+        {(this.state.profile) ? <Profile 
                                   username={this.state.username}
                                   name={this.state.name} 
                                   picture_url={this.state.picture_url} 

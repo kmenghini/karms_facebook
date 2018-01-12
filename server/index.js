@@ -94,6 +94,24 @@ app.post('/:username/likes/:username', function(req, res) {
 })
 
 
+app.post('/:username/likes/:username', function(req, res) {
+  console.log('Are you liking');
+  console.log(req.params.username);
+  console.log(req.params.username);
+  console.log(req.body.text);
+  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+    if (err) {
+      console.log(res);
+      console.log('This is my error', err);
+      res.sendStatus(404);    
+    } else {
+      console.log('This is my data', data);
+      res.status(200).json(data); 
+    }   
+  })
+})
+
+
 app.get('/:username/profile/:user', function(req, res) {
   db.searchSomeone(req.params.user, (err, data) => {
     if (err) {
