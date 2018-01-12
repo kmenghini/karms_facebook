@@ -14,9 +14,8 @@ class Profile extends React.Component {
       {/* <FBHeader /> */}
       <div className="profile">
         <div className="backgroundAndProfilePic">
-          <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
-          <Header inverted color="grey" textAlign="center" className="name"> Puppers </Header>
+          <Header inverted color="grey" textAlign="center" className="name">Puppers</Header>
         </div>
         <div className="profileNavigation">
           <span className="timeline"> Timeline </span>
