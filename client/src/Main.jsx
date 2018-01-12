@@ -10,9 +10,9 @@ const Main = () => (
   <main>
     <Switch>
       <Route exact path='/' component={Feed} />
-      <Route path='/feed' component={Feed} />
+      <Route path='/:username/feed' component={Feed} />
       <Route path='/login' component={SignIn} />
-      <Route path='/profile' component={Profile} />
+      <Route path='/:username/profile' component={Profile} />
     </Switch>
   </main>
 )

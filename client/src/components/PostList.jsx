@@ -13,6 +13,7 @@ class PostList extends React.Component {
     }
   }
   getNewPosts() {
+
     this.props.getAllPosts();
   }
   receivePostText(text) {
@@ -22,9 +23,10 @@ class PostList extends React.Component {
     })
   }
   render() {
+    // console.log(this.props.name);
     return (
       <div>
-        <CreatePost onClick={this.receivePostText.bind(this)} getAllPosts={this.props.getAllPosts.bind(this)} />
+        <CreatePost onClick={this.receivePostText.bind(this)} getAllPosts={this.props.getAllPosts.bind(this)} name={this.props.name} />
         <br />
         {
           this.props.postList.map((post) => (
@@ -32,6 +34,7 @@ class PostList extends React.Component {
             <Post
               post={post}
               key={post.id}
+              name={this.props.name}
             />
             <br />
             </div>

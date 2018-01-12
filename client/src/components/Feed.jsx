@@ -9,14 +9,20 @@ class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      postList: []
+      postList: [],
+      username: ''
     }
   }
   componentDidMount() {
     this.getAllPosts();
   }
   getAllPosts() {
-    let username = 'albertchanged';
+    console.log(this.props);
+    let username = this.props.match.params.username;
+    console.log(username);
+    this.setState({
+      username: username
+    })
     axios.get(`/${username}/posts`)
       .then((res) => {
         console.log(res.data);
@@ -87,7 +93,7 @@ class Feed extends React.Component {
         </div>
 
         <div className="feedContent">
-          <PostList postList={this.state.postList} getAllPosts={this.getAllPosts.bind(this)}/>
+          <PostList postList={this.state.postList} getAllPosts={this.getAllPosts.bind(this)} name={this.state.username}/>
         </div>
 
         <div className="feedSidebar">
