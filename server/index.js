@@ -104,13 +104,21 @@ app.get('/:username', (req, res) => {
 // Add new user to db
 app.post('/:username', (req, res) => {
   var username = req.params.username;
-  var newUserData = {
-    username: req.body.username,
-    pictureUrl: req.body.pictureUrl,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName
-  }
-  res.json(`new user: ${newUserData.username} adding to db`);
+  if (username !== 'favicon.ico') {
+    var newUserData = {
+      username: req.body.username,
+      pictureUrl: req.body.pictureUrl,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName
+    }
+    db.addUser(newUserData, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })
+  }  
 });
 
 app.listen(process.env.PORT || port, function() {
