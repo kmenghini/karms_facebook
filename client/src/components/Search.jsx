@@ -54,4 +54,3 @@ export default Search;
   //     console.log('err: ', err);
   //   })
   // }
-
