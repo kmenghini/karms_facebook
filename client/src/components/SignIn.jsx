@@ -8,7 +8,7 @@ class SignIn extends React.Component {
     super();
     this.state = {
       username: undefined,
-      newUser: true
+      newUser: false
     };
   }
 
@@ -19,14 +19,20 @@ class SignIn extends React.Component {
   }
 
   handleLogIn(e) {
-    $.get(`/${this.state.username}`, data => {
-      console.log(data)
-      //if we get data back from db
-        //load feed
-      //else
-        //setState({
-        //  newUser: true
-        //})
+    console.log(this.state.username)
+    $.get(`/${this.state.username}`, (data) => {
+      if (data.length) {
+        this.setState({
+          username: data[0].username
+        });
+        console.log('need to route to feed for', this.state.username)
+        //route to feed for this user
+      } else {
+        this.setState({
+          newUser: true
+        });
+      }
+      console.log('in client siginin get request', data)
     })
   }
   
