@@ -33,7 +33,7 @@ class App extends React.Component {
         picture_url: res.data[0].picture_url,
         username: res.data[0].username
       })
-      // TODO -- make call to show the profile
+      
     })
     .catch((err) => {
       console.log('err: ', err);
