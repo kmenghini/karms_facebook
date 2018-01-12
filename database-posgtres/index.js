@@ -29,8 +29,28 @@ module.exports = {
       // client.end();
     });
   },
+  likePost: (username, friendname, text, callback) => {
+    let queryStr = 
+    `INSERT INTO user_posts_liked (user_id, post_id) 
+    VALUES ((SELECT id FROM users WHERE username = '${username}'), 
+    (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
+      posts.user_id AND posts.post_text = 
+      '${text}' AND posts.user_id = 
+      (SELECT id FROM users WHERE username = '${friendname}')))`;
+      console.log('This is my queryStr', queryStr);
+      console.log('In DB', username);
+      console.log('In DB', friendname);
+      console.log('In DB', text);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log('Liking post!');
+        callback(null, res.rows);
+      }
+    })
+  },
   searchSomeone: (name, callback) => {
-
     const queryStr = `SELECT * FROM users WHERE username LIKE '%${name}%';`; // selects all names that begin with searched query
     client.query(queryStr, (err, res) => {
       if (err) {
