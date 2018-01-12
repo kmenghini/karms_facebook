@@ -14,6 +14,12 @@ class Search extends React.Component {
       axios.get(`/${userName}/profile/${user}`)
       .then((res) => {
         this.props.getUserProfile(res.data[0].username);
+        console.log('res: ', res.data);
+        this.props.getUserProfile(user);
+        console.log('hello');
+        // this.setState ({
+        //   users: res
+        // }) 
       })
       .catch((err) => {
         console.log('err: ', err);
