@@ -2,7 +2,8 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://kmenghini@localhost:5432/fb_database',
+
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres:1234@localhost:5432/fb_database',
 });
 
 client.connect();
@@ -160,6 +161,22 @@ module.exports = {
       }  
     });
   },
+  getUserPosts: (username, callback) => {
+    // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
+    // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
+    var query = {
+      text: 'SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = $1)',
+      values: [username]
+    };
+    client.query(query, (err, res) => {
+      if (err) {
+        console.log('error...', err);
+        callback(err, null);
+      } else {
+        callback(null, res.rows);
+      }
+    });
+  }
 }
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
