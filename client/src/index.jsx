@@ -52,7 +52,7 @@ class App extends React.Component {
         {/* <SignIn /> */}
         {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}
         <br />
-        {(this.state.profile) ? <Profile 
+        {(this.state.view === 'profile')  ? <Profile 
                                   username={this.state.username}
                                   name={this.state.name} 
                                   picture_url={this.state.picture_url} 
