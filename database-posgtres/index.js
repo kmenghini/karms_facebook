@@ -244,6 +244,7 @@ module.exports = {
     });
   },
   addFriend: (username, friendToAdd, callback) => {
+    console.log('adding friend...');
     var queryOne = `INSERT INTO user_friends (username, friend_id) VALUES ('${username}', (SELECT id FROM users WHERE username = '${friendToAdd}'))`;
     var queryTwo = `INSERT INTO user_friends (username, friend_id) VALUES ('${friendToAdd}', (SELECT id FROM users WHERE username = '${username}'))`;
     client.query(queryOne, (err, res) => {
