@@ -4,12 +4,6 @@ import axios from 'axios';
 class Search extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      gettingUser: false,
-      users: [],
-      selectedUser: ''
-    }
   }
 
   handleSearch(event) {
@@ -38,9 +32,11 @@ class Search extends React.Component {
           ref="searchUser" 
         />
         <button className="search-btn">Find</button>
+
       </form>
     )
   }
 }
 
 export default Search;
+        // <Link to='/profile'><button className="btn" onClick={this.handleLogOutClick.bind(this)}>Log Out</button></Link>
