@@ -1,11 +1,13 @@
 .search-input {
   width: 350px !important;
   height: 30px;
-  margin: 8px 0 7px 150px;
+  margin: 8px 0 7px 7px;
   float: left;
   border: none;
   padding-left: 10px;
   color: grey;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
 }
 
 .search-btn {
@@ -15,6 +17,8 @@
   margin: 8px 0 7px 0;
   background-color: #f6f7f9;
   cursor: pointer;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .search-bar {
@@ -28,7 +32,7 @@
 }
 
 .header-btn {
-  margin-right: 150px;
+  margin-right: 140px;
 }
 
 .btn {
@@ -44,6 +48,14 @@
 
 .btn:hover {
   background-color: #365899;
+}
+
+.logo {
+  height: 29px;
+  width: 30px;
+  float: left;
+  margin: 8px 0 7px 140px;
+  border-radius: 1px;
 }
 
 .profile {
