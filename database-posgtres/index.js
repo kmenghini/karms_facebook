@@ -164,7 +164,6 @@ module.exports = {
       }
     });
   },
-
   //add 2 rows to user_friends table
   addFriend: (username1, username2, callback) => {
     console.log('in db addFriend')
