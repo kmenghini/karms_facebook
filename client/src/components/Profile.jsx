@@ -1,7 +1,6 @@
 import React from 'react';
 import CreatePost from './CreatePost.jsx';
 import Post from './Post.jsx';
-import FBHeader from './Header.jsx'
 import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
 class Profile extends React.Component {
@@ -11,7 +10,6 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-      {/* <FBHeader /> */}
       <div className="profile">
         <div className="backgroundAndProfilePic">
           <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
