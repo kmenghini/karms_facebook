@@ -142,8 +142,6 @@
   grid-row: 3;
   grid-column: 2;
   padding: 5%;
-  display: grid;
-  grid-template-rows: 0.5fr 3fr;
   background-color: white;
   border: 2px solid #e6e6e6;
   padding: 3%;
@@ -181,7 +179,16 @@
   background-color: white;
 }
 
+
 .friendsList > .header {
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 0% !important;
+  display: inline-block !important;
+}
+
+.friendsList > .friendCount {
   background-color: transparent;
   height: auto;
   margin-top: 5% !important;
@@ -238,6 +245,10 @@
   max-height: 100%;
   width: 100%;
   margin-bottom: 2.5%;
+}
+
+.profile .postList .createPostBody {
+  display: none;
 }
 
 .placeHolder {

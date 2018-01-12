@@ -2,7 +2,8 @@ import React from 'react';
 import CreatePost from './CreatePost.jsx';
 import Post from './Post.jsx';
 import PostList from './PostList.jsx';
-import FBHeader from './Header.jsx'
+import FBHeader from './Header.jsx';
+import Profile_friends from './Profile_friends.jsx';
 import axios from 'axios';
 import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
@@ -10,7 +11,8 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      friends: []
     }
   }
 
@@ -33,10 +35,14 @@ class Profile extends React.Component {
   }
 
   getFriends() {
-    let username = this.props.match.params.username;
+    // let username = this.props.match.params.username;
+    var username = 'albertchanged';
     axios.get(`/${username}`)
       .then((response) => {
-        console.log('response body...', response.data);
+        console.log('friends..', response.data);
+        this.setState({
+          friends: response.data
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -94,18 +100,7 @@ class Profile extends React.Component {
              </List.Item>
           </List>
         </div>
-        <div className="friendsList">
-          <Header className="header"> 
-            <Icon name="users"></Icon>
-            Friends
-          </Header>
-          <List className="items">
-            <Divider fitted></Divider>
-            <List.Item> Friend 1 </List.Item>
-            <List.Item> Friend 2 </List.Item>
-            <List.Item> Friend 3 </List.Item>
-          </List>
-        </div>
+        <Profile_friends friends={this.state.friends}/>
         <div className="photos">
           <Header className="header"> 
             <Icon name="photo"></Icon>
@@ -119,7 +114,7 @@ class Profile extends React.Component {
           </List>
         </div>
         <div className="makePost">
-          <CreatePost />
+          <CreatePost renderNewPost={this.getUserPosts.bind(this)}/>
         </div>
         <div className="postList">
           <List className="items">

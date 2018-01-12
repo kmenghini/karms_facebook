@@ -21,7 +21,7 @@ class CreatePost extends React.Component {
     axios.post(`/${username}/posts`, { 'text': postInput })
       .then((res) => {
         console.log(res);
-        this.props.getAllPosts();
+        this.props.getAllPosts ? this.props.getAllPosts() : this.props.renderNewPost();
       })
       .catch((err) => {
         console.error(err);
