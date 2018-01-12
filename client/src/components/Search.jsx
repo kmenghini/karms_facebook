@@ -14,6 +14,7 @@ class Search extends React.Component {
       axios.get(`/${userName}/profile/${user}`)
       .then((res) => {
         this.props.getUserProfile(res.data[0].username);
+
       })
       .catch((err) => {
         console.log('err: ', err);
@@ -21,6 +22,7 @@ class Search extends React.Component {
     }
     this.refs.searchUser.value = '';
   }
+
 
   render() {
     return (
@@ -39,4 +41,17 @@ class Search extends React.Component {
 }
 
 export default Search;
-        // <Link to='/profile'><button className="btn" onClick={this.handleLogOutClick.bind(this)}>Log Out</button></Link>
+  
+  // filter results with each letter entered
+  // handleInputText(event) {
+  //   event.preventDefault();
+  //   let user = this.refs.searchUser.value;
+  //   let userName = 'Shubhra';
+  //   axios.get(`/${userName}/search/${user}`)
+  //   .then((res) => {
+
+  //   })
+  //   .catch((err) => {
+  //     console.log('err: ', err);
+  //   })
+  // }
