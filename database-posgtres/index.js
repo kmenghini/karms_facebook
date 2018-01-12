@@ -50,6 +50,32 @@ module.exports = {
         callback(null, res.rows);
       }
     });
+  },
+  //find select username
+  getUser: (username, callback) => {
+    console.log('in db getUser, looking for', username)
+    client.query(`SELECT * FROM users WHERE username='${username}';`, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('searched for user in db')
+        callback(null, res.rows);
+      }  
+    });
+  },
+  //add user to db
+  addUser: (userData, callback) => {
+    console.log('in db addUser start......', userData)
+    client.query(`INSERT INTO users (username, first_name, last_name, picture_url) VALUES ('${userData.username}', '${userData.firstName}', '${userData.lastName}', '${userData.pictureUrl}');`, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('added user in db!')
+        callback(null, res.rows);
+      }  
+    });
   }
 }
 

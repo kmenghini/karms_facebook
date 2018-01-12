@@ -55,7 +55,6 @@ app.get('/:username/search/:otherusername', function(req, res) {
   })
 });
 
-<<<<<<< HEAD
 app.get('/:username/:user', function(req, res) {
   // db.
 });
@@ -63,26 +62,36 @@ app.get('/:username/:user', function(req, res) {
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
   var username = req.params.username;
-  res.json(`searching db for user ${username}`);
-  //if db includes username, respond with their info
+  if (username !== 'favicon.ico') {
+    db.getUser(username, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })  
+  }
 });
 
 // Add new user to db
 app.post('/:username', (req, res) => {
   var username = req.params.username;
-  var newUserData = {
-    username: req.body.username,
-    pictureUrl: req.body.pictureUrl,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName
-  }
-  res.json(`new user: ${newUserData.username} adding to db`);
+  if (username !== 'favicon.ico') {
+    var newUserData = {
+      username: req.body.username,
+      pictureUrl: req.body.pictureUrl,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName
+    }
+    db.addUser(newUserData, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })
+  }  
 });
-=======
-// app.get('/:username/:user', function(req, res) {
-//   db.
-// })
->>>>>>> merge updates
 
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
