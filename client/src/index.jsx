@@ -1,28 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Main from './Main.jsx';
 import Post from './components/Post.jsx';
 import PostList from './components/PostList.jsx';
 import Search from './components/Search.jsx';
 import Profile from './components/Profile.jsx';
 import Header from './components/Header.jsx';
+import Feed from './components/Feed.jsx';
+import SignIn from './components/SignIn.jsx';
+import { BrowserRouter, Router, Route, Switch, Link } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'postList'
+      view: 'feed',
+      profile: false
     };
   }
+
+  getProfile(user) {
+    // axiox call to db to get profile
+    console.log('from index.jsx: ', user); 
+  }
+
   render() {
     return (
       <div>
-        <Header />
-        { this.state.view === 'profile' ? <Profile /> : <PostList /> }
+        <Header getProfile={this.getProfile.bind(this)}/>
+        {/* <Feed /> */}
+        {/* { this.state.view === 'profile' ? <Profile /> : <PostList /> }
         <br />
-        <PostList />
+        <PostList /> */}
+        <Main />
+        {/* <Header /> */}
+        {/* <SignIn /> */}
+        {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}
+        <br />
+        {(this.state.profile) ? <Profile getProfile={this.getProfile.bind(this)}/> : null}
       </div>
     )
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('app'));
+export default App;
