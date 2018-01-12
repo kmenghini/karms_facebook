@@ -43,6 +43,7 @@ class SignIn extends React.Component {
         <Card>
           <h5>Username</h5>
           <Input className="username-input" type="text" onChange={this.handleUsernameInput.bind(this)}/>
+
           <Button onClick={this.handleLogIn.bind(this)}> Log In </Button>
         </Card>
         <Card>
