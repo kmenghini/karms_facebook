@@ -183,6 +183,7 @@ app.post('/:username', (req, res) => {
   }  
 });
 
+// route to add friend
 app.post('/:username/:friendToAdd', (req, res) => {
   var username = req.params.username;
   var friendToAdd = req.params.friendToAdd;
@@ -192,6 +193,19 @@ app.post('/:username/:friendToAdd', (req, res) => {
     } else {
       res.status(200).json(data);
     }
+  });
+});
+
+// route to get a friends list
+app.get('/:username/friendsList/:otherUsername', (req, res) => {
+  var username = req.params.username;
+  var otherUsername = req.params.otherUsername;
+  db.getFriendsList(otherUsername, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }    
   });
 });
 
