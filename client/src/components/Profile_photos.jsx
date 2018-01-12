@@ -1,22 +1,22 @@
 import React from 'react';
 import { Divider, Header, List, Icon, Grid, Image } from 'semantic-ui-react';
 
-class Profile_friends extends React.Component {
+class Profile_photos extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div className="friendsList">
+      <div className="photosList">
         <Header className="header"> 
-          <Icon name="users"></Icon>
-          Friends
+          <Icon name="camera"></Icon>
+          Photos
         </Header>
-        <span className="friendsCount">
-          &nbsp; · &nbsp; {this.props.friends.length}
+        <span className="photosCount">
+          &nbsp; · &nbsp; {'2 photos'}
         </span>
-        <div className="friends">
+        <div className="photos">
           {/*
             this.props.friends.map((friend) => (
               <div className="friend">
@@ -28,10 +28,13 @@ class Profile_friends extends React.Component {
           <img src="/images/profile_default.jpg" />
           <img src="/images/profile_default.jpg" />
           <img src="/images/profile_default.jpg" />
+          <img src="/images/profile_default.jpg" />
+          <img src="/images/profile_default.jpg" />
+          <img src="/images/profile_default.jpg" />
         </div>
       </div>
     );
   }
 }
 
-export default Profile_friends;
+export default Profile_photos;
