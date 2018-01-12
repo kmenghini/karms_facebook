@@ -22,6 +22,7 @@ class Header extends React.Component {
 
   getUserProfile(user) {
     this.props.getProfile(user);
+
   }
 
 
