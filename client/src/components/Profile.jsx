@@ -16,16 +16,27 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.getUserPosts();
+    this.getFriends();
   }  
 
   getUserPosts() {
     var username = 'albertchanged'; 
     axios.get(`/${username}/posts/${username}`)
       .then((response) => {
-        console.log('response body...', response.body);
         this.setState({
           posts: response.data
         });
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+  }
+
+  getFriends() {
+    var username = 'albertchaned';
+    axios.get(`/${username}`)
+      .then((response) => {
+        console.log('response body...', response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -64,11 +75,11 @@ class Profile extends React.Component {
             Intro 
           </Header>
           <List className="items">
+            <div className="introduction"> 
+              {/*<Icon name="user"></Icon>*/}
+              I like to woof and eat treats and I like to roll around in the grass and play frisbee
+            </div>
             <Divider fitted></Divider>
-            <List.Item> 
-              <Icon name="user"></Icon>
-              &nbsp; I like to woof and eat treats
-            </List.Item>
             <List.Item>
               <Icon name="home"></Icon>
               &nbsp; Lives in San Francisco, CA 

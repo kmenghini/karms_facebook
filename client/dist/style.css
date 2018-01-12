@@ -179,6 +179,12 @@
   padding: 3%;
 }
 
+.intro > .items > .introduction {
+  vertical-align: center;
+  text-align: center;
+  margin-bottom: 3%;
+}
+
 .intro > .list {
   margin: 3% !important; 
 }
@@ -198,7 +204,7 @@
 }
 
 .friendsList {
-  grid-row: 5;
+  grid-row: 4;
   grid-column: 2;
   padding-left: 5%;
   border: 2px solid #e6e6e6;
@@ -217,7 +223,7 @@
 }
 
 .photos {
-  grid-row: 4;
+  grid-row: 5;
   grid-column: 2;
   padding-left: 5%;
   border: 2px solid #e6e6e6;
