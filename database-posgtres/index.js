@@ -2,11 +2,10 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://kmenghini@localhost:5432/fb_database',
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres:1234@localhost:5432/fb_database' 
 });
 
 client.connect();
-console.log('Connected!');
 module.exports = {
   getAllUsers: (callback) => {
     client.query('SELECT * FROM users;', (err, res) => {
@@ -15,7 +14,7 @@ module.exports = {
     });
   },
   createPost: (username, text, callback) => {
-    console.log('This is my client', client);
+    // console.log('This is my client', client);
     let queryStr =
       `INSERT INTO posts (post_text, user_id)
       VALUES ('${text}', (SELECT id FROM users WHERE username = '${username}'))`;
@@ -31,25 +30,25 @@ module.exports = {
     });
   },
   searchSomeone: (name, callback) => {
-    const queryStr = ''; // selects all names that begin with searched query
+
+    const queryStr = `SELECT * FROM users WHERE username LIKE '%${name}%';`; // selects all names that begin with searched query
     client.query(queryStr, (err, res) => {
       if (err) {
+        console.log('error inside searchSomeone', err);
         callback(err, null);
       } else {
-        callback(null, res);
+        callback(null, res.rows);
       }
     });
   },
   getAllPosts: (callback) => {
-    console.log('This is my client', client);
     let queryStr = 'SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC';
-    console.log(queryStr);
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err);
         callback(err, null);
       } else {
-        console.log('Got all posts!!!!');
+        // console.log('Got all posts!!!!');
         callback(null, res.rows);
       }
     });

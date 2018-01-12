@@ -2,7 +2,7 @@ const express = require('express');
 let app = express();
 const bodyParser = require('body-parser');
 const db = require('../database-posgtres/index.js');
-// const sequelize =
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client/dist'));
@@ -33,7 +33,7 @@ app.get('/:username/posts/:otherusername', function(req, res) {
 // Add new post to database
 app.post('/:username/posts', function(req, res) {
   console.log(req.params.username);
-  console.log(req.body.text);		
+  console.log(req.body.text);   
   db.createPost(req.params.username, req.body.text, (err, data) => {
     if (err) {
       console.log(res);
@@ -46,18 +46,15 @@ app.post('/:username/posts', function(req, res) {
   })		
 });
 
-app.get('/:username/search/:otherusername', function(req, res) {
-  db.searchSomeone(req.params.otherusername, (err, res) => {
+app.get('/:username/profile/:user', function(req, res) {
+  db.searchSomeone(req.params.user, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).json(res);
+      console.log('success: ', data);
+      res.status(200).json(data);
     }
-  })
-});
-
-app.get('/:username/:user', function(req, res) {
-  // db.
+  });
 });
 
 // Get info about single user to load their profile
@@ -121,6 +118,22 @@ app.post('/:username', (req, res) => {
   }  
 });
 
+
 app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);
 });
+
+
+
+// app.get('/:username/search/:otherusername', function(req, res) {
+//   db.searchSomeone(req.params.otherusername, (err, res) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       res.status(200).json(res);
+//     }
+//   })
+// });
+
+
+
