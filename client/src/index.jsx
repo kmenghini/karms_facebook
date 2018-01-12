@@ -14,13 +14,20 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'feed'
+      view: 'feed',
+      profile: false
     };
   }
+
+  getProfile(user) {
+    // axiox call to db to get profile
+    console.log('from index.jsx: ', user); 
+  }
+
   render() {
     return (
       <div>
-        <Header />
+        <Header getProfile={this.getProfile.bind(this)}/>
         {/* <Feed /> */}
         {/* { this.state.view === 'profile' ? <Profile /> : <PostList /> }
         <br />
@@ -30,6 +37,7 @@ class App extends React.Component {
         {/* <SignIn /> */}
         {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}
         <br />
+        {(this.state.profile) ? <Profile getProfile={this.getProfile.bind(this)}/> : null}
       </div>
     )
   }

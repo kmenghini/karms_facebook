@@ -1,6 +1,4 @@
 import React from 'react';
-import { Dropdown } from 'semantic-ui-react';
-import UserList from './User.jsx';
 import axios from 'axios';
 
 
@@ -10,41 +8,42 @@ class Search extends React.Component {
 
     this.state = {
       gettingUser: false,
-      // users: []
-      users: [{key: 1, text: 'Shubhra'}, 
-              {key: 2, text: 'Albert'}, 
-              {key: 3, text: 'Ryan'}, 
-              {key: 4, text: 'Kaitlyn'}, 
-              {key: 5, text: 'Matt'}],
+      users: [],
       selectedUser: ''
     }
   }
 
   handleSearch(event) {
     event.preventDefault();
-    console.log('form submit');
     let user = this.refs.searchUser.value;
-    let userName = 'ShubhraJain'
+    let userName = 'Shubhra';
     if (user) {
-      axios.get(`/${userName}/user`)
+      axios.get(`/${userName}/profile/${user}`)
       .then((res) => {
-        console.log(res);
-        this.setState ({
-          users: res
-        })      
+        console.log('res: ', res.data);
+        this.props.getUserProfile(user);
+        // this.setState ({
+        //   users: res
+        // }) 
       })
       .catch((err) => {
-        console.log(err);
+        console.log('err: ', err);
       })
     }
+    this.refs.searchUser.value = '';
   }
 
-  handleKeyPress(event) {
-    if (event.key !== 'Enter') {
-      console.log('hi');
-      // call to db to show results related to search string
-    }
-  }
+  // TODO if enough time
+  // handleKeyPress(event) {
+  //   if (event.key !== 'Enter') {
+  //     console.log('hi');
+  //     axios.get(`/${userName}/user`)
+      
+      
+  //     // call to db to show results related to search string
+  //   }
+  // }
+
 
   render() {
     return (
@@ -63,6 +62,18 @@ class Search extends React.Component {
 }
 
 export default Search;
+
+  // TODO if enough time
+  // handleKeyPress(event) {
+  //   if (event.key !== 'Enter') {
+  //     console.log('hi');
+  //     axios.get(`/${userName}/user`)
+      
+      
+  //     // call to db to show results related to search string
+  //   }
+  // }
+
   // getAllUsers() {
   //   this.setState ({
   //     // users: [{key: 1, text: 'Shubhra'}, 

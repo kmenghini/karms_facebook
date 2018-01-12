@@ -8,6 +8,25 @@ import { Button, Icon, Image, Header, List, Item, Divider, Menu, Advertisement }
 class Feed extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      postList: []
+    }
+  }
+  componentDidMount() {
+    this.getAllPosts();
+  }
+  getAllPosts() {
+    let username = 'albertchanged';
+    axios.get(`/${username}/posts`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          postList: res.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   render() {
     return (
@@ -68,7 +87,7 @@ class Feed extends React.Component {
         </div>
 
         <div className="feedContent">
-          <PostList />
+          <PostList postList={this.state.postList} getAllPosts={this.getAllPosts.bind(this)}/>
         </div>
 
         <div className="feedSidebar">
