@@ -40,4 +40,4 @@ class Search extends React.Component {
 }
 
 export default Search;
-        // <Link to='/profile'><button className="btn" onClick={this.handleLogOutClick.bind(this)}>Log Out</button></Link>
+ 
