@@ -264,7 +264,20 @@ module.exports = {
         });
       }  
     });
-  }
+  },
+  getFriendsList: (username, callback) => {
+    console.log('in db getFriendsList')
+    let queryStr = `SELECT users.* FROM users INNER JOIN user_friends ON (user_friends.friend_id = users.id) WHERE user_friends.username = '${username}';`
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('friends list from db...')
+        callback(null, res.rows);
+      }  
+    });
+  },
 }
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {

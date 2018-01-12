@@ -40,9 +40,10 @@ class Profile extends React.Component {
     // let username = this.props.match.params.username;
     var username = 'albertchanged';
     var otherUsername = 'rayango';
-    axios.get(`/${username}`)
+    axios.get(`/${username}/friendsList/${otherUsername}`)
       .then((response) => {
-        var isFriend = this.checkIfFriend;
+        console.log('friends....', response.data);
+        var isFriend = this.checkIfFriend(username, response.data, otherUsername);
         this.setState({
           friends: response.data,
           friend: isFriend
@@ -53,9 +54,9 @@ class Profile extends React.Component {
       }); 
   }
 
-  checkIfFriend(username, otherUsername) {
-    for (var i = 0; i < response.data.length; i++) {
-      var user = response.data[i];
+  checkIfFriend(username, friendsList, otherUsername) {
+    for (var i = 0; i < friendsList.length; i++) {
+      var user = friendsList[i];
       if (user.username === username) {
         return true;
       }
@@ -64,7 +65,7 @@ class Profile extends React.Component {
   }
 
   addFriend() {
-    var username = 'albertchanged';
+    var username = 'mattupham';
     var friendToAdd = 'rayango';
     axios.post(`/${username}/${friendToAdd}`)
       .then((response) => {
