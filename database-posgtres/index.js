@@ -50,6 +50,27 @@ module.exports = {
       }
     })
   },
+  unlikePost: (username, friendname, text, callback) => {
+    let queryStr = 
+    `DELETE FROM user_posts_liked WHERE user_id = 
+    (SELECT id FROM users WHERE username = '${username}')
+    AND post_id = (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
+      posts.user_id AND posts.post_text = 
+      '${text}' AND posts.user_id = 
+      (SELECT id FROM users WHERE username = '${friendname}'))`;
+      console.log('This is my queryStr', queryStr);
+      console.log('In DB', username);
+      console.log('In DB', friendname);
+      console.log('In DB', text);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log('Liking post!');
+        callback(null, res.rows);
+      }
+    })
+  },
   getLikeAmount: (username, text, callback) => {
     console.log(username);
     console.log(text);
