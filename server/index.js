@@ -19,7 +19,7 @@ app.get('/:username/posts', function(req, res) {
       console.log('This is my error', err);
       res.sendStatus(404);
     } else {
-      console.log('This is my error', data);
+      // console.log('This is my data', data);
       res.status(200).json(data);
     }
   })
@@ -35,14 +35,15 @@ app.post('/:username/posts', function(req, res) {
   console.log(req.params.username);
   console.log(req.body.text);		
   db.createPost(req.params.username, req.body.text, (err, data) => {
-    if (err) {		
+    if (err) {
+      console.log(res);
+      console.log('This is my error', err);
       res.sendStatus(404);		
-    } else {		
-      res.sendStatus(200);		
+    } else {
+      console.log('This is my data', data);
+      res.status(200).json(data);	
     }		
   })		
-  // res.send(`hi from POST new post, ${req.params.username}, I made a post with this text "${req.body.text}"`);		
-  res.send(`hi from POST new post, ${req.params.username}, I made a post with this text "${req.body.text}"`);
 });
 
 app.get('/:username/search/:otherusername', function(req, res) {

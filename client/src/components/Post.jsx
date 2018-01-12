@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Icon, Button, Label, Comment } from 'semantic-ui-react';
+import moment from 'moment';
 
 class Post extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Post extends React.Component {
               <div className="postBody">
                 <p className="postName">
                   <strong><a href="">{this.props.post.first_name}&nbsp;{this.props.post.last_name}</a></strong>
-                  <br /><span className="postTimestamp">{this.props.post.post_timestamp}</span>
+                  <br /><span className="postTimestamp">{moment(this.props.post.post_timestamp).fromNow()}</span>
                 </p>
               </div>
             </div>
