@@ -10,7 +10,7 @@ class CreatePost extends React.Component {
     }
   }
   createPost() {
-    let postInput = document.getElementById('postInput').value;
+    let postInput = document.getElementById('postInput').value.replace(`'`, `''`);
     let username = 'albertchanged';
 
     this.setState({
