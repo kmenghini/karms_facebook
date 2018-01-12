@@ -4,6 +4,7 @@ import Post from './Post.jsx';
 import PostList from './PostList.jsx';
 import FBHeader from './Header.jsx';
 import Profile_friends from './Profile_friends.jsx';
+import Profile_photos from './Profile_photos.jsx';
 import axios from 'axios';
 import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
@@ -12,7 +13,8 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       posts: [],
-      friends: []
+      friends: [],
+      friends: true
     }
   }
 
@@ -47,6 +49,10 @@ class Profile extends React.Component {
       .catch((error) => {
         console.log(error);
       }); 
+  }
+
+  addFriend() {
+
   } 
 
   render() {
@@ -57,10 +63,20 @@ class Profile extends React.Component {
           <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
           <Header size="large" inverted color="grey" textAlign="center" className="name"> Puppers </Header>
-          <Button compact inverted size="small" className="addFriend">
-            <Icon name='add user'/>
-            Add Friend
-          </Button>
+          { this.state.friends ?
+
+            <Button compact inverted size="small" className="friendStatus addFriend" onClick={this.addFriend.bind(this)}>
+              <Icon name="check" />
+              &nbsp; Friends 
+            </Button>
+
+            :
+
+            <Button compact inverted size="small" className="friendStatus">
+              <Icon name="add user"/>
+              Add Friend
+            </Button>
+          }
           <Button compact inverted size="small" className="messageFriend">
             <Icon name='comments'/>
             Message Friend
@@ -101,18 +117,7 @@ class Profile extends React.Component {
           </List>
         </div>
         <Profile_friends friends={this.state.friends}/>
-        <div className="photos">
-          <Header className="header"> 
-            <Icon name="photo"></Icon>
-            Photos 
-          </Header>
-          <List className="items">
-            <Divider fitted></Divider>
-            <List.Item> Photo 1 </List.Item>
-            <List.Item> Photo 2 </List.Item>
-            <List.Item> Photo 3 </List.Item>
-          </List>
-        </div>
+        <Profile_photos />
         <div className="makePost">
           <CreatePost renderNewPost={this.getUserPosts.bind(this)}/>
         </div>
