@@ -35,7 +35,6 @@ class App extends React.Component {
         username: res.data[0].username
       })
       // TODO -- make call to show the profile
-      // TODO
     })
     .catch((err) => {
       console.log('err: ', err);
