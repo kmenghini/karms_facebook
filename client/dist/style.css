@@ -61,7 +61,7 @@
 
 .profile {
   display: grid;
-  grid-template-rows: 7fr 1fr 5fr 7fr 7fr 9fr;
+  grid-template-rows: 7fr 1fr 5fr 8fr 6fr 9fr;
   grid-template-columns: 0.5fr 1.3fr 2fr 0.5fr;
   background-color: #f2f2f2;
   grid-gap: 10px;
@@ -174,17 +174,19 @@
 .friendsList {
   grid-row: 4;
   grid-column: 2;
-  padding-left: 5%;
+  padding: 5%;
   border: 2px solid #e6e6e6;
   background-color: white;
+  max-height: 100%;
+  width: 100%;
 }
 
 
 .friendsList > .header {
   background-color: transparent;
   height: auto;
-  margin-top: 5% !important;
-  margin-bottom: 0% !important;
+  margin-top: 0% !important;
+  margin-bottom: 3% !important;
   display: inline-block !important;
 }
 
@@ -196,7 +198,19 @@
 }
 
 .friendsList > .list {
-  margin: 3% !important; 
+  display: grid;
+  max-width: 100% !important;
+  height: 88% !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: row;
+  grid-gap: 2%;
+}
+
+.list > img {
+  max-width: 100% !important;
+  width: 120%;
+  height: 100% !important;
 }
 
 .photos {
