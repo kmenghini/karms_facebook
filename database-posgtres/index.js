@@ -2,11 +2,10 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://rngo@localhost:5432/fb_database'
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
 });
 
 client.connect();
-console.log('CLIENT HERE...', client);
 module.exports = {
   getAllUsers: (callback) => {
     client.query('SELECT * FROM users;', (err, res) => {
@@ -52,19 +51,12 @@ module.exports = {
     })
   },
   getLikeAmount: (username, text, callback) => {
-    let queryStr = 
-    `SELECT user_id FROM user_posts_liked WHERE post_id = 
-    (SELECT id FROM users WHERE username = ${username})`;
+    console.log(username);
+    console.log(text);
     let queryStr =
     `SELECT user_id FROM user_posts_liked WHERE post_id = 
-    (SELECT id FROM posts WHERE post_text = 
-      'Posting from Feed again!');`
-    let queryStr =
-    `(SELECT posts.id FROM posts INNER JOIN users ON users.id = 
-      posts.user_id AND posts.post_text = 
-      '${text}' AND posts.user_id = 
-      (SELECT id FROM users WHERE username = '${username}')`;
-
+    (SELECT id FROM posts WHERE post_text = '${text}')`;
+    console.log('This is my queryStr', queryStr);
     client.query(queryStr, (err, res) => {
       if (err) {
         callback(err, null);
