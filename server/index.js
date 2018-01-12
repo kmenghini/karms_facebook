@@ -76,6 +76,23 @@ app.post('/:username/likes/:username', function(req, res) {
   })
 })
 
+app.delete('/:username/likes/:username', function(req, res) {
+  console.log('Are you unliking');
+  console.log(req.params.username);
+  console.log(req.params.username);
+  console.log(req.query);
+  db.unlikePost(req.params.username, req.params.username, req.query.text, (err, data) => {
+    if (err) {
+      console.log(res);
+      console.log('This is my error', err);
+      res.sendStatus(404);		
+    } else {
+      console.log('This is my data', data);
+      res.status(200).json(data);	
+    }		
+  })
+})
+
 app.get('/:username/likes', function(req, res) {
   console.log('Getting number of likes!');
   console.log('Getting likes for ', req.params.username, '\'s post');

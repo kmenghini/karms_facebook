@@ -12,19 +12,7 @@ class Post extends React.Component {
     };
   }
   componentDidMount() {
-    // this.getLikeAmount;
-    let username = 'albertchanged';
-    console.log('This is the post text', this.props.post.post_text);
-    axios.get(`${username}/likes`, { params: { 'text': this.props.post.post_text }})
-      .then((res) => {
-        // console.log('This is the number of likes', res.data.length);
-        this.setState({
-          likeCount: res.data.length
-        })
-      })
-      .catch((err) => {
-        console.error('This is the error', err);
-      })
+    this.getLikeAmount();
   }
   getLikeAmount() {
     let username = 'albertchanged';
@@ -44,6 +32,9 @@ class Post extends React.Component {
     this.setState({
       liked: !this.state.liked
     })
+    this.executeToggleLike();
+  }
+  executeToggleLike() {
     let username = 'albertchanged';
     let friendname = 'mattupham';
     // let timestampReplaceT = this.props.post.post_timestamp.replace('T', ' ');
@@ -51,23 +42,31 @@ class Post extends React.Component {
     // let indexOfHyphen = this.props.post.post_timestamp.indexOf('-');
     // let timestamp = timestampReplaceT.substring(0, indexOfDot) + timestampReplaceT.substring(indexOfHyphen, timestampReplaceT.length) + '00';
     // console.log(timestamp);
-    // if (this.state.liked) {
+    if (!this.state.liked) {
+      console.log('Liked!');
       // query db to add like entry
       console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
       console.log('Are you liking');
       axios.post(`${username}/likes/${username}`, { 'text': this.props.post.post_text })
         .then((res) => {
           console.log('This is the res', res);
+          this.getLikeAmount();
         })
         .catch((err) => {
           console.log('This is the err', err);
         })
-    // } else {
-      // query db to remove like entry
-    // }
-
-    console.log('Liked!');
-    this.getLikeAmount();
+    } else {
+      axios.delete(`${username}/likes/${username}`, { params: { 'text': this.props.post.post_text }})
+        .then((res) => {
+          console.log('This is the res', res);
+          this.getLikeAmount();
+        })
+        .catch((err) => {
+          console.log('This is the err', err);
+        })
+      console.log('Unliked');
+    }
+    // this.getLikeAmount();
   }
   render() {
     return(
