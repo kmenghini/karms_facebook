@@ -147,10 +147,19 @@ module.exports = {
   },
   findPostsByFriends: (username, callback) => {
     console.log('in db findPostsByFriends')
-    //get list of all friends
-    //`SELECT friend_id FROM user_friends WHERE username='${username}';`
-  } 
-
+    let queryStr = `SELECT posts.* FROM posts 
+    INNER JOIN user_friends ON (user_friends.friend_id = posts.user_id) 
+    WHERE user_friends.username = '${username}';`
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('friends\' posts from db...')
+        callback(null, res.rows);
+      }  
+    });
+  },
 }
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
