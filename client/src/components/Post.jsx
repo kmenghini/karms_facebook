@@ -66,7 +66,6 @@ class Post extends React.Component {
         })
       console.log('Unliked');
     }
-    // this.getLikeAmount();
   }
   render() {
     return(
