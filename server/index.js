@@ -183,6 +183,18 @@ app.post('/:username', (req, res) => {
   }  
 });
 
+app.post('/:username/:friendToAdd', (req, res) => {
+  var username = req.params.username;
+  var friendToAdd = req.params.friendToAdd;
+  db.addFriend(username, friendToAdd, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
+
 
 app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);

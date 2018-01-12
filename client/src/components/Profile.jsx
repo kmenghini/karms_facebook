@@ -14,7 +14,7 @@ class Profile extends React.Component {
     this.state = {
       posts: [],
       friends: [],
-      friends: true
+      friend: false
     }
   }
 
@@ -39,11 +39,13 @@ class Profile extends React.Component {
   getFriends() {
     // let username = this.props.match.params.username;
     var username = 'albertchanged';
+    var otherUsername = 'rayango';
     axios.get(`/${username}`)
       .then((response) => {
-        console.log('friends..', response.data);
+        var isFriend = this.checkIfFriend;
         this.setState({
-          friends: response.data
+          friends: response.data,
+          friend: isFriend
         })
       })
       .catch((error) => {
@@ -51,8 +53,26 @@ class Profile extends React.Component {
       }); 
   }
 
-  addFriend() {
+  checkIfFriend(username, otherUsername) {
+    for (var i = 0; i < response.data.length; i++) {
+      var user = response.data[i];
+      if (user.username === username) {
+        return true;
+      }
+    }
+    return false;
+  }
 
+  addFriend() {
+    var username = 'albertchanged';
+    var friendToAdd = 'rayango';
+    axios.post(`/${username}/${friendToAdd}`)
+      .then((response) => {
+        this.getFriends();
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
   } 
 
   render() {
@@ -63,16 +83,16 @@ class Profile extends React.Component {
           <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
           <Header size="large" inverted color="grey" textAlign="center" className="name"> Puppers </Header>
-          { this.state.friends ?
+          { this.state.friend ?
 
-            <Button compact inverted size="small" className="friendStatus addFriend" onClick={this.addFriend.bind(this)}>
+            <Button compact inverted size="small" className="friendStatus">
               <Icon name="check" />
               &nbsp; Friends 
             </Button>
 
             :
 
-            <Button compact inverted size="small" className="friendStatus">
+            <Button compact inverted size="small" className="friendStatus addFriend" onClick={this.addFriend.bind(this)}>
               <Icon name="add user"/>
               Add Friend
             </Button>
