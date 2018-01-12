@@ -19,6 +19,7 @@ app.get('/:username/posts', function(req, res) {
       console.log('This is my error', err);
       res.sendStatus(404);
     } else {
+      // console.log('This is my data', data);
       res.status(200).json(data);
     }
   })
@@ -34,14 +35,15 @@ app.post('/:username/posts', function(req, res) {
   console.log(req.params.username);
   console.log(req.body.text);   
   db.createPost(req.params.username, req.body.text, (err, data) => {
-    if (err) {    
-      res.sendStatus(404);    
-    } else {    
-      res.sendStatus(200);    
-    }   
-  })    
-  // res.send(`hi from POST new post, ${req.params.username}, I made a post with this text "${req.body.text}"`);    
-  res.send(`hi from POST new post, ${req.params.username}, I made a post with this text "${req.body.text}"`);
+    if (err) {
+      console.log(res);
+      console.log('This is my error', err);
+      res.sendStatus(404);		
+    } else {
+      console.log('This is my data', data);
+      res.status(200).json(data);	
+    }		
+  })		
 });
 
 app.get('/:username/profile/:user', function(req, res) {
@@ -58,6 +60,40 @@ app.get('/:username/profile/:user', function(req, res) {
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
   var username = req.params.username;
+  if (username !== 'favicon.ico') {
+    db.getUser(username, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })  
+  }
+});
+
+// Add new user to db
+app.post('/:username', (req, res) => {
+  var username = req.params.username;
+  if (username !== 'favicon.ico') {
+    var newUserData = {
+      username: req.body.username,
+      pictureUrl: req.body.pictureUrl,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName
+    }
+    db.addUser(newUserData, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })
+  }  
+});
+
+// Get info about single user to load their profile
+app.get('/:username', (req, res) => {
+  var username = req.params.username;
   res.json(`searching db for user ${username}`);
   //if db includes username, respond with their info
 });
@@ -65,13 +101,21 @@ app.get('/:username', (req, res) => {
 // Add new user to db
 app.post('/:username', (req, res) => {
   var username = req.params.username;
-  var newUserData = {
-    username: req.body.username,
-    pictureUrl: req.body.pictureUrl,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName
-  }
-  res.json(`new user: ${newUserData.username} adding to db`);
+  if (username !== 'favicon.ico') {
+    var newUserData = {
+      username: req.body.username,
+      pictureUrl: req.body.pictureUrl,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName
+    }
+    db.addUser(newUserData, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })
+  }  
 });
 
 

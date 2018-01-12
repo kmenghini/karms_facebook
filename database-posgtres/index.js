@@ -1,8 +1,7 @@
 const { Client } = require('pg');
 console.log('Initializing client');
-console.log(process.env.DATABASE_URL);
+console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-
   connectionString: process.env.DATABASE_URL || 'postgres://postgres:1234@localhost:5432/fb_database' 
 });
 
@@ -17,15 +16,18 @@ module.exports = {
   createPost: (username, text, callback) => {
     // console.log('This is my client', client);
     let queryStr =
-      `INSERT INTO posts (post_text, user_id) 
+      `INSERT INTO posts (post_text, user_id)
       VALUES ('${text}', (SELECT id FROM users WHERE username = '${username}'))`;
     console.log('This is my query string', queryStr);
     client.query(queryStr, (err, res) => {
-      if (err) callback(err, null);
-      console.log('Posting!');
-      callback(null, res.rows);
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log('Posting!');
+        callback(null, res.rows);
+      }
       // client.end();
-    });		
+    });
   },
   searchSomeone: (name, callback) => {
 
@@ -49,6 +51,32 @@ module.exports = {
         // console.log('Got all posts!!!!');
         callback(null, res.rows);
       }
+    });
+  },
+  //find select username
+  getUser: (username, callback) => {
+    console.log('in db getUser, looking for', username)
+    client.query(`SELECT * FROM users WHERE username='${username}';`, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('searched for user in db')
+        callback(null, res.rows);
+      }  
+    });
+  },
+  //add user to db
+  addUser: (userData, callback) => {
+    console.log('in db addUser start......', userData)
+    client.query(`INSERT INTO users (username, first_name, last_name, picture_url) VALUES ('${userData.username}', '${userData.firstName}', '${userData.lastName}', '${userData.pictureUrl}');`, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('added user in db!')
+        callback(null, res.rows);
+      }  
     });
   }
 }

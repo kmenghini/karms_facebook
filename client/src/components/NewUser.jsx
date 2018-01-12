@@ -23,7 +23,8 @@ class NewUser extends React.Component {
 
   handleSubmit() {
     $.post(`/${this.state.username}`, this.state, data => {
-      console.log(data)
+      console.log('post into db done!')
+      //route to feed for this user
     })
   }
   
