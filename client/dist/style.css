@@ -121,19 +121,17 @@
 }
 
 .profileNavigation {
-  border: 2px solid #e6e6e6;
   grid-row: 2;
   grid-column: 2 / 4;
   display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  justify-items: center;
-  align-items: center;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  border: 2px solid #e6e6e6;
   background-color: white;
   max-height: 100%;
   width: 100%;
 }
 
-.profileNavigation > span {
+/*.profileNavigation > span {
   font-size: 16px;
   font-weight: 600;
 }
@@ -161,6 +159,13 @@
 .profileNavigation .more {
   grid-column: 8;
   cursor: pointer;
+}*/
+
+.profileNavigation > .navigationButtons {
+  width: 100%;
+  max-height: 100%
+  grid-column: 2 / 4;
+  margin-left: 38% !important;
 }
 
 .intro {

@@ -50,11 +50,13 @@ class Profile extends React.Component {
           </Button>
         </div>
         <div className="profileNavigation">
-          <span className="timeline"> Timeline </span>
-          <span className="about"> About </span>
-          <span className="friends"> Friends </span>
-          <span className="photo"> Photo </span> 
-          <span className="more"> More </span>
+          <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">
+            <Button className="timeline"> Timeline </Button>
+            <Button className="about"> About </Button>
+            <Button className="friends"> Friends </Button>
+            <Button className="photo"> Photo </Button> 
+            <Button className="more"> More </Button>
+          </Button.Group>  
         </div>
         <div className="intro">
           <Header className="header"> 
