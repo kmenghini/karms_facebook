@@ -9,25 +9,11 @@ class PostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      receivedText: '',
-      postList: []
+      receivedText: ''
     }
   }
-  componentDidMount() {
-    this.getNewPosts();
-  }
   getNewPosts() {
-    let username = 'albertchanged';
-    axios.get(`/${username}/posts`)
-      .then((res) => {
-        console.log(res.data);
-        this.setState({
-          postList: res.data
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.props.getAllPosts();
   }
   receivePostText(text) {
     console.log(text);
@@ -36,14 +22,12 @@ class PostList extends React.Component {
     })
   }
   render() {
-    console.log(this.props);
     return (
       <div>
-        {/* <Header /> */}
-        <CreatePost onClick={this.receivePostText.bind(this)} getNewPosts={this.getNewPosts.bind(this)} />
+        <CreatePost onClick={this.receivePostText.bind(this)} getAllPosts={this.props.getAllPosts.bind(this)} />
         <br />
         {
-          this.state.postList.map((post) => (
+          this.props.postList.map((post) => (
             <div>
             <Post
               post={post}
@@ -52,11 +36,6 @@ class PostList extends React.Component {
             <br />
             </div>
           ))
-          // <div>
-          // <Post postText={this.state.receivedText}/>
-          // <br />
-          // <Post />
-          // </div>
         }
       </div>
     )

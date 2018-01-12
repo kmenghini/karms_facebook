@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Icon, Button, Label, Comment } from 'semantic-ui-react';
 import moment from 'moment';
+import axios from 'axios';
 
 class Post extends React.Component {
   constructor(props) {
@@ -14,6 +15,28 @@ class Post extends React.Component {
     this.setState({
       liked: !this.state.liked
     })
+    let username = 'albertchanged';
+    let friendname = 'mattupham';
+    // let timestampReplaceT = this.props.post.post_timestamp.replace('T', ' ');
+    // let indexOfDot = this.props.post.post_timestamp.indexOf('.');
+    // let indexOfHyphen = this.props.post.post_timestamp.indexOf('-');
+    // let timestamp = timestampReplaceT.substring(0, indexOfDot) + timestampReplaceT.substring(indexOfHyphen, timestampReplaceT.length) + '00';
+    // console.log(timestamp);
+    // if (this.state.liked) {
+      // query db to add like entry
+      console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
+      console.log('Are you liking');
+      axios.post(`${username}/likes/${username}`, { 'text': this.props.post.post_text })
+        .then((res) => {
+          console.log('This is the res', res);
+        })
+        .catch((err) => {
+          console.log('This is the err', err);
+        })
+    // } else {
+      // query db to remove like entry
+    // }
+
     console.log('Liked!');
   }
   render() {

@@ -1,29 +1,72 @@
 import React from 'react';
 import CreatePost from './CreatePost.jsx';
 import Post from './Post.jsx';
+import PostList from './PostList.jsx';
 import FBHeader from './Header.jsx'
+import axios from 'axios';
 import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      posts: []
+    }
   }
+
+  componentDidMount() {
+    this.getUserPosts();
+    this.getFriends();
+  }  
+
+  getUserPosts() {
+    var username = 'albertchanged'; 
+    axios.get(`/${username}/posts/${username}`)
+      .then((response) => {
+        this.setState({
+          posts: response.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+  }
+
+  getFriends() {
+    var username = 'albertchaned';
+    axios.get(`/${username}`)
+      .then((response) => {
+        console.log('response body...', response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+  } 
+
   render() {
     return (
       <div>
-      {/* <FBHeader /> */}
       <div className="profile">
         <div className="backgroundAndProfilePic">
-          <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
-          <Header inverted color="grey" textAlign="center" className="name">Puppers </Header>
+          <Header size="large" inverted color="grey" textAlign="center" className="name"> Puppers </Header>
+          <Button compact inverted size="small" className="addFriend">
+            <Icon name='add user'/>
+            Add Friend
+          </Button>
+          <Button compact inverted size="small" className="messageFriend">
+            <Icon name='comments'/>
+            Message Friend
+          </Button>
         </div>
         <div className="profileNavigation">
-          <span className="timeline"> Timeline </span>
-          <span className="about"> About </span>
-          <span className="friends"> Friends </span>
-          <span className="photo"> Photo </span> 
-          <span className="more"> More </span>
+          <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">
+            <Button className="timeline"> Timeline </Button>
+            <Button className="about"> About </Button>
+            <Button className="friends"> Friends </Button>
+            <Button className="photo"> Photo </Button> 
+            <Button className="more"> More </Button>
+          </Button.Group>  
         </div>
         <div className="intro">
           <Header className="header"> 
@@ -31,8 +74,11 @@ class Profile extends React.Component {
             Intro 
           </Header>
           <List className="items">
-            <List.Item> I like to woof and eat treats </List.Item>
-            <Divider></Divider>
+            <div className="introduction"> 
+              {/*<Icon name="user"></Icon>*/}
+              I like to woof and eat treats and I like to roll around in the grass and play frisbee
+            </div>
+            <Divider fitted></Divider>
             <List.Item>
               <Icon name="home"></Icon>
               &nbsp; Lives in San Francisco, CA 
@@ -50,9 +96,10 @@ class Profile extends React.Component {
         <div className="friendsList">
           <Header className="header"> 
             <Icon name="users"></Icon>
-            Friends 
+            Friends
           </Header>
           <List className="items">
+            <Divider fitted></Divider>
             <List.Item> Friend 1 </List.Item>
             <List.Item> Friend 2 </List.Item>
             <List.Item> Friend 3 </List.Item>
@@ -64,6 +111,7 @@ class Profile extends React.Component {
             Photos 
           </Header>
           <List className="items">
+            <Divider fitted></Divider>
             <List.Item> Photo 1 </List.Item>
             <List.Item> Photo 2 </List.Item>
             <List.Item> Photo 3 </List.Item>
@@ -74,16 +122,14 @@ class Profile extends React.Component {
         </div>
         <div className="postList">
           <List className="items">
-            {/* <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post /> */}
+            {
+              this.state.posts.map((post) => (
+                <div>
+                  <Post post={post} key={post.id} />
+                  <br />
+                </div>
+              ))
+            }
           </List>
         </div>
       </div>
