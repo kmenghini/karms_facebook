@@ -210,7 +210,6 @@ module.exports = {
       }  
     });
   },
-  
   findPostsByNonFriends: (username, callback) => {
     console.log('USERNAME IN FIND POSTS BY NON FRIENDS', username)
     // console.log('in db findPostsByNonFriends')
