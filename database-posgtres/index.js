@@ -17,13 +17,16 @@ module.exports = {
   createPost: (username, text, callback) => {
     console.log('This is my client', client);
     let queryStr =
-      `INSERT INTO posts (post_text, user_id) 
+      `INSERT INTO posts (post_text, user_id)
       VALUES ('${text}', (SELECT id FROM users WHERE username = '${username}'))`;
     console.log('This is my query string', queryStr);
     client.query(queryStr, (err, res) => {
-      if (err) callback(err, null);
-      console.log('Posting!');
-      callback(null, res.rows);
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log('Posting!');
+        callback(null, res.rows);
+      }
       // client.end();
     });
   },
