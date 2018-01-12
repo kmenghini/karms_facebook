@@ -143,6 +143,35 @@ app.post('/:username', (req, res) => {
 });
 
 
+// Get info about single user to load their profile
+// app.get('/:username', (req, res) => {
+//   var username = req.params.username;
+//   res.json(`searching db for user ${username}`);
+//   //if db includes username, respond with their info
+// });
+
+// Add new user to db
+app.post('/:username', (req, res) => {
+  var username = req.params.username;
+  if (username !== 'favicon.ico') {
+    var newUserData = {
+      username: req.body.username,
+      pictureUrl: req.body.pictureUrl,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName
+    }
+    db.addUser(newUserData, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })
+  }  
+});
+
+>>>>>>> Fixed merge conflicts
+
 app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);
 });

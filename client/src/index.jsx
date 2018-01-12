@@ -16,10 +16,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       view: 'feed',
-<<<<<<< HEAD
-=======
-      profile: false,
->>>>>>> WIP on search
       name: '',
       picture_url: '',
       username: ''
