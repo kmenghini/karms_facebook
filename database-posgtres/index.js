@@ -82,7 +82,7 @@ module.exports = {
         console.log('Error', err)
         callback(err, null);
       } else {  
-        console.log('searched for user in db')
+        console.log('searched for user in db', res.rows)
         callback(null, res.rows);
       }  
     });
@@ -114,6 +114,22 @@ module.exports = {
       } else {
         callback(null, res.rows);
       }
+    });
+  },
+  //add 2 rows to user_friends table
+  addFriend: (username1, username2, callback) => {
+    console.log('in db addFriend')
+    let queryStr = `INSERT INTO user_friends (username, friend_id)
+      VALUES ('${username1}', (SELECT id FROM users WHERE username='${username2}')),
+      ('${username2}', (SELECT id FROM users WHERE username='${username1}'));`
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('Added friendship in database!')
+        callback(null, res.rows);
+      }  
     });
   }
 }
