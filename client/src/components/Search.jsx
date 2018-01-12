@@ -16,10 +16,6 @@ class Search extends React.Component {
         this.props.getUserProfile(res.data[0].username);
         console.log('res: ', res.data);
         this.props.getUserProfile(user);
-        console.log('hello');
-        // this.setState ({
-        //   users: res
-        // }) 
       })
       .catch((err) => {
         console.log('err: ', err);
