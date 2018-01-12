@@ -22,6 +22,7 @@ class Search extends React.Component {
       .then((res) => {
         console.log('res: ', res.data);
         this.props.getUserProfile(user);
+        console.log('hello');
         // this.setState ({
         //   users: res
         // }) 
