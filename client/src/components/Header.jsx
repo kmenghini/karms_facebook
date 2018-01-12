@@ -22,8 +22,7 @@ class Header extends React.Component {
 
   getUserProfile(user) {
     this.props.getProfile(user);
-        console.log('from header.jsx', user); 
-
+    console.log('from header.jsx', user); 
   }
 
 
