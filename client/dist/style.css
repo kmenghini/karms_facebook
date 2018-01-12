@@ -131,36 +131,6 @@
   width: 100%;
 }
 
-/*.profileNavigation > span {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.profileNavigation .timeline {
-  grid-column: 4;
-  cursor: pointer;
-}
-
-.profileNavigation .about {
-  grid-column: 5;
-  cursor: pointer;
-}
-
-.profileNavigation .friends {
-  grid-column: 6;
-  cursor: pointer;
-}
-
-.profileNavigation .photo {
-  grid-column: 7;
-  cursor: pointer;
-}
-
-.profileNavigation .more {
-  grid-column: 8;
-  cursor: pointer;
-}*/
-
 .profileNavigation > .navigationButtons {
   width: 100%;
   max-height: 100%

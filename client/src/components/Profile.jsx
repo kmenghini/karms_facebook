@@ -97,7 +97,7 @@ class Profile extends React.Component {
         <div className="friendsList">
           <Header className="header"> 
             <Icon name="users"></Icon>
-            Friends 
+            Friends
           </Header>
           <List className="items">
             <Divider fitted></Divider>
