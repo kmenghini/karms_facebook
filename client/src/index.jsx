@@ -16,6 +16,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       view: 'feed',
+<<<<<<< HEAD
+=======
+      profile: false,
+>>>>>>> WIP on search
       name: '',
       picture_url: '',
       username: ''
@@ -33,6 +37,7 @@ class App extends React.Component {
         picture_url: res.data[0].picture_url,
         username: res.data[0].username
       })
+      // TODO -- make call to show the profile
     })
     .catch((err) => {
       console.log('err: ', err);
