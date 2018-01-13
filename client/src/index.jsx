@@ -48,7 +48,7 @@ class App extends React.Component {
         {/* { this.state.view === 'profile' ? <Profile /> : <PostList /> }
         <br />
         <PostList /> */}
-        <Main />
+        <Main getProfile={this.getProfile.bind(this)} />
         {/* <Header /> */}
         {/* <SignIn /> */}
         {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}

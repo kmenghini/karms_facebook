@@ -17,6 +17,7 @@ class Main extends React.Component {
   getProfile(user) {
     // axiox call to db to get profile
     console.log('from index.jsx: ', user); 
+    this.props.getProfile(user);
   }
   getUsername(username) {
     console.log(username);
@@ -28,9 +29,9 @@ class Main extends React.Component {
     return (
       <main>
         <div>
-        <Header getProfile={this.getProfile.bind(this)} getUsername={this.getUsername.bind(this)} />
+        <Header getProfile={this.getProfile.bind(this)} name={this.state.username} />
         <Switch>
-          <Route exact path='/' component={SignIn} getUsername={this.getUsername.bind(this)} />
+          <Route exact path='/' component={() => <SignIn getUsername={this.getUsername.bind(this)} /> } />
           <Route path='/:username/feed' component={Feed} />
           <Route path='/login' component={SignIn} />
           <Route path='/:username/profile' component={Profile} />

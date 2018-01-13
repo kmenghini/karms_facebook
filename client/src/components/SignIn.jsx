@@ -41,7 +41,7 @@ class SignIn extends React.Component {
           newUser: false,
           redirect: true
         });
-        // this.props.getUsername();
+        this.getUsername();
         console.log('need to route to feed for', this.state.username)
         //route to feed for this user
       } else {
@@ -53,6 +53,11 @@ class SignIn extends React.Component {
       }
       console.log('in client siginin get request', data)
     })
+  }
+
+  getUsername() {
+    console.log('Getting username!');
+    this.props.getUsername(this.state.username);
   }
   
   render() {
@@ -74,7 +79,7 @@ class SignIn extends React.Component {
           {this.state.newUser ? <NewUser username={this.state.username}/> : null }
           </form>
         </div>
-
+      
       </div>  
     )
   }
