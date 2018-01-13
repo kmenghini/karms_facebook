@@ -166,7 +166,6 @@ app.post('/:username', (req, res) => {
   }  
 });
 
-
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
   var username = req.params.username;
