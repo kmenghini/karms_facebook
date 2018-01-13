@@ -7,6 +7,9 @@ import Profile_friends from './Profile_friends.jsx';
 import Profile_photos from './Profile_photos.jsx';
 import Profile_intro from './Profile_intro.jsx';
 import Profile_about from './Profile_about.jsx';
+import Profile_navigation from './Profile_navigation.jsx';
+import Profile_backgroundAndProfilePic from './Profile_backgroundAndProfilePic.jsx';
+import Profile_postSection from './Profile_postSection.jsx';
 import axios from 'axios';
 import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
@@ -102,69 +105,14 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div>
       <div className="profile">
-        <div className="backgroundAndProfilePic">
-          <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
-          <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
-          <Header size="large" inverted color="grey" textAlign="center" className="name"> {this.state.userInfo.first_name} {this.state.userInfo.last_name} </Header>
-          { this.state.friend ?
-
-            <Button compact animated inverted size="small" className="friendStatus removeFriend">
-              <Button.Content visible> 
-                <Icon name="check" />
-                &nbsp; Friends 
-              </Button.Content>  
-              <Button.Content hidden> 
-                <Icon name="delete" />
-                &nbsp; Remove Friend 
-              </Button.Content> 
-            </Button>
-
-            :
-
-            <Button compact inverted size="small" className="friendStatus addFriend" onClick={this.addFriend.bind(this)}>
-              <Icon name="add user"/>
-              Add Friend
-            </Button>
-          }
-          <Button compact inverted size="small" className="messageFriend">
-            <Icon name='comments'/>
-            Message Friend
-          </Button>
-        </div>
-        <div className="profileNavigation">
-          <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">
-            <Button className="timeline active"> Timeline </Button>
-            <Button className="about" onClick={this.handleNavigation.bind(this)}> About </Button>
-            <Button className="friends"> Friends </Button>
-            <Button className="photo"> Photo </Button> 
-            <Button className="more"> More </Button>
-          </Button.Group>  
-        </div>
-
+        <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)}/>
+        <Profile_navigation handleNavigation={this.handleNavigation.bind(this)} />
         <Profile_about />
-
         <Profile_intro />
         <Profile_friends friends={this.state.friends}/>
         <Profile_photos />
-        {/*<div className="makePost">
-          <CreatePost renderNewPost={this.getUserPosts.bind(this)}/>
-        </div>*/}
-        <div className="postSection">
-          <CreatePost renderNewPost={this.getUserPosts.bind(this)} name={this.state.username}/>  
-          <List className="items">
-            {
-              this.state.posts.map((post) => (
-                <div>
-                  <Post post={post} key={post.id} />
-                  <br />
-                </div>
-              ))
-            }
-          </List>
-        </div>
-      </div>
+        <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.username} posts={this.state.posts} />
       </div>
     );
   }

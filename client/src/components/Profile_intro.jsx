@@ -27,6 +27,10 @@ class Profile_intro extends React.Component {
             &nbsp; Lives in San Francisco, CA 
           </List.Item>
           <List.Item> 
+            <Icon name="industry"></Icon>
+            &nbsp; Woofer Inc.
+          </List.Item>
+          <List.Item> 
             <Icon name="student"></Icon>
             &nbsp; Hack Reactor 
           </List.Item>
