@@ -5,21 +5,13 @@ class Profile_intro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      view: 'Timeline'
-=======
       view: props.view
->>>>>>> feat/profilePage
     }
   }
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className={this.state.view === 'Timeline' ? "intro" : "hide"}>
-=======
       <div className={this.props.view === 'Timeline' ? "intro" : "hide"}>
->>>>>>> feat/profilePage
         <Header className="header"> 
           <Icon loading name="globe"></Icon>
           Intro 
@@ -35,13 +27,10 @@ class Profile_intro extends React.Component {
             &nbsp; Lives in San Francisco, CA 
           </List.Item>
           <List.Item> 
-<<<<<<< HEAD
-=======
             <Icon name="industry"></Icon>
             &nbsp; Woofer Inc.
           </List.Item>
           <List.Item> 
->>>>>>> feat/profilePage
             <Icon name="student"></Icon>
             &nbsp; Hack Reactor 
           </List.Item>
