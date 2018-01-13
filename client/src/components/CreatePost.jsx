@@ -20,8 +20,8 @@ class CreatePost extends React.Component {
 
     axios.post(`/${username}/posts`, { 'text': postInput })
       .then((res) => {
-        // console.log(res);
-        this.props.getAllPosts();
+        console.log(res);
+        this.props.getAllPosts ? this.props.getAllPosts() : this.props.renderNewPost();
       })
       .catch((err) => {
         console.error(err);
@@ -29,7 +29,7 @@ class CreatePost extends React.Component {
   }
   sendPostText(event) {
     event.preventDefault();
-    this.props.onClick(this.state.postText);
+    // this.props.onClick(this.state.postText);
   }
   render() {
     return (
