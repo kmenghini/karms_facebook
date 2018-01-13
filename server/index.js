@@ -60,12 +60,12 @@ app.post('/:username/posts', function(req, res) {
   })		
 });
 
-app.post('/:username/likes/:username', function(req, res) {
+app.post('/likes/:username', function(req, res) {
   console.log('Are you liking');
   console.log(req.params.username);
   console.log(req.params.username);
   console.log(req.body.text);
-  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+  db.likePost(req.params.username, req.body.text, (err, data) => {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
@@ -77,40 +77,36 @@ app.post('/:username/likes/:username', function(req, res) {
   })
 })
 
-app.post('/:username/likes/:username', function(req, res) {
-  console.log('Are you liking');
+app.delete('/likes/:username', function(req, res) {
+  console.log('Are you unliking');
   console.log(req.params.username);
   console.log(req.params.username);
-  console.log(req.body.text);
-  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+  console.log(req.query);
+  db.unlikePost(req.params.username, req.query.text, (err, data) => {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
-      res.sendStatus(404);    
+      res.sendStatus(404);		
     } else {
       console.log('This is my data', data);
-      res.status(200).json(data); 
-    }   
+      res.status(200).json(data);	
+    }		
   })
 })
 
-app.post('/:username/likes/:username', function(req, res) {
-  console.log('Are you liking');
-  console.log(req.params.username);
-  console.log(req.params.username);
-  console.log(req.body.text);
-  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+app.get('/likes/:username', function(req, res) {
+  console.log('Getting number of likes!');
+  console.log('Getting likes for ', req.params.username, '\'s post');
+  console.log('Getting likes for post with this text', req.query.text);
+  db.getLikeAmount(req.params.username, req.query.text, (err, data) => {
     if (err) {
-      console.log(res);
-      console.log('This is my error', err);
-      res.sendStatus(404);    
+      res.status(500).send(err);
     } else {
-      console.log('This is my data', data);
-      res.status(200).json(data); 
-    }   
+      console.log('Successfully got like count', data);
+      res.status(200).json(data);
+    }
   })
 })
-
 
 app.get('/:username/profile/:user', function(req, res) {
   db.searchSomeone(req.params.user, (err, data) => {

@@ -21,7 +21,7 @@ class Profile extends React.Component {
   }  
 
   getUserPosts() {
-    var username = 'albertchanged'; 
+    let username = this.props.match.params.username;
     axios.get(`/${username}/posts/${username}`)
       .then((response) => {
         this.setState({
@@ -34,7 +34,7 @@ class Profile extends React.Component {
   }
 
   getFriends() {
-    var username = 'albertchaned';
+    let username = this.props.match.params.username;
     axios.get(`/${username}`)
       .then((response) => {
         console.log('response body...', response.data);

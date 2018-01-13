@@ -43,7 +43,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header getProfile={this.getProfile.bind(this)}/>
+
         {/* <Feed /> */}
         {/* { this.state.view === 'profile' ? <Profile /> : <PostList /> }
         <br />
@@ -54,7 +54,7 @@ class App extends React.Component {
         {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}
         <br />
 
-        {(this.state.view) ? <Profile 
+        {(this.state.feed) ? <Profile 
                                   username={this.state.username}
                                   name={this.state.name} 
                                   picture_url={this.state.picture_url} 

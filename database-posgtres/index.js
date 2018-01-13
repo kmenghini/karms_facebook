@@ -2,11 +2,10 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://postgres:1234@localhost:5432/fb_database',
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
 });
 
 client.connect();
-console.log('CLIENT HERE...', client);
 module.exports = {
   getAllUsers: (callback) => {
     client.query('SELECT * FROM users;', (err, res) => {
@@ -30,17 +29,17 @@ module.exports = {
       // client.end();
     });
   },
-  likePost: (username, friendname, text, callback) => {
+  likePost: (username, text, callback) => {
     let queryStr = 
     `INSERT INTO user_posts_liked (user_id, post_id) 
     VALUES ((SELECT id FROM users WHERE username = '${username}'), 
     (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
       posts.user_id AND posts.post_text = 
       '${text}' AND posts.user_id = 
-      (SELECT id FROM users WHERE username = '${friendname}')))`;
+      (SELECT id FROM users WHERE username = '${username}')))`;
       console.log('This is my queryStr', queryStr);
       console.log('In DB', username);
-      console.log('In DB', friendname);
+      // console.log('In DB', friendname);
       console.log('In DB', text);
     client.query(queryStr, (err, res) => {
       if (err) {
@@ -50,6 +49,43 @@ module.exports = {
         callback(null, res.rows);
       }
     })
+  },
+  unlikePost: (username, text, callback) => {
+    let queryStr = 
+    `DELETE FROM user_posts_liked WHERE user_id = 
+    (SELECT id FROM users WHERE username = '${username}')
+    AND post_id = (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
+      posts.user_id AND posts.post_text = 
+      '${text}' AND posts.user_id = 
+      (SELECT id FROM users WHERE username = '${username}'))`;
+      console.log('This is my queryStr', queryStr);
+      console.log('In DB', username);
+      // console.log('In DB', friendname);
+      console.log('In DB', text);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log('Liking post!');
+        callback(null, res.rows);
+      }
+    })
+  },
+  getLikeAmount: (username, text, callback) => {
+    console.log(username);
+    console.log(text);
+    let queryStr =
+    `SELECT user_id FROM user_posts_liked WHERE post_id = 
+    (SELECT id FROM posts WHERE post_text = '${text}')`;
+    console.log('This is my queryStr', queryStr);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log('Getting number of likes!');
+        callback(null, res.rows);
+      }
+    });
   },
   searchSomeone: (name, callback) => {
     const queryStr = `SELECT * FROM users WHERE username LIKE '%${name}%';`; // selects all names that begin with searched query
