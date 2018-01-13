@@ -38,7 +38,7 @@ class Main extends React.Component {
         <div>
         <Header getProfile={this.getProfile.bind(this)} name={this.state.username} />
         <Switch>
-          <Route exact path='/' component={() => <SignIn getUsername={this.getUsername.bind(this)} getNewUsername={this.getNewUsername.bind(this)} /> } />
+          <Route exact path='/' component={() => <SignIn getUsername={this.getUsername.bind(this)} getNewUsername={this.getNewUsername.bind(this)} getProfile={this.getProfile.bind(this)} /> } />
           <Route path='/:username/feed' component={Feed} />
           <Route path='/login' component={SignIn} />
           <Route path='/:username/profile' component={Profile} />
