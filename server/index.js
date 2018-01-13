@@ -22,11 +22,7 @@ let port = 3000;
 
 //gets post of all friends
 app.get('/:username/posts/friends', function(req, res) {
-<<<<<<< HEAD
   // console.log("GETTING ALL FRIENDS POSTS");
-=======
-  console.log('USERNAME', );
->>>>>>> added dynamic names to routes in server
   db.findPostsByFriends(req.params.username, (err, data) => {
     // console.log("Error", err, "data", data);
     if (err) {
@@ -41,12 +37,8 @@ app.get('/:username/posts/friends', function(req, res) {
 
 //gets post of all friends
 app.get('/:username/posts/nonFriends', function(req, res) {
-<<<<<<< HEAD
   // console.log("GETTING ALL NON FRIENDS POSTS");
   console.log('NON FRIENDS USERNAME', req.params.username)
-=======
-  console.log("GETTING ALL FRIENDS POSTS");
->>>>>>> added dynamic names to routes in server
   db.findPostsByNonFriends(req.params.username, (err, data) => {
     // console.log("Error", err, "data", data);
     if (err) {
