@@ -58,8 +58,8 @@ module.exports = {
       posts.user_id AND posts.post_text = 
       '${text}' AND posts.user_id = 
       (SELECT id FROM users WHERE username = '${username}'))`;
-      console.log('This is my queryStr', queryStr);
-      console.log('In DB', username);
+      // console.log('This is my queryStr', queryStr);
+      // console.log('In DB', username);
       // console.log('In DB', friendname);
       console.log('In DB', text);
     client.query(queryStr, (err, res) => {
@@ -72,8 +72,8 @@ module.exports = {
     })
   },
   getLikeAmount: (username, text, callback) => {
-    console.log(username);
-    console.log(text);
+    // console.log(username);
+    // console.log(text);
     let queryStr =
     `SELECT user_id FROM user_posts_liked WHERE post_id = 
     (SELECT id FROM posts WHERE post_text = '${text}')`;
@@ -192,13 +192,12 @@ module.exports = {
       }  
     });
   },
-
   findPostsByFriends: (username, callback) => {
     // console.log('USERNAME IN FIND POSTS BY FRIENDS', username)
-    console.log('in db findPostsByFriends')
+    // console.log('in db findPostsByFriends')
     let queryStr = `SELECT posts.* FROM posts 
     INNER JOIN user_friends ON (user_friends.friend_id = posts.user_id) 
-    WHERE user_friends.username = '${username}';`
+    WHERE user_friends.username = '${username}'`
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err)
@@ -212,7 +211,7 @@ module.exports = {
   
   findPostsByNonFriends: (username, callback) => {
     // console.log('USERNAME IN FIND POSTS BY NON FRIENDS', username)
-    console.log('in db findPostsByNonFriends')
+    // console.log('in db findPostsByNonFriends')
     let queryStr = `SELECT * FROM posts 
                     WHERE posts.id IN 
                     (SELECT users.id 
@@ -220,15 +219,16 @@ module.exports = {
                       NOT IN 
                       (SELECT user_friends.friend_id 
                         FROM user_friends 
-                        WHERE user_friends.username = 'mattupham'
+                        WHERE user_friends.username = '${username}'
                       )
-                    );`
+                    )`
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err)
         callback(err, null);
       } else {  
         console.log('/:username/posts/nonfriends posts from db...')
+        console.log('res', res);
         callback(null, res.rows);
       }  
     });
