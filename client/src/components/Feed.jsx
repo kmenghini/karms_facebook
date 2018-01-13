@@ -19,10 +19,11 @@ class Feed extends React.Component {
   componentDidMount() {
     this.getAllPosts();
   }
+
   getAllPosts() {
-    console.log(this.props);
+    // console.log(this.props);
     let username = this.props.match.params.username;
-    console.log(username);
+    // console.log('username', username);
     this.setState({
       username: username
     })
@@ -34,9 +35,10 @@ class Feed extends React.Component {
           postList: res.data
         })
       })
-      .catch((err) => {
-        console.log(err);
-      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
   render() {
     return (
