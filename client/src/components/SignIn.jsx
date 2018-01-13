@@ -71,12 +71,12 @@ class SignIn extends React.Component {
           <h3 id="sign-in"> Sign In </h3>
           <form onSubmit={this.handleSubmit.bind(this)}>
           <Card className="signIn-card">
-            <h5 className="bottom aligned content">Username</h5>
+            <h5 className="signInLabel bottom aligned content">Username</h5>
             {/* {(!this.state.newUser) ? <Link to='/feed' /> : <Link to='/profile' />} */}
             <Input className="username-input" type="text" onChange={this.handleUsernameInput.bind(this)}/>
             <Link onClick={this.handleLogIn.bind(this)} to={feedPath}><Button className="login-button"> Log In </Button></Link>
           </Card>
-          {this.state.newUser ? <NewUser username={this.state.username}/> : null }
+          {this.state.newUser ? <NewUser username={this.state.username} getUsername={this.getUsername.bind(this)} /> : null }
           </form>
         </div>
       

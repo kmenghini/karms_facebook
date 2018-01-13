@@ -159,9 +159,10 @@ class Feed extends React.Component {
         </div>
 
         <div className="feedSidebar">
-        
+          
           <div className="feedSidebarTrending">
             <p>Trending</p>
+            
             <Item.Group className="feedSidebarTrendingItem">
               <Item>
                 <Icon name='lightning' />

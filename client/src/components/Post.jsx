@@ -69,6 +69,8 @@ class Post extends React.Component {
     }
   }
   render() {
+    let name = this.props.post.first_name + ' ' + this.props.post.last_name;
+    console.log(name);
     return(
       <div className="postCard">
         <Card fluid>
