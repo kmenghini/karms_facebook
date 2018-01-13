@@ -103,7 +103,7 @@ class Feed extends React.Component {
         <div className="feedSidebar">
         
           <div className="feedSidebarTrending">
-            <p>Trending</p>
+            <p className="feedTrendingLabel">Trending</p>
             <Item.Group className="feedSidebarTrendingItem">
               <Item>
                 <Icon name='lightning' />
@@ -149,9 +149,10 @@ class Feed extends React.Component {
               <Item.Content>  
                 <div className="feedSidebarTrendingTopicHeader">Advertisement</div>
                 <Item.Description>
-                  <Advertisement unit='medium rectangle' test='Medium Rectangle' centered="true"/>
+                  <img src="http://www.littletoyboat.com/wp-content/uploads/2014/07/logo.png" />
+                  {/* <Advertisement unit='medium rectangle' test='Medium Rectangle' centered="true"/> */}
                 </Item.Description>
-                <Item.Extra>loremipsum.com</Item.Extra>
+                {/* <Item.Extra>loremipsum.com</Item.Extra> */}
               </Item.Content>
               </Item>
             </Item.Group>
