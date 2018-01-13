@@ -18,6 +18,41 @@ let port = 3000;
 // });
 // Get all posts
 
+
+
+//gets post of all friends
+app.get('/:username/posts/friends', function(req, res) {
+  // console.log("GETTING ALL FRIENDS POSTS");
+  db.findPostsByFriends(req.params.username, (err, data) => {
+    // console.log("Error", err, "data", data);
+    if (err) {
+      console.log('This is my error', err);
+      res.sendStatus(404);
+    } else {
+      // console.log('This is my data', data);
+      res.status(200).json(data);
+    }
+  })
+});
+
+//gets post of all friends
+app.get('/:username/posts/nonFriends', function(req, res) {
+  // console.log("GETTING ALL NON FRIENDS POSTS");
+  console.log('NON FRIENDS USERNAME', req.params.username)
+  db.findPostsByNonFriends(req.params.username, (err, data) => {
+    // console.log("Error", err, "data", data);
+    if (err) {
+      console.log('This is my error', err);
+      res.sendStatus(404);
+    } else {
+      // console.log('This is my data', data);
+      res.status(200).json(data);
+    }
+  })
+});
+
+
+
 app.get('/:username/posts', function(req, res) {
   console.log("getting all posts");
   db.getAllPosts((err, data) => {

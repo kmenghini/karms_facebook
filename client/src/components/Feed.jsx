@@ -6,7 +6,6 @@ import FBHeader from './Header.jsx';
 import axios from 'axios';
 import { Button, Icon, Image, Header, List, Item, Divider, Menu, Advertisement } from 'semantic-ui-react';
 
-
 class Feed extends React.Component {
   constructor(props) {
     super(props);
@@ -19,43 +18,53 @@ class Feed extends React.Component {
   componentDidMount() {
     this.getAllPosts();
   }
+
   getAllPosts() {
-    console.log(this.props);
+    // console.log(this.props);
     let username = this.props.match.params.username;
-    console.log(username);
+    // console.log('username', username);
     this.setState({
       username: username
     })
-    // this.props.getUsername(username);
-    axios.get(`/${username}/posts`)
-      .then((res) => {
-        console.log(res.data);
+    //create new route
+
+    axios.get(`/${username}/posts/friends`)
+    .then((res1) => {
+      console.log('ALL FRIENDS POSTS', res1.data);
+
+      axios.get(`/${username}/posts/nonFriends`)
+      .then((res2) => {
+
+        console.log('ALL NON-FRIENDS POSTS', res2.data);
+        //concats all friends posts, then all non-friends posts
         this.setState({
-          postList: res.data
+          postList: res1.data.concat(res2.data)
         })
       })
       .catch((err) => {
         console.log(err);
       });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
+
+
+
   render() {
     return (
       <div className="feedContainer">
-
         <div className="feedSidebar">
-
           <div className = "feedSidebarUser">
-
             {/* <Button icon labelPosition='left' fluid>
               <Image src='/images/profile_default.jpg' />
               User Name
             </Button> */}
-
             <Button icon labelPosition='left' fluid className="feedSideBarUserButton">
               <Icon name='user' />
               User's Name
             </Button>
-   
             <Button icon labelPosition='left' fluid className="feedSideBarUserButton">
               <Icon name='browser' />
               Feed
