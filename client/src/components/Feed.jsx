@@ -1,6 +1,8 @@
 import React from 'react';
 import CreatePost from './CreatePost.jsx';
 import PostList from './PostList.jsx';
+import Profile from './Profile.jsx';
+import FBHeader from './Header.jsx';
 import axios from 'axios';
 import { Button, Icon, Image, Header, List, Item, Divider, Menu, Advertisement } from 'semantic-ui-react';
 
@@ -10,7 +12,8 @@ class Feed extends React.Component {
     super(props);
     this.state = {
       postList: [],
-      username: ''
+      username: '',
+      showHeader: false
     }
   }
   componentDidMount() {
@@ -154,6 +157,7 @@ class Feed extends React.Component {
           </div>
 
         </div>
+        {/* <FBHeader name={this.props.match.params.username} visible={this.state.showHeader} /> */}
       </div>
     );
   }

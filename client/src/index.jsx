@@ -43,7 +43,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header getProfile={this.getProfile.bind(this)}/>
+
         {/* <Feed /> */}
         {/* { this.state.view === 'profile' ? <Profile /> : <PostList /> }
         <br />

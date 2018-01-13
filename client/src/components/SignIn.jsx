@@ -43,27 +43,29 @@ class SignIn extends React.Component {
     // })
 
     $.get(`/${this.state.username}`, (data) => {
+      console.log(data[0]);
       if (data.length) {
+        
         this.setState({
           username: data[0].username,
           newUser: false,
           redirect: true
         });
+        this.props.getUsername();
         console.log('need to route to feed for', this.state.username)
         //route to feed for this user
       } else {
-        this.setState({
-          newUser: true,
-          getNewUser: true,
-          redirect: false
-        });
+        // this.setState({
+        //   newUser: true,
+        //   getNewUser: true,
+        //   redirect: false
+        // });
       }
       console.log('in client siginin get request', data)
     })
   }
   
   render() {
-    // console.log(this.state.username);
     let feedPath = '/' + this.state.username + '/feed';
     if (this.state.redirect) {
       return <Redirect push to={feedPath} />;
@@ -82,8 +84,7 @@ class SignIn extends React.Component {
           {this.state.newUser ? <NewUser username={this.state.username}/> : null }
           </form>
         </div>
-        {/* {(this.state.profileShows) ? <Profile profileName={this.state.username} /> : null} */}
-        {(this.state.headerShows) ? <Header name={this.state.username} /> : null}
+
       </div>  
     )
   }
