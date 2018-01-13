@@ -17,7 +17,11 @@ class Post extends React.Component {
   getLikeAmount() {
     let username = this.props.name;
     // console.log('This is the post text', this.props.post.post_text);
+<<<<<<< HEAD
     axios.get(`${username}/likes`, { params: { 'text': this.props.post.post_text }})
+=======
+    axios.get(`/likes/${username}`, { params: { 'text': this.props.post.post_text }})
+>>>>>>> feat/posts
       .then((res) => {
         console.log('This is the number of likes', res.data.length);
         this.setState({
@@ -25,7 +29,11 @@ class Post extends React.Component {
         })
       })
       .catch((err) => {
+<<<<<<< HEAD
         console.error('This is the error', err);
+=======
+        // console.error('This is the error', err);
+>>>>>>> feat/posts
       })
   }
   toggleLike() {
@@ -35,7 +43,12 @@ class Post extends React.Component {
     this.executeToggleLike();
   }
   executeToggleLike() {
+<<<<<<< HEAD
     let username = 'albertchanged';
+=======
+    let username = this.props.name;
+    console.log(username);
+>>>>>>> feat/posts
     let friendname = 'mattupham';
     // let timestampReplaceT = this.props.post.post_timestamp.replace('T', ' ');
     // let indexOfDot = this.props.post.post_timestamp.indexOf('.');
@@ -47,7 +60,7 @@ class Post extends React.Component {
       // query db to add like entry
       console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
       console.log('Are you liking');
-      axios.post(`${username}/likes/${username}`, { 'text': this.props.post.post_text })
+      axios.post(`/likes/${username}`, { 'text': this.props.post.post_text })
         .then((res) => {
           console.log('This is the res', res);
           this.getLikeAmount();
@@ -56,7 +69,11 @@ class Post extends React.Component {
           console.log('This is the err', err);
         })
     } else {
+<<<<<<< HEAD
       axios.delete(`${username}/likes/${username}`, { params: { 'text': this.props.post.post_text }})
+=======
+      axios.delete(`/likes/${username}`, { params: { 'text': this.props.post.post_text }})
+>>>>>>> feat/posts
         .then((res) => {
           console.log('This is the res', res);
           this.getLikeAmount();

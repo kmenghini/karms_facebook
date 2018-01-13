@@ -60,12 +60,12 @@ app.post('/:username/posts', function(req, res) {
   })		
 });
 
-app.post('/:username/likes/:username', function(req, res) {
+app.post('/likes/:username', function(req, res) {
   console.log('Are you liking');
   console.log(req.params.username);
   console.log(req.params.username);
   console.log(req.body.text);
-  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+  db.likePost(req.params.username, req.body.text, (err, data) => {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
@@ -77,12 +77,12 @@ app.post('/:username/likes/:username', function(req, res) {
   })
 })
 
-app.delete('/:username/likes/:username', function(req, res) {
+app.delete('/likes/:username', function(req, res) {
   console.log('Are you unliking');
   console.log(req.params.username);
   console.log(req.params.username);
   console.log(req.query);
-  db.unlikePost(req.params.username, req.params.username, req.query.text, (err, data) => {
+  db.unlikePost(req.params.username, req.query.text, (err, data) => {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
@@ -94,7 +94,7 @@ app.delete('/:username/likes/:username', function(req, res) {
   })
 })
 
-app.get('/:username/likes', function(req, res) {
+app.get('/likes/:username', function(req, res) {
   console.log('Getting number of likes!');
   console.log('Getting likes for ', req.params.username, '\'s post');
   console.log('Getting likes for post with this text', req.query.text);
