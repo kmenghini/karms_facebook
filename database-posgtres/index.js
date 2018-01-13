@@ -225,7 +225,6 @@ module.exports = {
       }  
     });
   }
-
 }
 
 // SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.id IN (SELECT users.id FROM USERS WHERE users.id NOT IN (SELECT user_friends.friend_id FROM user_friends WHERE user_friends.username = 'mattupham')) ORDER BY posts.id DESC;
