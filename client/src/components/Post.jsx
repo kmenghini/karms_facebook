@@ -11,11 +11,30 @@ class Post extends React.Component {
       likeCount: 0
     };
   }
+  componentDidMount() {
+    // this.getLikeAmount;
+    let username = 'albertchanged';
+    console.log('This is the post text', this.props.post.post_text);
+    axios.get(`${username}/likes`, { params: { 'text': this.props.post.post_text }})
+      .then((res) => {
+        // console.log('This is the number of likes', res.data.length);
+        this.setState({
+          likeCount: res.data.length
+        })
+      })
+      .catch((err) => {
+        console.error('This is the error', err);
+      })
+  }
   getLikeAmount() {
     let username = 'albertchanged';
-    axios.get(`${username}/likes`, {})
+    console.log('This is the post text', this.props.post.post_text);
+    axios.get(`${username}/likes`, { params: { 'text': this.props.post.post_text }})
       .then((res) => {
-        console.log('This is the number of likes', res);
+        console.log('This is the number of likes', res.data.length);
+        this.setState({
+          likeCount: res.data.length
+        })
       })
       .catch((err) => {
         console.error('This is the error', err);
@@ -46,8 +65,9 @@ class Post extends React.Component {
     // } else {
       // query db to remove like entry
     // }
-        this.getLikeAmount();
+
     console.log('Liked!');
+    this.getLikeAmount();
   }
   render() {
     return(
@@ -69,7 +89,8 @@ class Post extends React.Component {
               <Button className="likeButton" onClick={this.toggleLike.bind(this)} as='div' labelPosition='right'>
                 <Button className="likeHeartButton">
                   <Icon name="heart" />
-                  {(this.state.liked) ? this.state.likeCount-- : this.state.likeCount++} {(this.state.likeCount === 1) ? 'Likes' : 'Like'}
+                  {(this.state.likeCount)}&nbsp;{(this.state.likeCount !== 1) ? 'likes' : 'like'}
+                  {/* {(this.state.liked) ? this.state.likeCount-- : this.state.likeCount++} {(this.state.likeCount === 1) ? 'Likes' : 'Like'} */}
                 </Button>
               </Button>
               <Button className="commentButton">

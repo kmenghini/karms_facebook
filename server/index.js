@@ -79,7 +79,9 @@ app.post('/:username/likes/:username', function(req, res) {
 
 app.get('/:username/likes', function(req, res) {
   console.log('Getting number of likes!');
-  db.getLikeAmount(req.params.user, (err, data) => {
+  console.log('Getting likes for ', req.params.username, '\'s post');
+  console.log('Getting likes for post with this text', req.query.text);
+  db.getLikeAmount(req.params.username, req.query.text, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
