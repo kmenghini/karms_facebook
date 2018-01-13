@@ -62,7 +62,7 @@ class Profile extends React.Component {
 
   getFriends() {
     var username = this.state.username;
-    var otherUsername = this.state.username;
+    var otherUsername = 'this.state.username';
     axios.get(`/${username}/friendsList/${otherUsername}`)
       .then((response) => {
         console.log('friends....', response.data);

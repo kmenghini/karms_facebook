@@ -43,24 +43,44 @@ INSERT INTO user_posts_liked (id, user_id, post_id) VALUES (1, 2, 1);
 
 CREATE TABLE user_profile (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
-    profile_picture VARCHAR (100),
-    cover_picture VARCHAR (100),
-    intro VARCHAR (100),
-    residence VARCHAR (100),
-    work VARCHAR (100),
-    school VARCHAR (100),
-    relationship_status VARCHAR (100),
-    birthday VARCHAR (100)
+    user_data jsonb
 );
 
-INSERT INTO user_profile (id, profile_picture, cover_picture, intro, residence, work, school, relationship_status, birthday)/
-    VALUES (1, 'https://www.what-dog.net/Images/faces2/scroll001.jpg', 'https://static.pexels.com/photos/210186/pexels-photo-210186.jpeg',/
-    'I like to play tag', 'San Francisco', 'Hack Reactor', 'Single', 'January 1, 2008');
+INSERT INTO user_profile (id, user_data) VALUES (1, /
+  {
+    user_id: 1,
+    profile_picture: 'https://www.what-dog.net/Images/faces2/scroll001.jpg', 
+    cover_picture: 'https://static.pexels.com/photos/210186/pexels-photo-210186.jpeg',
+    intro: 'I like to play tag', 
+    residence: 'San Francisco', 
+    work: 'Hack Reactor', 
+    relationship_status: 'Single', 
+    birthday: 'January 1, 2008'
+  }
+);
 
-INSERT INTO user_profile (id, profile_picture, cover_picture, intro, residence, work, school, relationship_status, birthday)/
-    VALUES (2, 'https://www.petmd.com/sites/default/files/petmd-cat-happy-13.jpg', 'http://cdn.mos.cms.futurecdn.net/FUE7XiFApEqWZQ85wYcAfM.jpg',/
-    'I like to play frisbee', 'San Francisco', 'Hack Reactor', 'Single', 'December 11, 2017');    
+INSERT INTO user_profile (id, user_data) VALUES (2, /
+  {
+    user_id: 2,
+    profile_picture: 'https://www.petmd.com/sites/default/files/petmd-cat-happy-13.jpg', 
+    cover_picture: 'http://cdn.mos.cms.futurecdn.net/FUE7XiFApEqWZQ85wYcAfM.jpg',
+    intro: 'I like to play frisbee', 
+    residence: 'San Francisco', 
+    work: 'Hack Reactor', 
+    relationship_status: 'Single', 
+    birthday: 'December 11, 2017'
+  }
+);
 
-INSERT INTO user_profile (id, profile_picture, cover_picture, intro, residence, work, school, relationship_status, birthday)/
-    VALUES (3, 'https://kids.nationalgeographic.com/content/dam/kids/photos/animals/Reptiles/A-G/gecko-on-leaf.adapt.945.1.jpg', 'https://www.nationalgeographic.com/content/dam/photography/photos/000/000/6.jpg',/
-    'I like to run around', 'San Francisco', 'Hack Reactor', 'Single', 'February 27, 2017');        
+INSERT INTO user_profile (id, user_data) VALUES (3, /
+  {
+    user_id: 3,
+    profile_picture: 'https://kids.nationalgeographic.com/content/dam/kids/photos/animals/Reptiles/A-G/gecko-on-leaf.adapt.945.1.jpg', 
+    cover_picture: 'https://www.nationalgeographic.com/content/dam/photography/photos/000/000/6.jpg',
+    intro: 'I like to run around', 
+    residence: 'San Francisco', 
+    work: 'Hack Reactor', 
+    relationship_status: 'Single', 
+    birthday: 'February 27, 2017'
+  }
+);      

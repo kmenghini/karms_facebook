@@ -286,15 +286,41 @@
   display: none;
 }
 
-.about {
-  grid-row: 3 / 6;
+.aboutContainer {
+  grid-row: 3 / 5;
   grid-column: 2 / 4;
-  background-color: white !important;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 
-.about .header {
-  background-color: transparent;
+.about {
+  background-color: white;
+  grid-row: 1 / 2;
+  border: 2px solid #e6e6e6;
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  grid-template columns: 1fr 2fr;
 }
+
+.title {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+  padding-left: 2%;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.title .header {
+  background-color: transparent;
+  height: auto;
+  margin-top: 0% !important;
+  margin-bottom: 1.5% !important;
+}
+
+.title .tabs {
+  
+}
+
 
 /*.makePost {
   grid-row: 1

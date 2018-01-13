@@ -11,8 +11,15 @@ class Profile_about extends React.Component {
 
   render() {
     return (
-      <div className={this.props.view === 'about' ? "about" : "hide"}>
-        <Header> About </Header>
+      <div className={this.props.view === 'about' ? "aboutContainer" : "hide"}>
+        <div className="about"> 
+          <div className="title">
+            <Header>             
+              <Icon name="user"></Icon>
+              &nbsp;About 
+            </Header>
+          </div>
+        </div>
       </div>
     );
   }
