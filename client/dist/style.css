@@ -61,8 +61,8 @@
 
 .profile {
   display: grid;
-  grid-template-rows: 7fr 1fr 5fr 7fr 7fr 9fr;
-  grid-template-columns: 0.5fr 1.3fr 2fr 0.5fr;
+  grid-template-rows: 6fr 0.9fr 5fr 8fr 6.1fr 8.9fr;
+  grid-template-columns: 0.15fr 1.2fr 1.8fr 0.78fr;
   background-color: #f2f2f2;
   grid-gap: 10px;
 }
@@ -104,7 +104,7 @@
   margin-left: 10% !important;
 }
 
-.backgroundAndProfilePic .addFriend {
+.backgroundAndProfilePic .friendStatus {
   grid-column: 8 / 10;
   grid-row: 3 / 4;
   z-index: 1;
@@ -128,6 +128,7 @@
   border: 2px solid #e6e6e6;
   background-color: white;
   max-height: 100%;
+  max-width: 100%;
   width: 100%;
 }
 
@@ -138,15 +139,19 @@
   margin-left: 38% !important;
 }
 
+.profileNavigation > .navigationButtons > .active {
+  background-color: #e6e6e6;
+}
+
 .intro {
   grid-row: 3;
   grid-column: 2;
   padding: 5%;
-  display: grid;
-  grid-template-rows: 0.5fr 3fr;
   background-color: white;
   border: 2px solid #e6e6e6;
   padding: 3%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .intro > .items > .introduction {
@@ -157,6 +162,7 @@
 
 .intro > .list {
   margin: 3% !important; 
+  margin-top: 5% !important;
 }
 
 .intro > .header {
@@ -176,73 +182,130 @@
 .friendsList {
   grid-row: 4;
   grid-column: 2;
-  padding-left: 5%;
+  padding: 5%;
   border: 2px solid #e6e6e6;
   background-color: white;
+  max-height: 100%;
+  width: 100%;
 }
 
 .friendsList > .header {
   background-color: transparent;
   height: auto;
-  margin-top: 5% !important;
-  margin-bottom: 5%;
+  margin-top: 0% !important;
+  margin-bottom: 3% !important;
+  display: inline-block !important;
 }
 
-.friendsList > .list {
-  margin: 3% !important; 
-}
-
-.photos {
-  grid-row: 5;
-  grid-column: 2;
-  padding-left: 5%;
-  border: 2px solid #e6e6e6;
-  background-color: white;
-}
-
-.photos > .header {
+.friendsList > .friendsCount {
   background-color: transparent;
   height: auto;
   margin-top: 5% !important;
   margin-bottom: 5%;
 }
 
-.photos > .list {
-  margin: 3% !important; 
+.friendsList > .friends {
+  display: grid;
+  max-width: 100% !important;
+  height: 88% !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: row;
+  grid-gap: 2%;
 }
 
-.makePost {
-  grid-row: 3;
+.friends img, .photos img {
+  max-width: 100% !important;
+  width: 120%;
+  height: 100% !important;
+}
+
+.photosList {
+  grid-row: 5;
+  grid-column: 2;
+  padding-left: 5%;
+  border: 2px solid #e6e6e6;
+  background-color: white;
+  max-height: 100%;
+  width: 100%;
+}
+
+.photosList > .header {
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 3% !important;
+  display: inline-block !important;
+}
+
+.photosList > .photosCount {
+  background-color: transparent;
+  height: auto;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
+}
+
+.photosList > .photos {
+  display: grid;
+  max-width: 100% !important;
+  width: 96%;
+  height: 75% !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-flow: row;
+  grid-gap: 2%;
+}
+
+.postSection {
+  grid-row: 3 / 9;
   grid-column: 3;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+  min-height: 0;
+  min-width: 0;
 }
 
-.makePost .createPostBody {
-  /*height: 1000px !important;*/
-  /*width: 100%;*/
-  flex-grow: 1;
-}
-
-.postList {
-  grid-row: 4 / 9;
-  grid-column: 3;
-}
-
-.postList .items {
+.postSection .items {
   overflow-y: auto;
   height: 150vh;
+  grid-row: 2;
 }
 
-.postList .postCard {
+.postSection .postCard {
   max-height: 100%;
   width: 100%;
   margin-bottom: 2.5%;
 }
 
+.postSection .createPostBody {
+  grid-row: 1;
+  /*width: 100%;*/
+}
+
+.hide {
+  display: none;
+}
+
+/*.makePost {
+  grid-row: 1
+  overflow: hidden; 
+  min-width: 0;  
+  /*display: flex;*/
+/*  justify-content: center
+}
+
+.makePost .createPostBody {*/
+  /*height: 100% !important;*/
+  /*max-width: 100%;*/
+/*  max-width: 90% !important;
+  height: 90% !important;*/
+  /*flex-grow: 1;*/
+/*}*/
+
 .placeHolder {
   grid-row: 1 / 9;
   grid-column: 4 / 5;
+  border: 2px solid black;
 }
 
 .messageFriends > .placeHolder1 {
@@ -376,18 +439,10 @@ body {
 .feedContainer {
   display: grid;
   grid-column-gap: 20px;
-  grid-template-columns: 2fr 5fr 4fr;
+  grid-template-columns: 2fr 5fr 3fr;
   grid-template-areas:  "feedSidebar feedContent feedSidebar";
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
-
-.feedSidebar {
-  border: 1px solid black;
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid #A4A4A4;
+  padding-left: 13%;
+  padding-right: 13%;
 }
 
 .feedContainer .postCard {
@@ -399,5 +454,123 @@ body {
   max-height: 100%;
   width: 100%;
 }
+
+.signIn-page {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-areas:"logo login";
+}
+
+.right-column {
+  display: grid;
+  grid-area: login;
+}
+
+.signIn-card, .new-user-card {
+  padding: 15px !important;
+  width: 400px !important;
+}
+
+#sign-in, #new-account-title {
+  color: #333;
+  font-size: 28px;
+  font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+}
+
+.login-button #create-account {
+  font-size: 19px;
+  font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  line-height: 126%;
+  padding: 7px 20px;
+  text-align: center;
+  background: linear-gradient(#67ae55, #578843);
+  background-color: #69a74e;
+  box-shadow: inset 0 1px 1px #a4e388;
+  border-color: #3b6e22 #3b6e22 #2c5115;
+  color: #fff !important;
+}
+
+.bottom.aligned.content {
+  padding: 5px 0 0 0 !important;
+}
+
+.signIn-page input {
+  width: 200px !important;
+  display: block !important;
+  margin-bottom: 7px !important;
+}
+
+.newUser img {
+  margin-bottom: 10px !important;
+  margin-left: 2px !important;
+}
+
+.signIn-card {
+  margin-top: -3px !important;
+}
+
       
 
+.feedSidebarUser {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  padding-bottom: 40px;
+  margin-top: -1.5px;
+}
+
+.feedSidebarExplore {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  padding-bottom: 20px;
+}
+
+.feedSideBarUserButton {
+  color:black !important;
+}
+
+.feedSideBarUserButtonImage {
+  height: 20px;
+  width: 20px;
+}
+
+.feedSidebarTrending {
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #A4A4A4;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+.feedSidebarTrendingItem {
+  border-radius: 5px;
+}
+
+.feedSidebarTrendingTopicHeader {
+  font-weight: bold;
+}
+
+.feedSidebarAds {
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #A4A4A4;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  padding-right: 10px;
+}
+
+.feedSidebarAdItem {
+  border-radius: 5px;
+}
+
+.ad {
+  margin-right: 20px !important;
+}

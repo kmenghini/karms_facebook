@@ -17,6 +17,7 @@ let port = 3000;
 //   })
 // });
 // Get all posts
+
 app.get('/:username/posts', function(req, res) {
   console.log("getting all posts");
   db.getAllPosts((err, data) => {
@@ -59,12 +60,12 @@ app.post('/:username/posts', function(req, res) {
   })		
 });
 
-app.post('/:username/likes/:username', function(req, res) {
+app.post('/likes/:username', function(req, res) {
   console.log('Are you liking');
   console.log(req.params.username);
   console.log(req.params.username);
   console.log(req.body.text);
-  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+  db.likePost(req.params.username, req.body.text, (err, data) => {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
@@ -73,6 +74,37 @@ app.post('/:username/likes/:username', function(req, res) {
       console.log('This is my data', data);
       res.status(200).json(data);	
     }		
+  })
+})
+
+app.delete('/likes/:username', function(req, res) {
+  console.log('Are you unliking');
+  console.log(req.params.username);
+  console.log(req.params.username);
+  console.log(req.query);
+  db.unlikePost(req.params.username, req.query.text, (err, data) => {
+    if (err) {
+      console.log(res);
+      console.log('This is my error', err);
+      res.sendStatus(404);		
+    } else {
+      console.log('This is my data', data);
+      res.status(200).json(data);	
+    }		
+  })
+})
+
+app.get('/likes/:username', function(req, res) {
+  console.log('Getting number of likes!');
+  console.log('Getting likes for ', req.params.username, '\'s post');
+  console.log('Getting likes for post with this text', req.query.text);
+  db.getLikeAmount(req.params.username, req.query.text, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log('Successfully got like count', data);
+      res.status(200).json(data);
+    }
   })
 })
 
@@ -85,6 +117,42 @@ app.get('/:username/profile/:user', function(req, res) {
       res.status(200).json(data);
     }
   });
+});
+
+// Get info about single user to load their profile
+app.get('/:username', (req, res) => {
+  console.log('inside get username');
+  var username = req.params.username;
+  if (username !== 'favicon.ico') {
+    db.getUser(username, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        console.log('data from /username route', data);
+        res.status(200).json(data);
+      }
+    })  
+  }
+});
+
+// Add new user to db
+app.post('/:username', (req, res) => {
+  var username = req.params.username;
+  if (username !== 'favicon.ico') {
+    var newUserData = {
+      username: req.body.username,
+      pictureUrl: req.body.pictureUrl,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName
+    }
+    db.addUser(newUserData, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })
+  }  
 });
 
 // Get info about single user to load their profile
@@ -121,31 +189,30 @@ app.post('/:username', (req, res) => {
   }  
 });
 
-// Get info about single user to load their profile
-app.get('/:username', (req, res) => {
+// route to add friend
+app.post('/:username/:friendToAdd', (req, res) => {
   var username = req.params.username;
-  res.json(`searching db for user ${username}`);
-  //if db includes username, respond with their info
+  var friendToAdd = req.params.friendToAdd;
+  db.addFriend(username, friendToAdd, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  });
 });
 
-// Add new user to db
-app.post('/:username', (req, res) => {
+// route to get a friends list
+app.get('/:username/friendsList/:otherUsername', (req, res) => {
   var username = req.params.username;
-  if (username !== 'favicon.ico') {
-    var newUserData = {
-      username: req.body.username,
-      pictureUrl: req.body.pictureUrl,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName
-    }
-    db.addUser(newUserData, (err, data) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.status(200).json(data);
-      }
-    })
-  }  
+  var otherUsername = req.params.otherUsername;
+  db.getFriendsList(otherUsername, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }    
+  });
 });
 
 
@@ -153,17 +220,6 @@ app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);
 });
 
-
-
-// app.get('/:username/search/:otherusername', function(req, res) {
-//   db.searchSomeone(req.params.otherusername, (err, res) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.status(200).json(res);
-//     }
-//   })
-// });
 
 
 

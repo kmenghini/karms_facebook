@@ -2,8 +2,8 @@ import React from 'react';
 import Post from './Post.jsx';
 import CreatePost from './CreatePost.jsx';
 import axios from 'axios';
-import Header from './Header.jsx';
 import UserList from './UserList.jsx';
+import Header from './Header.jsx';
 
 class PostList extends React.Component {
   constructor(props) {
@@ -22,21 +22,23 @@ class PostList extends React.Component {
     })
   }
   render() {
+    // console.log(this.props.name);
     return (
       <div>
-        <CreatePost onClick={this.receivePostText.bind(this)} getAllPosts={this.props.getAllPosts.bind(this)} />
+        <CreatePost onClick={this.receivePostText.bind(this)} getAllPosts={this.props.getAllPosts.bind(this)} name={this.props.name} />
         <br />
         {
-          this.props.postList.map((post) => (
-            <div>
+          this.props.postList.map((post, index) => (
+            <div key={index}>
             <Post
               post={post}
-              key={post.id}
+              name={this.props.name}
             />
             <br />
             </div>
           ))
         }
+        <Header name={this.props.name} />
       </div>
     )
   }
