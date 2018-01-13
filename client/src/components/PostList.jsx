@@ -33,7 +33,6 @@ class PostList extends React.Component {
             <Post
               post={post}
               name={this.props.name}
-              getProfile={this.props.getProfile}
             />
             <br />
             </div>

@@ -76,7 +76,7 @@ class SignIn extends React.Component {
             <Input className="username-input" type="text" onChange={this.handleUsernameInput.bind(this)}/>
             <Link onClick={this.handleLogIn.bind(this)} to={feedPath}><Button className="login-button"> Log In </Button></Link>
           </Card>
-          {this.state.newUser ? <NewUser newUsername={this.state.newUsername} getNewUsername={this.props.getNewUsername} getProfile={this.props.getProfile} /> : null }
+          {this.state.newUser ? <NewUser newUsername={this.state.newUsername} getNewUsername={this.props.getNewUsername} /> : null }
           </form>
         </div>
       

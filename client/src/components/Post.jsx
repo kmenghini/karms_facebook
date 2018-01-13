@@ -71,7 +71,6 @@ class Post extends React.Component {
     }
   }
   handleClickedProfile() {
-    // this.props.getProfile(this.props.name);
     axios.get(`/${this.props.post.first_name}/${this.props.post.last_name}`)
       .then((res) => {
         console.log('This is the username', res);
