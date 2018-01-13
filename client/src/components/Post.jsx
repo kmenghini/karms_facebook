@@ -69,11 +69,7 @@ class Post extends React.Component {
           console.log('This is the err', err);
         })
     } else {
-<<<<<<< HEAD
-      axios.delete(`${username}/likes/${username}`, { params: { 'text': this.props.post.post_text }})
-=======
       axios.delete(`/likes/${username}`, { params: { 'text': this.props.post.post_text }})
->>>>>>> feat/posts
         .then((res) => {
           console.log('This is the res', res);
           this.getLikeAmount();
