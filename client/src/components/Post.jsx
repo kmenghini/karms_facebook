@@ -11,6 +11,16 @@ class Post extends React.Component {
       likeCount: 0
     };
   }
+  getLikeAmount() {
+    let username = 'albertchanged';
+    axios.get(`${username}/likes`, {})
+      .then((res) => {
+        console.log('This is the number of likes', res);
+      })
+      .catch((err) => {
+        console.error('This is the error', err);
+      })
+  }
   toggleLike() {
     this.setState({
       liked: !this.state.liked
@@ -36,7 +46,7 @@ class Post extends React.Component {
     // } else {
       // query db to remove like entry
     // }
-
+        this.getLikeAmount();
     console.log('Liked!');
   }
   render() {
