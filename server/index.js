@@ -18,6 +18,40 @@ let port = 3000;
 // });
 // Get all posts
 
+
+
+//gets post of all friends --> add in dynamic username
+app.get('/:username/posts/friends', function(req, res) {
+  console.log("GETTING ALL FRIENDS POSTS");
+  db.findPostsByFriends('mattupham', (err, data) => {
+    // console.log("Error", err, "data", data);
+    if (err) {
+      console.log('This is my error', err);
+      res.sendStatus(404);
+    } else {
+      // console.log('This is my data', data);
+      res.status(200).json(data);
+    }
+  })
+});
+
+//gets post of all friends --> add in dynamic username
+app.get('/:username/posts/nonFriends', function(req, res) {
+  console.log("GETTING ALL FRIENDS POSTS");
+  db.findPostsByNonFriends('mattupham', (err, data) => {
+    // console.log("Error", err, "data", data);
+    if (err) {
+      console.log('This is my error', err);
+      res.sendStatus(404);
+    } else {
+      // console.log('This is my data', data);
+      res.status(200).json(data);
+    }
+  })
+});
+
+
+
 app.get('/:username/posts', function(req, res) {
   console.log("getting all posts");
   db.getAllPosts((err, data) => {

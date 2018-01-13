@@ -192,8 +192,9 @@ module.exports = {
       }  
     });
   },
-  
+
   findPostsByFriends: (username, callback) => {
+    console.log('USERNAME IN FIND POSTS BY FRIENDS', username)
     console.log('in db findPostsByFriends')
     let queryStr = `SELECT posts.* FROM posts 
     INNER JOIN user_friends ON (user_friends.friend_id = posts.user_id) 
@@ -203,11 +204,27 @@ module.exports = {
         console.log('Error', err)
         callback(err, null);
       } else {  
-        console.log('friends\' posts from db...')
+        console.log('/:username/posts/friends posts from db...')
         callback(null, res.rows);
       }  
     });
   },
+  
+  findPostsByNonFriends: (username, callback) => {
+    console.log('USERNAME IN FIND POSTS BY NON FRIENDS', username)
+    console.log('in db findPostsByNonFriends')
+    let queryStr = `SELECT * FROM posts WHERE posts.id IN (SELECT users.id FROM USERS WHERE users.id NOT IN (SELECT user_friends.friend_id FROM user_friends WHERE user_friends.username = 'mattupham'));`
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('/:username/posts/nonfriends posts from db...')
+        callback(null, res.rows);
+      }  
+    });
+  },
+
   getUserPosts: (username, callback) => {
     // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
     // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
