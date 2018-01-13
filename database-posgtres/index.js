@@ -149,7 +149,8 @@ module.exports = {
     console.log('in db findPostsByFriends')
     let queryStr = `SELECT posts.* FROM posts 
     INNER JOIN user_friends ON (user_friends.friend_id = posts.user_id) 
-    WHERE user_friends.username = '${username}';`
+    WHERE user_friends.username = '${username}' 
+    ORDER BY posts.id DESC;`
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err)
@@ -159,7 +160,7 @@ module.exports = {
         callback(null, res.rows);
       }  
     });
-  },
+  }
 }
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
