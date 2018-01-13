@@ -9,9 +9,9 @@ class Header extends React.Component {
     this.state = {
       profilePath: '',
       feedPath: '',
-      redirectProfile: false
+      redirectProfile: false,
+      username: window.location.pathname.substring(1, window.location.pathname.indexOf('/feed'))
     }
-
   }
   componentDidMount() {
     // this.props.getUsername(this.props.name);
@@ -19,37 +19,23 @@ class Header extends React.Component {
   handleFeedClick() {
     
   }
-
   handleProfileClick() {
     this.setState({
       redirectProfile: true
       // profilePath: '/' + this.props.name + '/profile'
     })
   }
-
   handleLogOutClick() {
 
   }
-
   getUserProfile(user) {
     this.props.getProfile(user);
   }
-
-
-  render() {
-    // let profilePath = '/' + this.props.name + '/profile';
-    // if (this.state.redirectedProfile) {
-    //   return <Redirect push to={profilePath} />
-    // }
-    // this.props.username 
-    console.log(this.props.name);
-    console.log(this.props.visible);
-    const profilePath = '/' + this.props.name + '/profile';
+  render() { 
+    const profilePath = '/' + this.state.username + '/profile';
     console.log(profilePath);
-    const feedPath = '/' + this.props.name + '/feed';
-    // console.log(this.props.name);
-    // console.log(profilePath);
-    // console.log(feedPath);
+    const feedPath = '/' + this.state.name + '/feed';
+    console.log(feedPath);
     return (
       <div className="header"> 
         <Image className="logo" src="/images/rbook.png"></Image>
@@ -57,7 +43,7 @@ class Header extends React.Component {
         <div className="header-btn">
           <Link to='/login'><button className="btn" onClick={this.handleLogOutClick.bind(this)}>Log Out</button></Link>
           <Link to={profilePath}><button className="btn">Profile</button></Link>
-          <Link to={this.state.feedPath}><button className="btn" onClick={this.handleFeedClick.bind(this)}>Feed</button></Link>
+          <Link to={feedPath}><button className="btn" onClick={this.handleFeedClick.bind(this)}>Feed</button></Link>
         </div>
       </div>
     );
