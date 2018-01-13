@@ -77,6 +77,41 @@ app.post('/:username/likes/:username', function(req, res) {
   })
 })
 
+app.post('/:username/likes/:username', function(req, res) {
+  console.log('Are you liking');
+  console.log(req.params.username);
+  console.log(req.params.username);
+  console.log(req.body.text);
+  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+    if (err) {
+      console.log(res);
+      console.log('This is my error', err);
+      res.sendStatus(404);    
+    } else {
+      console.log('This is my data', data);
+      res.status(200).json(data); 
+    }   
+  })
+})
+
+app.post('/:username/likes/:username', function(req, res) {
+  console.log('Are you liking');
+  console.log(req.params.username);
+  console.log(req.params.username);
+  console.log(req.body.text);
+  db.likePost(req.params.username, req.params.username, req.body.text, (err, data) => {
+    if (err) {
+      console.log(res);
+      console.log('This is my error', err);
+      res.sendStatus(404);    
+    } else {
+      console.log('This is my data', data);
+      res.status(200).json(data); 
+    }   
+  })
+})
+
+
 app.get('/:username/profile/:user', function(req, res) {
   db.searchSomeone(req.params.user, (err, data) => {
     if (err) {
@@ -90,12 +125,14 @@ app.get('/:username/profile/:user', function(req, res) {
 
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
+  console.log('inside get username');
   var username = req.params.username;
   if (username !== 'favicon.ico') {
     db.getUser(username, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
+        console.log('data from /username route', data);
         res.status(200).json(data);
       }
     })  
@@ -123,23 +160,38 @@ app.post('/:username', (req, res) => {
 });
 
 
+// Get info about single user to load their profile
+// app.get('/:username', (req, res) => {
+//   var username = req.params.username;
+//   res.json(`searching db for user ${username}`);
+//   //if db includes username, respond with their info
+// });
+
+// Add new user to db
+app.post('/:username', (req, res) => {
+  var username = req.params.username;
+  if (username !== 'favicon.ico') {
+    var newUserData = {
+      username: req.body.username,
+      pictureUrl: req.body.pictureUrl,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName
+    }
+    db.addUser(newUserData, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })
+  }  
+});
 
 
 app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);
 });
 
-
-
-// app.get('/:username/search/:otherusername', function(req, res) {
-//   db.searchSomeone(req.params.otherusername, (err, res) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.status(200).json(res);
-//     }
-//   })
-// });
 
 
 
