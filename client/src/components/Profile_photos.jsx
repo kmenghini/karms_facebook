@@ -4,11 +4,14 @@ import { Divider, Header, List, Icon, Grid, Image } from 'semantic-ui-react';
 class Profile_photos extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      view: 'Timeline'
+    }
   }
 
   render() {
     return (
-      <div className="photosList">
+      <div className={this.state.view === 'Timeline' ? "photosList" : "hide"}>
         <Header className="header"> 
           <Icon name="camera"></Icon>
           Photos

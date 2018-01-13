@@ -4,11 +4,14 @@ import { Divider, Header, List, Icon, Grid, Image } from 'semantic-ui-react';
 class Profile_friends extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      view: 'Timeline'
+    }
   }
 
   render() {
     return (
-      <div className="friendsList">
+      <div className={this.state.view === 'Timeline' ? "friendsList" : "hide"}>
         <Header className="header"> 
           <Icon name="users"></Icon>
           Friends

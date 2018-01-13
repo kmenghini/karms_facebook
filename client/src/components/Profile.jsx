@@ -5,6 +5,8 @@ import PostList from './PostList.jsx';
 import FBHeader from './Header.jsx';
 import Profile_friends from './Profile_friends.jsx';
 import Profile_photos from './Profile_photos.jsx';
+import Profile_intro from './Profile_intro.jsx';
+import Profile_about from './Profile_about.jsx';
 import axios from 'axios';
 import { Image, Button, Header, List, Item, Divider, Icon, Menu } from 'semantic-ui-react';
 
@@ -93,6 +95,10 @@ class Profile extends React.Component {
       }); 
   } 
 
+  handleNavigation() {
+
+  }
+
   render() {
     return (
       <div>
@@ -123,41 +129,16 @@ class Profile extends React.Component {
         <div className="profileNavigation">
           <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">
             <Button className="timeline active"> Timeline </Button>
-            <Button className="about"> About </Button>
+            <Button className="about" onClick={this.handleNavigation.bind(this)}> About </Button>
             <Button className="friends"> Friends </Button>
             <Button className="photo"> Photo </Button> 
             <Button className="more"> More </Button>
           </Button.Group>  
         </div>
-        <div className="intro">
-          <Header className="header"> 
-            <Icon loading name="globe"></Icon>
-            Intro 
-          </Header>
-          <List className="items">
-            <div className="introduction"> 
-              {/*<Icon name="user"></Icon>*/}
-              I like to woof and eat treats and I like to roll around in the grass and play frisbee
-            </div>
-            <Divider fitted></Divider>
-            <List.Item>
-              <Icon name="home"></Icon>
-              &nbsp; Lives in San Francisco, CA 
-            </List.Item>
-            <List.Item> 
-              <Icon name="student"></Icon>
-              &nbsp; Hack Reactor 
-            </List.Item>
-            <List.Item>
-              <Icon name="heart outline"></Icon>
-              &nbsp; Single 
-             </List.Item>
-             <List.Item>
-              <Icon name="birthday"></Icon>
-              &nbsp; January 1, 2017 
-             </List.Item>
-          </List>
-        </div>
+
+        <Profile_about />
+
+        <Profile_intro />
         <Profile_friends friends={this.state.friends}/>
         <Profile_photos />
         {/*<div className="makePost">
