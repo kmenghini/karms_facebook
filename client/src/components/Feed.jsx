@@ -97,7 +97,6 @@ class Feed extends React.Component {
 
         <div className="feedContent">
           <PostList postList={this.state.postList} getAllPosts={this.getAllPosts.bind(this)} name={this.state.username}/>
-<<<<<<< HEAD
         </div>
 
         <div className="feedSidebar">
@@ -156,8 +155,6 @@ class Feed extends React.Component {
               </Item>
             </Item.Group>
           </div>
-=======
->>>>>>> feat/posts
         </div>
 
         <div className="feedSidebar">
