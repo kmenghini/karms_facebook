@@ -82,7 +82,7 @@ module.exports = {
         console.log('Error', err)
         callback(err, null);
       } else {  
-        console.log('searched for user in db', res.rows)
+        console.log('searched for user in db')
         callback(null, res.rows);
       }  
     });
@@ -149,7 +149,8 @@ module.exports = {
     console.log('in db findPostsByFriends')
     let queryStr = `SELECT posts.* FROM posts 
     INNER JOIN user_friends ON (user_friends.friend_id = posts.user_id) 
-    WHERE user_friends.username = '${username}';`
+    WHERE user_friends.username = '${username}' 
+    ORDER BY posts.id DESC;`
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err)
