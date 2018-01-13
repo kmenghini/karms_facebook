@@ -31,21 +31,11 @@ class SignIn extends React.Component {
     })
   }
   handleLogIn(e) {
-    // console.log(this.state.username)
-    // if (this.state.getNewUser === true) {
-    //   this.setState({
-    //     newUser: true
-    //   })
-    // }
     e.preventDefault();
-    // this.setState({
-    //   redirect: true
-    // })
 
     $.get(`/${this.state.username}`, (data) => {
       console.log(data[0]);
       if (data.length) {
-        
         this.setState({
           username: data[0].username,
           newUser: false,
@@ -55,11 +45,11 @@ class SignIn extends React.Component {
         console.log('need to route to feed for', this.state.username)
         //route to feed for this user
       } else {
-        // this.setState({
-        //   newUser: true,
-        //   getNewUser: true,
-        //   redirect: false
-        // });
+        this.setState({
+          newUser: true,
+          getNewUser: true,
+          redirect: false
+        });
       }
       console.log('in client siginin get request', data)
     })

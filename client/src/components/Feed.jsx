@@ -155,9 +155,7 @@ class Feed extends React.Component {
               </Item>
             </Item.Group>
           </div>
-
         </div>
-        {/* <FBHeader name={this.props.match.params.username} visible={this.state.showHeader} /> */}
       </div>
     );
   }
