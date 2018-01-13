@@ -15,6 +15,7 @@ class Header extends React.Component {
   }
   componentDidMount() {
     // this.props.getUsername(this.props.name);
+    console.log(this.props.name);
   }
   handleFeedClick() {
     
@@ -32,9 +33,9 @@ class Header extends React.Component {
     this.props.getProfile(user);
   }
   render() { 
-    const profilePath = '/' + this.state.username + '/profile';
+    const profilePath = '/' + this.props.name + '/profile';
     console.log(profilePath);
-    const feedPath = '/' + this.state.username + '/feed';
+    const feedPath = '/' + this.props.name + '/feed';
     console.log(feedPath);
     return (
       <div className="header"> 

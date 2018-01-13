@@ -26,6 +26,7 @@ class Feed extends React.Component {
     this.setState({
       username: username
     })
+    // this.props.getUsername(username);
     axios.get(`/${username}/posts`)
       .then((res) => {
         console.log(res.data);
