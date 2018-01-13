@@ -2,7 +2,7 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
+  connectionString: process.env.DATABASE_URL || 'postgres://rngo@localhost:5432/fb_database'
 });
 
 client.connect();
@@ -152,7 +152,7 @@ module.exports = {
     // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
     // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
     var query = {
-      text: 'SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = $1)',
+      text: 'SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = $1) ORDER BY posts.id DESC',
       values: [username]
     };
     client.query(query, (err, res) => {
@@ -162,35 +162,6 @@ module.exports = {
       } else {
         callback(null, res.rows);
       }
-    });
-  },
-  //add 2 rows to user_friends table
-  addFriend: (username1, username2, callback) => {
-    console.log('in db addFriend')
-    let queryStr = `INSERT INTO user_friends (username, friend_id)
-      VALUES ('${username1}', (SELECT id FROM users WHERE username='${username2}')),
-      ('${username2}', (SELECT id FROM users WHERE username='${username1}'));`
-    client.query(queryStr, (err, res) => {
-      if (err) {
-        console.log('Error', err)
-        callback(err, null);
-      } else {  
-        console.log('Added friendship in database!')
-        callback(null, res.rows);
-      }  
-    });
-  },
-  getFriendsList: (username, callback) => {
-    console.log('in db getFriendsList')
-    let queryStr = `SELECT users.* FROM users INNER JOIN user_friends ON (user_friends.friend_id = users.id) WHERE user_friends.username = '${username}';`
-    client.query(queryStr, (err, res) => {
-      if (err) {
-        console.log('Error', err)
-        callback(err, null);
-      } else {  
-        console.log('friends list from db...')
-        callback(null, res.rows);
-      }  
     });
   },
   findPostsByFriends: (username, callback) => {
@@ -205,6 +176,41 @@ module.exports = {
         callback(err, null);
       } else {  
         console.log('friends\' posts from db...')
+        callback(null, res.rows);
+      }  
+    });
+  },
+  addFriend: (username, friendToAdd, callback) => {
+    console.log('adding friend...');
+    var queryOne = `INSERT INTO user_friends (username, friend_id) VALUES ('${username}', (SELECT id FROM users WHERE username = '${friendToAdd}'))`;
+    var queryTwo = `INSERT INTO user_friends (username, friend_id) VALUES ('${friendToAdd}', (SELECT id FROM users WHERE username = '${username}'))`;
+    client.query(queryOne, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('successfully added one permutation of friends');
+        client.query(queryTwo, (err, res) => {
+          if (err) {
+            console.log('Error', err)
+            callback(err, null);
+          } else {  
+            console.log('successfully added both permutations of friends');
+            callback(null, res.rows);
+          }  
+        });
+      }  
+    });
+  },
+  getFriendsList: (username, callback) => {
+    console.log('in db getFriendsList')
+    let queryStr = `SELECT users.* FROM users INNER JOIN user_friends ON (user_friends.friend_id = users.id) WHERE user_friends.username = '${username}';`
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('friends list from db...')
         callback(null, res.rows);
       }  
     });

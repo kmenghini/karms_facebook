@@ -29,7 +29,7 @@ class App extends React.Component {
       console.log('res: ', res.data[0]);
       this.setState({
         view: 'profile',
-        name: res.data[0].first_name,
+        name: res.data[0].first_name + ' ' + res.data[0].last_name,
         picture_url: res.data[0].picture_url,
         username: res.data[0].username
       })
