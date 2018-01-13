@@ -33,6 +33,7 @@ class App extends React.Component {
         picture_url: res.data[0].picture_url,
         username: res.data[0].username
       })
+
     })
     .catch((err) => {
       console.log('err: ', err);
@@ -52,7 +53,8 @@ class App extends React.Component {
         {/* <SignIn /> */}
         {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}
         <br />
-        {(this.state.view) ? <Profile 
+
+        {(this.state.profile) ? <Profile 
                                   username={this.state.username}
                                   name={this.state.name} 
                                   picture_url={this.state.picture_url} 

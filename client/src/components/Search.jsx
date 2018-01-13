@@ -30,7 +30,6 @@ class Search extends React.Component {
   //   let userName = 'Shubhra';
   //   axios.get(`/${userName}/search/${user}`)
   //   .then((res) => {
-
   //   })
   //   .catch((err) => {
   //     console.log('err: ', err);
@@ -54,17 +53,3 @@ class Search extends React.Component {
 }
 
 export default Search;
-  
-  // filter results with each letter entered
-  // handleInputText(event) {
-  //   event.preventDefault();
-  //   let user = this.refs.searchUser.value;
-  //   let userName = 'Shubhra';
-  //   axios.get(`/${userName}/search/${user}`)
-  //   .then((res) => {
-
-  //   })
-  //   .catch((err) => {
-  //     console.log('err: ', err);
-  //   })
-  // }
