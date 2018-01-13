@@ -166,13 +166,19 @@ app.post('/:username', (req, res) => {
   }  
 });
 
-
 // Get info about single user to load their profile
-// app.get('/:username', (req, res) => {
-//   var username = req.params.username;
-//   res.json(`searching db for user ${username}`);
-//   //if db includes username, respond with their info
-// });
+app.get('/:username', (req, res) => {
+  var username = req.params.username;
+  if (username !== 'favicon.ico') {
+    db.getUser(username, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(data);
+      }
+    })  
+  }
+});
 
 // Add new user to db
 app.post('/:username', (req, res) => {
@@ -192,6 +198,32 @@ app.post('/:username', (req, res) => {
       }
     })
   }  
+});
+
+// route to add friend
+app.post('/:username/:friendToAdd', (req, res) => {
+  var username = req.params.username;
+  var friendToAdd = req.params.friendToAdd;
+  db.addFriend(username, friendToAdd, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
+
+// route to get a friends list
+app.get('/:username/friendsList/:otherUsername', (req, res) => {
+  var username = req.params.username;
+  var otherUsername = req.params.otherUsername;
+  db.getFriendsList(otherUsername, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }    
+  });
 });
 
 
