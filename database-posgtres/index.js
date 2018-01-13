@@ -117,7 +117,6 @@ module.exports = {
       }
     });
   },
-<<<<<<< HEAD
 
   //add 2 rows to user_friends table
   addFriend: (username1, username2, callback) => {
@@ -164,7 +163,6 @@ module.exports = {
     });
   },
 
-=======
   getUserPosts: (username, callback) => {
     // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
     // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
@@ -182,7 +180,6 @@ module.exports = {
     });
 
   },
->>>>>>> 1d8768d9025a6acaaafea9d33e33a3debf5b5219
   getUserPosts: (username, callback) => {
     // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
     // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
