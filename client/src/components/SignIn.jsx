@@ -41,7 +41,7 @@ class SignIn extends React.Component {
           newUser: false,
           redirect: true
         });
-        this.props.getUsername();
+        // this.props.getUsername();
         console.log('need to route to feed for', this.state.username)
         //route to feed for this user
       } else {

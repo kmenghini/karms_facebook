@@ -34,7 +34,7 @@ class Header extends React.Component {
   render() { 
     const profilePath = '/' + this.state.username + '/profile';
     console.log(profilePath);
-    const feedPath = '/' + this.state.name + '/feed';
+    const feedPath = '/' + this.state.username + '/feed';
     console.log(feedPath);
     return (
       <div className="header"> 

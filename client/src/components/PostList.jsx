@@ -13,7 +13,6 @@ class PostList extends React.Component {
     }
   }
   getNewPosts() {
-
     this.props.getAllPosts();
   }
   receivePostText(text) {

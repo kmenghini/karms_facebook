@@ -54,7 +54,7 @@ class App extends React.Component {
         {/* { this.state.view === 'feed' ? <PostList /> : <Profile /> } */}
         <br />
 
-        {(this.state.view) ? <Profile 
+        {(this.state.feed) ? <Profile 
                                   username={this.state.username}
                                   name={this.state.name} 
                                   picture_url={this.state.picture_url} 
