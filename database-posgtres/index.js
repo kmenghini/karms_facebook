@@ -194,7 +194,7 @@ module.exports = {
   },
 
   findPostsByFriends: (username, callback) => {
-    console.log('USERNAME IN FIND POSTS BY FRIENDS', username)
+    // console.log('USERNAME IN FIND POSTS BY FRIENDS', username)
     console.log('in db findPostsByFriends')
     let queryStr = `SELECT posts.* FROM posts 
     INNER JOIN user_friends ON (user_friends.friend_id = posts.user_id) 
@@ -211,9 +211,18 @@ module.exports = {
   },
   
   findPostsByNonFriends: (username, callback) => {
-    console.log('USERNAME IN FIND POSTS BY NON FRIENDS', username)
+    // console.log('USERNAME IN FIND POSTS BY NON FRIENDS', username)
     console.log('in db findPostsByNonFriends')
-    let queryStr = `SELECT * FROM posts WHERE posts.id IN (SELECT users.id FROM USERS WHERE users.id NOT IN (SELECT user_friends.friend_id FROM user_friends WHERE user_friends.username = 'mattupham'));`
+    let queryStr = `SELECT * FROM posts 
+                    WHERE posts.id IN 
+                    (SELECT users.id 
+                      FROM users WHERE users.id 
+                      NOT IN 
+                      (SELECT user_friends.friend_id 
+                        FROM user_friends 
+                        WHERE user_friends.username = 'mattupham'
+                      )
+                    );`
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err)
