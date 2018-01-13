@@ -29,17 +29,17 @@ module.exports = {
       // client.end();
     });
   },
-  likePost: (username, friendname, text, callback) => {
+  likePost: (username, text, callback) => {
     let queryStr = 
     `INSERT INTO user_posts_liked (user_id, post_id) 
     VALUES ((SELECT id FROM users WHERE username = '${username}'), 
     (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
       posts.user_id AND posts.post_text = 
       '${text}' AND posts.user_id = 
-      (SELECT id FROM users WHERE username = '${friendname}')))`;
+      (SELECT id FROM users WHERE username = '${username}')))`;
       console.log('This is my queryStr', queryStr);
       console.log('In DB', username);
-      console.log('In DB', friendname);
+      // console.log('In DB', friendname);
       console.log('In DB', text);
     client.query(queryStr, (err, res) => {
       if (err) {
@@ -50,17 +50,17 @@ module.exports = {
       }
     })
   },
-  unlikePost: (username, friendname, text, callback) => {
+  unlikePost: (username, text, callback) => {
     let queryStr = 
     `DELETE FROM user_posts_liked WHERE user_id = 
     (SELECT id FROM users WHERE username = '${username}')
     AND post_id = (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
       posts.user_id AND posts.post_text = 
       '${text}' AND posts.user_id = 
-      (SELECT id FROM users WHERE username = '${friendname}'))`;
+      (SELECT id FROM users WHERE username = '${username}'))`;
       console.log('This is my queryStr', queryStr);
       console.log('In DB', username);
-      console.log('In DB', friendname);
+      // console.log('In DB', friendname);
       console.log('In DB', text);
     client.query(queryStr, (err, res) => {
       if (err) {
