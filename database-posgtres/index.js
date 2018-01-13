@@ -215,7 +215,6 @@ module.exports = {
       }  
     });
   }
-
 }
 
 // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
