@@ -17,22 +17,23 @@ class Profile extends React.Component {
       posts: [],
       friends: [],
       friend: false,
+      username: props.match.params.username,
       userInfo: {},
       activeTab: 'Timeline'
     }
   }
 
   componentDidMount() {
+    this.getUserInfo();
     this.getUserPosts();
     this.getFriends();
-    this.getUserInfo();
   }  
 
   getUserInfo() {
-    var user = 'albertchanged'; 
+    var user = this.state.username;
     axios.get(`/${user}`)
       .then((response) => {
-        console.log(response.data);
+        console.log('user info...', response.data);
         this.setState({
           userInfo: response.data[0]
         });
@@ -43,9 +44,10 @@ class Profile extends React.Component {
   }
 
   getUserPosts() {
-    let username = this.props.match.params.username;
+    var username = this.state.username;
     axios.get(`/${username}/posts/${username}`)
       .then((response) => {
+        console.log('posts....', response.data);
         this.setState({
           posts: response.data
         });
@@ -56,9 +58,8 @@ class Profile extends React.Component {
   }
 
   getFriends() {
-    // let username = this.props.match.params.username;
-    var username = 'albertchanged';
-    var otherUsername = 'rayango';
+    var username = this.state.username;
+    var otherUsername = this.state.username;
     axios.get(`/${username}/friendsList/${otherUsername}`)
       .then((response) => {
         console.log('friends....', response.data);
@@ -151,7 +152,7 @@ class Profile extends React.Component {
           <CreatePost renderNewPost={this.getUserPosts.bind(this)}/>
         </div>*/}
         <div className="postSection">
-          <CreatePost renderNewPost={this.getUserPosts.bind(this)} />  
+          <CreatePost renderNewPost={this.getUserPosts.bind(this)} name={this.state.username}/>  
           <List className="items">
             {
               this.state.posts.map((post) => (
