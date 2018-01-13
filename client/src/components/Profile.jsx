@@ -109,9 +109,15 @@ class Profile extends React.Component {
           <Header size="large" inverted color="grey" textAlign="center" className="name"> {this.state.userInfo.first_name} {this.state.userInfo.last_name} </Header>
           { this.state.friend ?
 
-            <Button compact inverted size="small" className="friendStatus">
-              <Icon name="check" />
-              &nbsp; Friends 
+            <Button compact animated inverted size="small" className="friendStatus removeFriend">
+              <Button.Content visible> 
+                <Icon name="check" />
+                &nbsp; Friends 
+              </Button.Content>  
+              <Button.Content hidden> 
+                <Icon name="delete" />
+                &nbsp; Remove Friend 
+              </Button.Content> 
             </Button>
 
             :
