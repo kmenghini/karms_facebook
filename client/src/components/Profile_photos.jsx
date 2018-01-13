@@ -5,13 +5,13 @@ class Profile_photos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'Timeline'
+      view: props.view
     }
   }
 
   render() {
     return (
-      <div className={this.state.view === 'Timeline' ? "photosList" : "hide"}>
+      <div className={this.props.view === 'Timeline' ? "photosList" : "hide"}>
         <Header className="header"> 
           <Icon name="camera"></Icon>
           Photos

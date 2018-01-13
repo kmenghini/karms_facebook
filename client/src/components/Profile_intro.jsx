@@ -5,13 +5,13 @@ class Profile_intro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'Timeline'
+      view: props.view
     }
   }
 
   render() {
     return (
-      <div className={this.state.view === 'Timeline' ? "intro" : "hide"}>
+      <div className={this.props.view === 'Timeline' ? "intro" : "hide"}>
         <Header className="header"> 
           <Icon loading name="globe"></Icon>
           Intro 

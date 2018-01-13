@@ -5,7 +5,7 @@ class Profile_backgroundAndProfilePic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      
     }
   }
 
@@ -19,7 +19,7 @@ class Profile_backgroundAndProfilePic extends React.Component {
         </Header>
         { this.props.friend ?
 
-          <Button compact animated inverted size="small" className="friendStatus removeFriend">
+          <Button compact animated inverted size="small" className="friendStatus removeFriend" onClick={this.props.removeFriend.bind(this)} >
             <Button.Content visible> 
               <Icon name="check" />
               &nbsp; Friends 

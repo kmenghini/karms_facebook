@@ -10,14 +10,15 @@ class Profile_navigation extends React.Component {
   }
 
   render() {
+    console.log('view....', this.props.view);
     return (
      <div className="profileNavigation">
         <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">
-          <Button className="timeline active"> Timeline </Button>
-          <Button className="about" onClick={this.props.handleNavigation.bind(this)}> About </Button>
-          <Button className="friends"> Friends </Button>
-          <Button className="photo"> Photo </Button> 
-          <Button className="more"> More </Button>
+          <Button id="Timeline" className={this.props.view === 'Timeline' ? "active" : ""} onClick={(e) => this.props.handleNavigation(e)}> Timeline </Button>
+          <Button id="about" className={this.props.view === 'about' ? "active" : ""} onClick={(e) => this.props.handleNavigation(e)}> About </Button>
+          <Button id="friends" className={this.props.view === 'friends' ? "active" : ""} onClick={(e) => this.props.handleNavigation(e)}> Friends </Button>
+          <Button id="photos" className={this.props.view === 'photos' ? "active" : ""} onClick={(e) => this.props.handleNavigation(e)}> Photos </Button> 
+          <Button id="more" className={this.props.view === 'more' ? "active" : ""} onClick={(e) => this.props.handleNavigation(e)}> More </Button>
         </Button.Group>  
       </div>
     );

@@ -5,19 +5,19 @@ class Profile_friends extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'Timeline'
+      view: props.view
     }
   }
 
   render() {
     return (
-      <div className={this.state.view === 'Timeline' ? "friendsList" : "hide"}>
+      <div className={this.props.view === 'Timeline' ? "friendsList" : "hide"}>
         <Header className="header"> 
           <Icon name="users"></Icon>
           Friends
         </Header>
         <span className="friendsCount">
-          &nbsp; · &nbsp; {this.props.friends.length}
+          &nbsp; · &nbsp; {this.props.friends.length} friends
         </span>
         <div className="friends">
           {

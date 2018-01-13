@@ -7,13 +7,13 @@ class Profile_postSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'Timeline'
+      view: props.view
     }
   }
 
   render() {
     return (
-      <div className="postSection">
+      <div className={this.props.view === 'Timeline' ? "postSection" : "hide"}>
         <CreatePost renderNewPost={this.props.getUserPosts.bind(this)} name={this.props.username}/>  
         <List className="items">
           {

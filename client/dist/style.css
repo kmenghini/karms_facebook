@@ -139,7 +139,7 @@
   margin-left: 38% !important;
 }
 
-.profileNavigation > .navigationButtons > .active {
+.active {
   background-color: #e6e6e6;
 }
 
@@ -284,6 +284,16 @@
 
 .hide {
   display: none;
+}
+
+.about {
+  grid-row: 3 / 6;
+  grid-column: 2 / 4;
+  background-color: white !important;
+}
+
+.about .header {
+  background-color: transparent;
 }
 
 /*.makePost {

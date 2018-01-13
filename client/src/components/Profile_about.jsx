@@ -5,13 +5,13 @@ class Profile_about extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'Timeline'
+      view: props.view
     }
   }
 
   render() {
     return (
-      <div className={this.state.view === 'About' ? "about" : "hide"}>
+      <div className={this.props.view === 'about' ? "about" : "hide"}>
         <Header> About </Header>
       </div>
     );
