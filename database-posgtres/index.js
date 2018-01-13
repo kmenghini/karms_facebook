@@ -118,7 +118,7 @@ module.exports = {
         console.log('Error', err)
         callback(err, null);
       } else {  
-        console.log('searched for user in db', res.rows)
+        console.log('searched for user in db')
         callback(null, res.rows);
       }  
     });
