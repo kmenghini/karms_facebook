@@ -21,7 +21,7 @@ class Profile_friends extends React.Component {
         </span>
         <div className="friends">
           {
-            this.props.friends.map((friend) => (
+            this.props.friends.slice(0, 9).map((friend) => (
               <div className="friend">
                 <img src="/images/profile_default.jpg" />
                 {/*<span className="friendName"> {friend.first_name} {friend.last_name} </span>*/}

@@ -62,7 +62,7 @@ class Profile extends React.Component {
 
   getFriends() {
     var username = this.state.username;
-    var otherUsername = 'this.state.username';
+    var otherUsername = this.state.username;
     axios.get(`/${username}/friendsList/${otherUsername}`)
       .then((response) => {
         console.log('friends....', response.data);
@@ -110,7 +110,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log('view from profile...', event.target.id, this.state.view);
+    console.log('friends....', this.state.friends);
     return (
       <div className="profile">
         <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} />
