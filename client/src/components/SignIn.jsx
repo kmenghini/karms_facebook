@@ -9,6 +9,7 @@ class SignIn extends React.Component {
     super();
     this.state = {
       username: '',
+      newUsername: '',
       newUser: false,
       getNewUser: false,
       redirect: false,
@@ -41,7 +42,7 @@ class SignIn extends React.Component {
           newUser: false,
           redirect: true
         });
-        // this.props.getUsername();
+        this.getUsername();
         console.log('need to route to feed for', this.state.username)
         //route to feed for this user
       } else {
@@ -54,7 +55,12 @@ class SignIn extends React.Component {
       console.log('in client siginin get request', data)
     })
   }
-  
+
+  getUsername() {
+    console.log('Getting username!');
+    this.props.getUsername(this.state.username);
+  }
+
   render() {
     let feedPath = '/' + this.state.username + '/feed';
     if (this.state.redirect) {
@@ -66,15 +72,14 @@ class SignIn extends React.Component {
           <h3 id="sign-in"> Sign In </h3>
           <form onSubmit={this.handleSubmit.bind(this)}>
           <Card className="signIn-card">
-            <h5 className="bottom aligned content">Username</h5>
-            {/* {(!this.state.newUser) ? <Link to='/feed' /> : <Link to='/profile' />} */}
+            <h5 className="signInLabel bottom aligned content">Username</h5>
             <Input className="username-input" type="text" onChange={this.handleUsernameInput.bind(this)}/>
             <Link onClick={this.handleLogIn.bind(this)} to={feedPath}><Button className="login-button"> Log In </Button></Link>
           </Card>
-          {this.state.newUser ? <NewUser username={this.state.username}/> : null }
+          {this.state.newUser ? <NewUser newUsername={this.state.newUsername} getNewUsername={this.props.getNewUsername} /> : null }
           </form>
         </div>
-
+      
       </div>  
     )
   }

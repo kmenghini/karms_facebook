@@ -2,13 +2,16 @@ import React from 'react';
 import { Card, Icon, Button, Label, Comment } from 'semantic-ui-react';
 import moment from 'moment';
 import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
 
 class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       liked: false,
-      likeCount: 0
+      likeCount: 0,
+      clickedUsername: '',
+      redirect: false
     };
   }
   componentDidMount() {
@@ -25,7 +28,7 @@ class Post extends React.Component {
         })
       })
       .catch((err) => {
-        // console.error('This is the error', err);
+        console.error('This is the error', err);
       })
   }
   toggleLike() {
@@ -47,14 +50,13 @@ class Post extends React.Component {
       console.log('Liked!');
       // query db to add like entry
       console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
-      console.log('Are you liking');
       axios.post(`/likes/${username}`, { 'text': this.props.post.post_text })
         .then((res) => {
           console.log('This is the res', res);
           this.getLikeAmount();
         })
         .catch((err) => {
-          console.log('This is the err', err);
+          console.error('This is the err', err);
         })
     } else {
       axios.delete(`/likes/${username}`, { params: { 'text': this.props.post.post_text }})
@@ -63,12 +65,32 @@ class Post extends React.Component {
           this.getLikeAmount();
         })
         .catch((err) => {
-          console.log('This is the err', err);
+          console.error('This is the err', err);
         })
       console.log('Unliked');
     }
   }
+  handleClickedProfile() {
+    axios.get(`/${this.props.post.first_name}/${this.props.post.last_name}`)
+      .then((res) => {
+        console.log('This is the username', res);
+        this.setState({
+          clickedUsername: res.data[0].username
+        })
+      })
+      .catch((err) => {
+        console.log('This is the error', err);
+      })
+    this.setState({
+      redirect: true
+    })
+  }
   render() {
+    let clickedProfilePath = '/' + this.state.clickedUsername + '/profile';
+    console.log(clickedProfilePath);
+    if (this.state.redirect) {
+      return <Redirect push to={clickedProfilePath} />;
+    }
     return(
       <div className="postCard">
         <Card fluid>
@@ -77,7 +99,7 @@ class Post extends React.Component {
               <img className="postPic" src="https://www.doghealth.com/images/stories/doghealth/front_page_puppy.jpg"/>
               <div className="postBody">
                 <p className="postName">
-                  <strong><a href="">{this.props.post.first_name}&nbsp;{this.props.post.last_name}</a></strong>
+                  <strong><span onClick={this.handleClickedProfile.bind(this)}>{this.props.post.first_name}&nbsp;{this.props.post.last_name}</span></strong>
                   <br /><span className="postTimestamp">{moment(this.props.post.post_timestamp).fromNow()}</span>
                 </p>
               </div>

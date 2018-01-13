@@ -124,6 +124,17 @@ module.exports = {
       }  
     });
   },
+  getUsername: (firstname, lastname, callback) => {
+    client.query(`SELECT username FROM users WHERE first_name='${firstname}' AND last_name='${lastname}'`, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('Got username from db', res.rows)
+        callback(null, res.rows);
+      } 
+    })
+  },
   //add user to db
   addUser: (userData, callback) => {
     console.log('in db addUser start......', userData)
@@ -153,7 +164,6 @@ module.exports = {
       }
     });
   },
-
   //add 2 rows to user_friends table
   addFriend: (username1, username2, callback) => {
     console.log('in db addFriend')

@@ -135,6 +135,17 @@ app.get('/:username', (req, res) => {
   }
 });
 
+app.get('/:firstname/:lastname', (req, res) => {
+  console.log('Querying by first and last name');
+  db.getUsername(req.params.firstname, req.params.lastname, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  })
+})
+
 // Add new user to db
 app.post('/:username', (req, res) => {
   var username = req.params.username;
@@ -154,6 +165,8 @@ app.post('/:username', (req, res) => {
     })
   }  
 });
+
+
 
 
 
