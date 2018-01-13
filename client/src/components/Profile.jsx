@@ -12,6 +12,7 @@ class Profile extends React.Component {
     this.state = {
       posts: []
     }
+
   }
 
   componentDidMount() {
@@ -20,7 +21,7 @@ class Profile extends React.Component {
   }  
 
   getUserPosts() {
-    var username = 'albertchanged'; 
+    let username = this.props.match.params.username;
     axios.get(`/${username}/posts/${username}`)
       .then((response) => {
         this.setState({
@@ -33,7 +34,7 @@ class Profile extends React.Component {
   }
 
   getFriends() {
-    var username = 'albertchaned';
+    let username = this.props.match.params.username;
     axios.get(`/${username}`)
       .then((response) => {
         console.log('response body...', response.data);
@@ -48,7 +49,6 @@ class Profile extends React.Component {
       <div>
       <div className="profile">
         <div className="backgroundAndProfilePic">
-          <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
           <Header size="large" inverted color="grey" textAlign="center" className="name"> Puppers </Header>
           <Button compact inverted size="small" className="addFriend">

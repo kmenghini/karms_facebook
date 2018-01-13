@@ -17,6 +17,7 @@ let port = 3000;
 //   })
 // });
 // Get all posts
+
 app.get('/:username/posts', function(req, res) {
   console.log("getting all posts");
   db.getAllPosts((err, data) => {
@@ -120,12 +121,14 @@ app.get('/:username/profile/:user', function(req, res) {
 
 // Get info about single user to load their profile
 app.get('/:username', (req, res) => {
+  console.log('inside get username');
   var username = req.params.username;
   if (username !== 'favicon.ico') {
     db.getUser(username, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
+        console.log('data from /username route', data);
         res.status(200).json(data);
       }
     })  
@@ -152,12 +155,13 @@ app.post('/:username', (req, res) => {
   }  
 });
 
+
 // Get info about single user to load their profile
-app.get('/:username', (req, res) => {
-  var username = req.params.username;
-  res.json(`searching db for user ${username}`);
-  //if db includes username, respond with their info
-});
+// app.get('/:username', (req, res) => {
+//   var username = req.params.username;
+//   res.json(`searching db for user ${username}`);
+//   //if db includes username, respond with their info
+// });
 
 // Add new user to db
 app.post('/:username', (req, res) => {
@@ -184,17 +188,6 @@ app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);
 });
 
-
-
-// app.get('/:username/search/:otherusername', function(req, res) {
-//   db.searchSomeone(req.params.otherusername, (err, res) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.status(200).json(res);
-//     }
-//   })
-// });
 
 
 

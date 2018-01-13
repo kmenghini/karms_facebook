@@ -15,8 +15,8 @@ class Post extends React.Component {
     this.getLikeAmount();
   }
   getLikeAmount() {
-    let username = 'albertchanged';
-    console.log('This is the post text', this.props.post.post_text);
+    let username = this.props.name;
+    // console.log('This is the post text', this.props.post.post_text);
     axios.get(`${username}/likes`, { params: { 'text': this.props.post.post_text }})
       .then((res) => {
         console.log('This is the number of likes', res.data.length);

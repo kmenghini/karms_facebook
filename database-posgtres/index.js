@@ -94,6 +94,7 @@ module.exports = {
         console.log('error inside searchSomeone', err);
         callback(err, null);
       } else {
+        console.log('res.rows--------------------------------------', res.rows);
         callback(null, res.rows);
       }
     });
@@ -118,7 +119,7 @@ module.exports = {
         console.log('Error', err)
         callback(err, null);
       } else {  
-        console.log('searched for user in db')
+        console.log('searched for user in db', res.rows)
         callback(null, res.rows);
       }  
     });
@@ -136,6 +137,85 @@ module.exports = {
       }
     });
   },      
+  getUserPosts: (username, callback) => {
+    // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
+    // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
+    var query = {
+      text: 'SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = $1)',
+      values: [username]
+    };
+    client.query(query, (err, res) => {
+      if (err) {
+        console.log('error...', err);
+        callback(err, null);
+      } else {
+        callback(null, res.rows);
+      }
+    });
+  },
+
+  //add 2 rows to user_friends table
+  addFriend: (username1, username2, callback) => {
+    console.log('in db addFriend')
+    let queryStr = `INSERT INTO user_friends (username, friend_id)
+      VALUES ('${username1}', (SELECT id FROM users WHERE username='${username2}')),
+      ('${username2}', (SELECT id FROM users WHERE username='${username1}'));`
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('Added friendship in database!')
+        callback(null, res.rows);
+      }  
+    });
+  },
+  getFriendsList: (username, callback) => {
+    console.log('in db getFriendsList')
+    let queryStr = `SELECT users.* FROM users INNER JOIN user_friends ON (user_friends.friend_id = users.id) WHERE user_friends.username = '${username}';`
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('friends list from db...')
+        callback(null, res.rows);
+      }  
+    });
+  },
+  findPostsByFriends: (username, callback) => {
+    console.log('in db findPostsByFriends')
+    let queryStr = `SELECT posts.* FROM posts 
+    INNER JOIN user_friends ON (user_friends.friend_id = posts.user_id) 
+    WHERE user_friends.username = '${username}';`
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('friends\' posts from db...')
+        callback(null, res.rows);
+      }  
+    });
+  },
+
+  getUserPosts: (username, callback) => {
+    // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
+    // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
+    var query = {
+      text: 'SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = $1)',
+      values: [username]
+    };
+    client.query(query, (err, res) => {
+      if (err) {
+        console.log('error...', err);
+        callback(err, null);
+      } else {
+        callback(null, res.rows);
+      }
+    });
+
+  },
   getUserPosts: (username, callback) => {
     // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
     // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
