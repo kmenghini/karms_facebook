@@ -17,14 +17,15 @@ class Profile_friends extends React.Component {
           &nbsp; · &nbsp; {this.props.friends.length}
         </span>
         <div className="friends">
-          {/*
+          {
             this.props.friends.map((friend) => (
               <div className="friend">
                 <img src="/images/profile_default.jpg" />
-                <span class="friendName"> {friend.first_name} {friend.last_name} </span>
+                {/*<span className="friendName"> {friend.first_name} {friend.last_name} </span>*/}
               </div>  
             ))
-          */}
+          }
+          <img src="/images/profile_default.jpg" />
           <img src="/images/profile_default.jpg" />
           <img src="/images/profile_default.jpg" />
           <img src="/images/profile_default.jpg" />

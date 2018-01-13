@@ -14,14 +14,31 @@ class Profile extends React.Component {
     this.state = {
       posts: [],
       friends: [],
-      friend: false
+      friend: false,
+      userInfo: {},
+      activeTab: 'Timeline'
     }
   }
 
   componentDidMount() {
     this.getUserPosts();
     this.getFriends();
+    this.getUserInfo();
   }  
+
+  getUserInfo() {
+    var user = 'albertchanged'; 
+    axios.get(`/${user}`)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          userInfo: response.data[0]
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+  }
 
   getUserPosts() {
     let username = this.props.match.params.username;
@@ -83,7 +100,7 @@ class Profile extends React.Component {
         <div className="backgroundAndProfilePic">
           <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
-          <Header size="large" inverted color="grey" textAlign="center" className="name"> Puppers </Header>
+          <Header size="large" inverted color="grey" textAlign="center" className="name"> {this.state.userInfo.first_name} {this.state.userInfo.last_name} </Header>
           { this.state.friend ?
 
             <Button compact inverted size="small" className="friendStatus">
@@ -105,7 +122,7 @@ class Profile extends React.Component {
         </div>
         <div className="profileNavigation">
           <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">
-            <Button className="timeline"> Timeline </Button>
+            <Button className="timeline active"> Timeline </Button>
             <Button className="about"> About </Button>
             <Button className="friends"> Friends </Button>
             <Button className="photo"> Photo </Button> 
@@ -135,14 +152,19 @@ class Profile extends React.Component {
               <Icon name="heart outline"></Icon>
               &nbsp; Single 
              </List.Item>
+             <List.Item>
+              <Icon name="birthday"></Icon>
+              &nbsp; January 1, 2017 
+             </List.Item>
           </List>
         </div>
         <Profile_friends friends={this.state.friends}/>
         <Profile_photos />
-        <div className="makePost">
+        {/*<div className="makePost">
           <CreatePost renderNewPost={this.getUserPosts.bind(this)}/>
-        </div>
-        <div className="postList">
+        </div>*/}
+        <div className="postSection">
+          <CreatePost renderNewPost={this.getUserPosts.bind(this)} />  
           <List className="items">
             {
               this.state.posts.map((post) => (
