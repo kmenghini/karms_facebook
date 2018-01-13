@@ -64,17 +64,8 @@ class Post extends React.Component {
         .catch((err) => {
           console.log('This is the err', err);
         })
-<<<<<<< HEAD
       console.log('Unliked');
     }
-=======
-    // } else {
-      // query db to remove like entry
-    // }
-
-    console.log('Liked!');
-    this.getLikeAmount();
->>>>>>> Fix merge conflict in db/index.js
   }
   render() {
     return(
