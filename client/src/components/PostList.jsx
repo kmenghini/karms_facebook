@@ -38,7 +38,6 @@ class PostList extends React.Component {
             </div>
           ))
         }
-        <Header name={this.props.name} />
       </div>
     )
   }

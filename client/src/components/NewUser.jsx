@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import {Input, Button, Card, Image, Form, Field} from 'semantic-ui-react';
+import { Link, Redirect } from 'react-router-dom';
 
 class NewUser extends React.Component {
   constructor(props) {
@@ -9,7 +10,9 @@ class NewUser extends React.Component {
       username: this.props.username,
       firstName: undefined,
       lastName: undefined,
-      pictureUrl: '/images/profile_default.jpg'
+      pictureUrl: '/images/profile_default.jpg',
+      newUsername: '',
+      redirect: false
     }
   }
 
@@ -22,23 +25,40 @@ class NewUser extends React.Component {
   }
 
   handleSubmit() {
-    $.post(`/${this.state.username}`, this.state, data => {
+    this.setState({
+      newUsername: this.state.username
+    })
+    $.post(`/${this.state.username}`, this.state, (data) => {
       console.log('post into db done!')
       //route to feed for this user
+      this.setState({
+        redirect: true,
+        newUsername: this.state.username
+      })
+      this.props.getNewUsername(this.state.username);
     })
   }
   
   render() {
+    // console.log(this.state.newUsername);
+    let newUserFeedPath = '/' + this.state.newUsername + '/feed';
+    // console.log(newUserFeedPath);
+    if (this.state.redirect) {
+      return <Redirect push to={newUserFeedPath} />;
+    }
     return(
       <div className="newUser">
-        <h3><font color="red"> Username '{this.props.username}' not found </font></h3>
+        <h3><font color="red"> Username '{this.props.username}' not found. </font></h3>
         <h4 id="new-account-title">Create a New Account</h4>
         <Card className="new-user-card">
           <Image className="ui tiny images" src="/images/profile_default.jpg"/>
           <Form className="input-form" onSubmit={this.handleSubmit.bind(this)}>
-            <Input name="username" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Username"/>
-            <Input name="firstName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="First name"/>
-            <Input name="lastName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Last name"/>
+            <p className="newUserLabel"><strong>Username</strong></p>
+            <Input className="newUserInput" name="username" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Username"/>
+            <p className="newUserLabel"><strong>First Name</strong></p>
+            <Input className="newUserInput" name="firstName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="First name"/>
+            <p className="newUserLabel"><strong>Last Name</strong></p>
+            <Input className="newUserInput" name="lastName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Last name"/>
             <Input className="login-button" id="create-account" type="submit" value="Create Account"/>
           </Form>
         </Card>

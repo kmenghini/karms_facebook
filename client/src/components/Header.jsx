@@ -14,8 +14,7 @@ class Header extends React.Component {
     }
   }
   componentDidMount() {
-    // this.props.getUsername(this.props.name);
-    console.log(this.props.name);
+    // console.log(this.props.name);
   }
   handleFeedClick() {
     
@@ -23,7 +22,6 @@ class Header extends React.Component {
   handleProfileClick() {
     this.setState({
       redirectProfile: true
-      // profilePath: '/' + this.props.name + '/profile'
     })
   }
   handleLogOutClick() {

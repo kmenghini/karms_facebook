@@ -124,6 +124,17 @@ module.exports = {
       }  
     });
   },
+  getUsername: (firstname, lastname, callback) => {
+    client.query(`SELECT username FROM users WHERE first_name='${firstname}' AND last_name='${lastname}'`, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('Got username from db', res.rows)
+        callback(null, res.rows);
+      } 
+    })
+  },
   //add user to db
   addUser: (userData, callback) => {
     console.log('in db addUser start......', userData)
