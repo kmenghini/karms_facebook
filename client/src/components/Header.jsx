@@ -7,17 +7,23 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectedProfile: false
+      profilePath: '',
+      feedPath: '',
+      redirectProfile: false
     }
+
   }
-
+  componentDidMount() {
+    // this.props.getUsername(this.props.name);
+  }
   handleFeedClick() {
-
+    
   }
 
   handleProfileClick() {
     this.setState({
-      redirectedProfile: true
+      redirectProfile: true
+      // profilePath: '/' + this.props.name + '/profile'
     })
   }
 
@@ -26,26 +32,32 @@ class Header extends React.Component {
   }
 
   getUserProfile(user) {
-
     this.props.getProfile(user);
   }
 
 
   render() {
+    // let profilePath = '/' + this.props.name + '/profile';
+    // if (this.state.redirectedProfile) {
+    //   return <Redirect push to={profilePath} />
+    // }
+    // this.props.username 
     console.log(this.props.name);
-    let profilePath = '/' + this.props.name + '/profile';
+    console.log(this.props.visible);
+    const profilePath = '/' + this.props.name + '/profile';
     console.log(profilePath);
-    if (this.state.redirectedProfile) {
-      return <Redirect push to={profilePath} />
-    }
+    const feedPath = '/' + this.props.name + '/feed';
+    // console.log(this.props.name);
+    // console.log(profilePath);
+    // console.log(feedPath);
     return (
       <div className="header"> 
         <Image className="logo" src="/images/rbook.png"></Image>
         <Search getUserProfile={this.getUserProfile.bind(this)}/>
         <div className="header-btn">
           <Link to='/login'><button className="btn" onClick={this.handleLogOutClick.bind(this)}>Log Out</button></Link>
-          <Link onClick={this.handleProfileClick.bind(this)} to={profilePath}><button className="btn">Profile</button></Link>
-          <Link to='/feed'><button className="btn" onClick={this.handleFeedClick.bind(this)}>Feed</button></Link>
+          <Link to={profilePath}><button className="btn">Profile</button></Link>
+          <Link to={this.state.feedPath}><button className="btn" onClick={this.handleFeedClick.bind(this)}>Feed</button></Link>
         </div>
       </div>
     );

@@ -47,7 +47,6 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-        <Header />
       <div className="profile">
         <div className="backgroundAndProfilePic">
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
