@@ -195,9 +195,11 @@ module.exports = {
   findPostsByFriends: (username, callback) => {
     // console.log('USERNAME IN FIND POSTS BY FRIENDS', username)
     // console.log('in db findPostsByFriends')
-    let queryStr = `SELECT posts.* FROM posts 
-    INNER JOIN user_friends ON (user_friends.friend_id = posts.user_id) 
-    WHERE user_friends.username = '${username}'`
+    let queryStr =
+    `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN 
+    users ON users.id = posts.user_id INNER JOIN user_friends ON 
+    (user_friends.friend_id = posts.user_id) AND user_friends.username = '${username}';`
+    console.log('This is my queryStr', queryStr);
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err)
@@ -233,4 +235,4 @@ module.exports = {
       }  
     });
   }
-
+}

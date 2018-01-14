@@ -86,7 +86,8 @@ class Post extends React.Component {
     })
   }
   render() {
-    let clickedProfilePath = '/' + this.state.clickedUsername + '/profile';
+    console.log(this.props.post.first_name);
+    let clickedProfilePath = '/' + this.state.clickedUsername + '/profile/' + this.props.name;
     console.log(clickedProfilePath);
     if (this.state.redirect) {
       return <Redirect push to={clickedProfilePath} />;
