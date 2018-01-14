@@ -18,29 +18,28 @@ class Profile_intro extends React.Component {
         </Header>
         <List className="items">
           <div className="introduction"> 
-            {/*<Icon name="user"></Icon>*/}
-            I like to woof and eat treats and I like to roll around in the grass and play frisbee
+            {this.props.profilePageInfo.intro}
           </div>
           <Divider fitted></Divider>
           <List.Item>
             <Icon name="home"></Icon>
-            &nbsp; Lives in San Francisco, CA 
+            &nbsp; {this.props.profilePageInfo.residence}
           </List.Item>
           <List.Item> 
             <Icon name="industry"></Icon>
-            &nbsp; Woofer Inc.
+            &nbsp; {this.props.profilePageInfo.work}
           </List.Item>
           <List.Item> 
             <Icon name="student"></Icon>
-            &nbsp; Hack Reactor 
+            &nbsp; Hack Reactor
           </List.Item>
           <List.Item>
             <Icon name="heart outline"></Icon>
-            &nbsp; Single 
+            &nbsp; {this.props.profilePageInfo.relationship_status}
            </List.Item>
            <List.Item>
             <Icon name="birthday"></Icon>
-            &nbsp; January 1, 2017 
+            &nbsp; {this.props.profilePageInfo.birthday}
            </List.Item>
           </List>
         </div>

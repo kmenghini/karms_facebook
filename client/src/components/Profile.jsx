@@ -57,7 +57,7 @@ class Profile extends React.Component {
       .then((responseUserProfileInfo) => {
         console.log('profile page info....', responseUserProfileInfo);
         this.setState({
-          profilePageInfo: responseUserProfileInfo.data[0]
+          profilePageInfo: responseUserProfileInfo.data['0'].user_data
         });
       })
       .catch((error) => {
@@ -141,13 +141,12 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log('props.match....', this.props.match);
     return (
       <div className="profile">
-        <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} isOwner={this.state.isOwner} />
+        <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} isOwner={this.state.isOwner} profilePageInfo={this.state.profilePageInfo} />
         <Profile_navigation handleNavigation={this.handleNavigation.bind(this)} view={this.state.view} />
         <Profile_about view={this.state.view} />
-        <Profile_intro view={this.state.view} />
+        <Profile_intro view={this.state.view} profilePageInfo={this.state.profilePageInfo} />
         <Profile_friends friends={this.state.friends} view={this.state.view} />
         <Profile_photos view={this.state.view} />
         <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.username} posts={this.state.posts} view={this.state.view} isOwner={this.state.isOwner} />

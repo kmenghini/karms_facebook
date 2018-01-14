@@ -23,6 +23,18 @@ app.get('/:username/posts/friends', function(req, res) {
   })
 });
 
+app.get('/:username/profilePage', (req, res) => {
+  var username = req.params.username;
+  db.getProfilePageInfo(username, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log('data.......', data['0'].user_data.work);
+      res.status(200).json(data);
+    }
+  });
+});
+
 //gets post of non friends
 app.get('/:username/posts/nonFriends', function(req, res) {
   // console.log("GETTING ALL NON FRIENDS POSTS");
@@ -252,18 +264,6 @@ app.post('/:username/removeFriend/:friendToRemove', (req, res) => {
   var username = req.params.username;
   var friendToRemove = req.params.friendToRemove;
   db.removeFriend(username, friendToRemove, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).json(data);
-    }
-  });
-});
-
-app.get('/:username/profilePage', (req, res) => {
-  var username = req.params.username;
-  console.log('-------username...', username);
-  db.getProfilePageInfo(username, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {

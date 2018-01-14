@@ -65,11 +65,12 @@ CREATE TABLE user_profiles (
 
 INSERT INTO user_profiles (id, user_id, user_data) VALUES (1, 1,
   '{
-    "profile_picture": "https://www.what-dog.net/Images/faces2/scroll001.jpg", 
+    "profile_picture": "http://www.petwave.com/~/media/Images/Center/Care-and-Nutrition/Cat/Kittensv2/Kitten-3.ashx", 
     "cover_picture": "https://static.pexels.com/photos/210186/pexels-photo-210186.jpeg",
     "intro": "I like to play tag", 
     "residence": "San Francisco", 
-    "work": "Hack Reactor", 
+    "school": "Hack Reactor",
+    "work": "Student", 
     "relationship_status": "Single", 
     "birthday": "January 1, 2008"
   }'
@@ -81,7 +82,8 @@ INSERT INTO user_profiles (id, user_id, user_data) VALUES (2, 2,
     "cover_picture": "http://cdn.mos.cms.futurecdn.net/FUE7XiFApEqWZQ85wYcAfM.jpg",
     "intro": "I like to play frisbee", 
     "residence": "San Francisco", 
-    "work": "Hack Reactor", 
+    "school": "Hack Reactor",
+    "work": "Student", 
     "relationship_status": "Single", 
     "birthday": "December 11, 2017"
   }'
@@ -93,7 +95,8 @@ INSERT INTO user_profiles (id, user_id, user_data) VALUES (3, 3,
     "cover_picture": "https://www.nationalgeographic.com/content/dam/photography/photos/000/000/6.jpg",
     "intro": "I like to run around", 
     "residence": "San Francisco", 
-    "work": "Hack Reactor", 
+    "school": "Hack Reactor",
+    "work": "Student",  
     "relationship_status": "Single", 
     "birthday": "February 27, 2017"
   }'
