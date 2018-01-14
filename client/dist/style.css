@@ -673,6 +673,7 @@ body {
 }
 
 .signIn-page .undefined-user-error {
+  width: 230px;
   margin: 10px 0;
   color: red;
 }

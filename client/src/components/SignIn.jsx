@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import {Input, Button, Card} from 'semantic-ui-react';
+import {Input, Button, Card, Icon} from 'semantic-ui-react';
 import NewUser from './NewUser.jsx'
 import { Redirect, Link } from 'react-router-dom';
 
@@ -89,7 +89,7 @@ class SignIn extends React.Component {
           <form onSubmit={this.handleSubmit.bind(this)}>
           <Card className="signIn-card">
             <h5 className="signInLabel bottom aligned content">Username</h5>
-            {this.state.undefinedUsername ? <h5 className="undefined-user-error">Please enter your username.</h5> : null}
+            {this.state.undefinedUsername ? <h5 className="undefined-user-error"><Icon name="warning circle"/>Please enter your username.</h5> : null}
             <Input className="username-input" type="text" onChange={this.handleUsernameInput.bind(this)}/>
             <Link onClick={this.handleLogIn.bind(this)} to={feedPath}><Button className="login-button" id="login"> Log In </Button></Link>
             <div id="create-account-text">Don't have an account yet?</div>
