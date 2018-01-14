@@ -53,6 +53,7 @@ class Post extends React.Component {
               this.setState({
                 liked: true
               })
+              this.getLikers();
               this.getLikeAmount();
             })
             .catch((err) => {
@@ -65,6 +66,7 @@ class Post extends React.Component {
               this.setState({
                 liked: false
               })
+              this.getLikers();
               this.getLikeAmount();
             })
             .catch((err) => {
