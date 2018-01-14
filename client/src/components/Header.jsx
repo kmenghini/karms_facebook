@@ -30,8 +30,8 @@ class Header extends React.Component {
   getUserProfile(user) {
     this.props.getProfile(user);
   }
-  render() { 
-    const profilePath = '/' + this.props.name + '/profile';
+  render() {
+    const profilePath = '/' + this.props.name + '/profile/' + this.props.name;
     console.log(profilePath);
     const feedPath = '/' + this.props.name + '/feed';
     console.log(feedPath);
