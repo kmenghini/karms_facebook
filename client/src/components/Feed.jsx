@@ -155,7 +155,7 @@ class Feed extends React.Component {
               <Item.Content>  
                 <div className="feedSidebarTrendingTopicHeader">Advertisement</div>
                 <Item.Description>
-                  <img className="adPic" src="http://www.littletoyboat.com/wp-content/uploads/2014/07/logo.png" />
+                  <img className="adPic" src="/images/hackreactor.png" />
                   {/* <Advertisement unit='medium rectangle' test='Medium Rectangle' centered="true"/> */}
                 </Item.Description>
                 {/* <Item.Extra>loremipsum.com</Item.Extra> */}

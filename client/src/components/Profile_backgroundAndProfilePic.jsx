@@ -12,7 +12,7 @@ class Profile_backgroundAndProfilePic extends React.Component {
   render() {
     return (
       <div className="backgroundAndProfilePic">
-        <Image className="backgroundPicture" src="https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg"></Image>
+        <Image className="backgroundPicture" src="/images/pexels.jpeg"></Image>
         <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
         <Header size="large" inverted color="grey" textAlign="center" className="name"> 
           {this.props.userInfo.first_name} {this.props.userInfo.last_name} 
