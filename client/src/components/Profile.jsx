@@ -120,6 +120,10 @@ class Profile extends React.Component {
     });
   }
 
+  updateProfile() {
+
+  }
+
   render() {
     console.log('props.match....', this.props.match);
     return (

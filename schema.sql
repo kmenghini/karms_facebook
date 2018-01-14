@@ -12,9 +12,9 @@ CREATE TABLE users (
     picture_url VARCHAR(255)
 );
 
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'Matt', 'Upham', 'http://fb.com/mattuphamImage');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'Albert', 'Chang', 'http://fb.com/albertchangedImage');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'rayango', 'Ryan', 'Ngo', 'http://fb.com/rayangoImage');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'Matt', 'Upham', 'https://data.whicdn.com/images/14922648/large.jpg');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'Albert', 'Chang', 'https://img.buzzfeed.com/buzzfeed-static/static/2017-07/5/14/enhanced/buzzfeed-prod-fastlane-03/enhanced-17346-1499278727-21.jpg?downsize=715:*&output-format=auto&output-quality=auto');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'rayango', 'Ryan', 'Ngo', 'http://cdn.litlepups.net/2015/08/02/cute-small-dog-breeds-in-india-sweet.jpg');
 -- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'imafriend3', 'Sam', 'Smith', 'http://fb.com/test3');
 -- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (4, 'imafriend4', 'Katie', 'Kelly', 'http://fb.com/test4');
 -- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (5, 'imafriend5', 'James', 'John', 'http://fb.com/test5');
