@@ -1,12 +1,13 @@
 import React from 'react';
 import { Divider, Header, List, Icon, Grid, Image, Button } from 'semantic-ui-react';
+import Profile_about_overview from './Profile_about_overview.jsx';
 
 class Profile_about extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: props.view,
-      sectionView: overview
+      aboutView: 'overview'
     }
   }
 
@@ -22,9 +23,6 @@ class Profile_about extends React.Component {
           </div>
           <div className="sections">
             <div clasName="section overview"> Overview </div>
-            <div className="sectionDetailsOverview">
-            
-            </div>
             <div clasName="section workAndEducation"> Work and Education </div>
             <div clasName="section placesLived"> Places Lived </div>
             <div clasName="section contactAndBasicInfo"> Contact and Basic Info </div>
@@ -32,6 +30,7 @@ class Profile_about extends React.Component {
             <div clasName="section otherDetails"> Other Details </div>
             <div clasName="section lifeEvents"> Life Events </div>
           </div>
+          <Profile_about_overview aboutView={this.state.aboutView} />
         </div>
       </div>
     );

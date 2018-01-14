@@ -14,10 +14,11 @@ CREATE TABLE users (
 
 INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'Matt', 'Upham', 'http://fb.com/mattuphamImage');
 INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'Albert', 'Chang', 'http://fb.com/albertchangedImage');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'imafriend3', 'Sam', 'Smith', 'http://fb.com/test3');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (4, 'imafriend4', 'Katie', 'Kelly', 'http://fb.com/test4');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (5, 'imafriend5', 'James', 'John', 'http://fb.com/test5');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (6, 'imnotafriend1', 'Cassie', 'Luck', 'http://fb.com/test5');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'rayango', 'Ryan', 'Ngo', 'http://fb.com/rayangoImage');
+-- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'imafriend3', 'Sam', 'Smith', 'http://fb.com/test3');
+-- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (4, 'imafriend4', 'Katie', 'Kelly', 'http://fb.com/test4');
+-- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (5, 'imafriend5', 'James', 'John', 'http://fb.com/test5');
+-- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (6, 'imnotafriend1', 'Cassie', 'Luck', 'http://fb.com/test5');
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
@@ -26,11 +27,12 @@ CREATE TABLE posts (
     post_timestamp TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
-INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (6, 6, 'imnotafriend1 post', '2004-10-19 10:23:54+02');
+-- INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (6, 6, 'imnotafriend1 post', '2004-10-19 10:23:54+02');
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (1, 1, 'matt upham post', '2004-10-19 10:23:54+02');
-INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (3, 3, 'imafriend3', '2004-10-19 10:23:54+02');
-INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (4, 4, 'imafriend4', '2004-10-19 10:23:54+02');
-
+-- INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (3, 3, 'imafriend3', '2004-10-19 10:23:54+02');
+-- INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (4, 4, 'imafriend4', '2004-10-19 10:23:54+02');
+INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (2, 2, 'albert chang post', '2004-10-19 10:23:55+02');
+INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (3, 3, 'ryan ngo post', '2004-10-19 10:23:56+02');
 
 CREATE TABLE user_friends (
     id SERIAL PRIMARY KEY UNIQUE,
@@ -39,11 +41,13 @@ CREATE TABLE user_friends (
 );
 
 INSERT INTO user_friends (id, username, friend_id) VALUES (1, 'mattupham', 2);
-INSERT INTO user_friends (id, username, friend_id) VALUES (3, 'mattupham', 3);
-INSERT INTO user_friends (id, username, friend_id) VALUES (4, 'mattupham', 4);
-INSERT INTO user_friends (id, username, friend_id) VALUES (5, 'mattupham', 5);
-INSERT INTO user_friends (id, username, friend_id) VALUES (6, 'mattupham', 6);
+-- INSERT INTO user_friends (id, username, friend_id) VALUES (3, 'mattupham', 3);
+-- INSERT INTO user_friends (id, username, friend_id) VALUES (4, 'mattupham', 4);
+-- INSERT INTO user_friends (id, username, friend_id) VALUES (5, 'mattupham', 5);
+-- INSERT INTO user_friends (id, username, friend_id) VALUES (6, 'mattupham', 6);
 INSERT INTO user_friends (id, username, friend_id) VALUES (2, 'albertchanged', 1);
+INSERT INTO user_friends (id, username, friend_id) VALUES (3, 'mattupham', 3);
+INSERT INTO user_friends (id, username, friend_id) VALUES (4, 'rayango', 1);
 
 CREATE TABLE user_posts_liked (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,

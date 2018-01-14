@@ -118,7 +118,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log('friends....', this.state.friends);
+    console.log('props.match....', this.props.match);
     return (
       <div className="profile">
         <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} />
