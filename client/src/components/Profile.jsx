@@ -22,7 +22,7 @@ class Profile extends React.Component {
       friend: false,
       username: props.match.params.friendname, // not an error, do not change
       profilePageOwner: props.match.params.username, // not an error, do not change
-      isOwner: false,
+      isOwner: true,
       userInfo: {},
       view: 'Timeline'
     }
@@ -130,7 +130,7 @@ class Profile extends React.Component {
         <Profile_intro view={this.state.view} />
         <Profile_friends friends={this.state.friends} view={this.state.view} />
         <Profile_photos view={this.state.view} />
-        <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.username} posts={this.state.posts} view={this.state.view} />
+        <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.username} posts={this.state.posts} view={this.state.view} isOwner={this.state.isOwner} />
       </div>
     );
   }

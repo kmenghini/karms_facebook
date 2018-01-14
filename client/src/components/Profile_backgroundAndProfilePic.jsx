@@ -41,10 +41,15 @@ class Profile_backgroundAndProfilePic extends React.Component {
             Add Friend
           </Button>
         }
-        <Button compact inverted size="small" className="messageFriend">
-          <Icon name='comments'/>
-          Message Friend
-        </Button>
+        {this.props.isOwner ?
+
+          <span></span> :
+          
+          <Button compact inverted size="small" className="messageFriend">
+            <Icon name='comments'/>
+            Message Friend
+          </Button>
+        }  
       </div>
     );
   }
