@@ -257,6 +257,27 @@ module.exports = {
         callback(null, res.rows);
       }  
     });
+  },
+  removeFriend: (username, friendToRemove, callback) => {
+    var queryOne = `DELETE FROM user_friends where username = '${username}' AND friend_id = (SELECT id FROM users WHERE username = '${friendToRemove}')`;
+    var queryTwo = `DELETE FROM user_friends where username = '${friendToRemove}' AND friend_id = (SELECT id FROM users WHERE username = '${username}')`;
+    client.query(queryOne, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('successfully removed one permutation of friends');
+        client.query(queryTwo, (err, res) => {
+          if (err) {
+            console.log('Error', err)
+            callback(err, null);
+          } else {  
+            console.log('successfully removed both permutations of friends');
+            callback(null, res.rows);
+          }  
+        });
+      }  
+    });
   }
 }
 

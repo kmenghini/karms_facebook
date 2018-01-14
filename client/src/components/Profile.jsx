@@ -20,7 +20,9 @@ class Profile extends React.Component {
       posts: [],
       friends: [],
       friend: false,
-      username: props.match.params.username,
+      username: props.match.params.friendname, // not an error, do not change
+      profilePageOwner: props.match.params.username, // not an error, do not change
+      isOwner: true,
       userInfo: {},
       view: 'Timeline'
     }
@@ -33,12 +35,13 @@ class Profile extends React.Component {
   }  
 
   getUserInfo() {
-    var user = this.state.username;
+    var user = this.state.profilePageOwner;
     axios.get(`/${user}`)
       .then((response) => {
         console.log('user info...', response.data);
         this.setState({
-          userInfo: response.data[0]
+          userInfo: response.data[0],
+          isOwner: this.state.username === this.state.profilePageOwner
         });
       })
       .catch((error) => {
@@ -48,9 +51,9 @@ class Profile extends React.Component {
 
   getUserPosts() {
     var username = this.state.username;
-    axios.get(`/${username}/posts/${username}`)
+    var profilePageOwner = this.state.profilePageOwner;
+    axios.get(`/${username}/posts/${profilePageOwner}`)
       .then((response) => {
-        console.log('posts....', response.data);
         this.setState({
           posts: response.data
         });
@@ -62,10 +65,9 @@ class Profile extends React.Component {
 
   getFriends() {
     var username = this.state.username;
-    var otherUsername = this.state.username;
+    var otherUsername = this.state.profilePageOwner;
     axios.get(`/${username}/friendsList/${otherUsername}`)
       .then((response) => {
-        console.log('friends....', response.data);
         var isFriend = this.checkIfFriend(username, response.data, otherUsername);
         this.setState({
           friends: response.data,
@@ -78,6 +80,7 @@ class Profile extends React.Component {
   }
 
   checkIfFriend(username, friendsList, otherUsername) {
+    console.log(username, friendsList);
     for (var i = 0; i < friendsList.length; i++) {
       var user = friendsList[i];
       if (user.username === username) {
@@ -88,9 +91,9 @@ class Profile extends React.Component {
   }
 
   addFriend() {
-    var username = 'mattupham';
-    var friendToAdd = 'rayango';
-    axios.post(`/${username}/${friendToAdd}`)
+    var username = this.state.username;
+    var friendToAdd = this.state.profilePageOwner;
+    axios.post(`/${username}/addFriend/${friendToAdd}`)
       .then((response) => {
         this.getFriends();
       })
@@ -100,7 +103,15 @@ class Profile extends React.Component {
   } 
 
   removeFriend() {
-
+    var username = this.state.username;
+    var friendToRemove = this.state.profilePageOwner;
+    axios.post(`/${username}/removeFriend/${friendToRemove}`)
+      .then((response) => {
+        this.getFriends();
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
   }
 
   handleNavigation(event) {
@@ -110,101 +121,16 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log('friends....', this.state.friends);
+    console.log('props.match....', this.props.match);
     return (
       <div className="profile">
-        <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} />
+        <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} isOwner={this.state.isOwner} />
         <Profile_navigation handleNavigation={this.handleNavigation.bind(this)} view={this.state.view} />
         <Profile_about view={this.state.view} />
         <Profile_intro view={this.state.view} />
         <Profile_friends friends={this.state.friends} view={this.state.view} />
         <Profile_photos view={this.state.view} />
-        <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.username} posts={this.state.posts} view={this.state.view} />
-        <div className="backgroundAndProfilePic">
-          <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
-          <Header size="large" inverted color="grey" textAlign="center" className="name"> Puppers </Header>
-          <Button compact inverted size="small" className="addFriend">
-            <Icon name='add user'/>
-            Add Friend
-          </Button>
-          <Button compact inverted size="small" className="messageFriend">
-            <Icon name='comments'/>
-            Message Friend
-          </Button>
-        </div>
-        <div className="profileNavigation">
-          <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">
-            <Button className="timeline"> Timeline </Button>
-            <Button className="about"> About </Button>
-            <Button className="friends"> Friends </Button>
-            <Button className="photo"> Photo </Button> 
-            <Button className="more"> More </Button>
-          </Button.Group>  
-        </div>
-        <div className="intro">
-          <Header className="header"> 
-            <Icon loading name="globe"></Icon>
-            Intro 
-          </Header>
-          <List className="items">
-            <div className="introduction"> 
-              {/*<Icon name="user"></Icon>*/}
-              I like to woof and eat treats and I like to roll around in the grass and play frisbee
-            </div>
-            <Divider fitted></Divider>
-            <List.Item>
-              <Icon name="home"></Icon>
-              &nbsp; Lives in San Francisco, CA 
-            </List.Item>
-            <List.Item> 
-              <Icon name="student"></Icon>
-              &nbsp; Hack Reactor 
-            </List.Item>
-            <List.Item>
-              <Icon name="heart outline"></Icon>
-              &nbsp; Single 
-             </List.Item>
-          </List>
-        </div>
-        <div className="friendsList">
-          <Header className="header"> 
-            <Icon name="users"></Icon>
-            Friends
-          </Header>
-          <List className="items">
-            <Divider fitted></Divider>
-            <List.Item> Friend 1 </List.Item>
-            <List.Item> Friend 2 </List.Item>
-            <List.Item> Friend 3 </List.Item>
-          </List>
-        </div>
-        <div className="photos">
-          <Header className="header"> 
-            <Icon name="photo"></Icon>
-            Photos 
-          </Header>
-          <List className="items">
-            <Divider fitted></Divider>
-            <List.Item> Photo 1 </List.Item>
-            <List.Item> Photo 2 </List.Item>
-            <List.Item> Photo 3 </List.Item>
-          </List>
-        </div>
-        <div className="makePost">
-          <CreatePost />
-        </div>
-        <div className="postList">
-          <List className="items">
-            {
-              this.state.posts.map((post) => (
-                <div>
-                  <Post post={post} key={post.id} />
-                  <br />
-                </div>
-              ))
-            }
-          </List>
-        </div>
+        <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.username} posts={this.state.posts} view={this.state.view} isOwner={this.state.isOwner} />
       </div>
     );
   }
