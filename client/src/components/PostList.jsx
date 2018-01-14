@@ -4,6 +4,7 @@ import CreatePost from './CreatePost.jsx';
 import axios from 'axios';
 import UserList from './UserList.jsx';
 import Header from './Header.jsx';
+import FadeIn from 'react-fade-in';
 
 class PostList extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class PostList extends React.Component {
         <br />
         {
           this.props.postList.map((post, index) => (
+            <FadeIn>
             <div key={index}>
               <Post
                 post={post}
@@ -36,6 +38,7 @@ class PostList extends React.Component {
               />
               <br />
             </div>
+            </FadeIn>
           ))
         }
       </div>

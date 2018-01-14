@@ -129,6 +129,18 @@ app.get('/likes', function(req, res) {
   })
 })
 
+app.get('/likers', function(req, res) {
+  console.log('Getting all likers!');
+
+  db.getLikers(req.query.text, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  })
+})
+
 app.get('/:username/profile/:user', function(req, res) {
   db.searchSomeone(req.params.user, (err, data) => {
     if (err) {
