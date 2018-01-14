@@ -22,7 +22,7 @@ class Feed extends React.Component {
   getAllPosts() {
     // console.log(this.props);
     let username = this.props.match.params.username;
-    // console.log('username', username);
+    console.log('username', username);
     this.setState({
       username: username
     })

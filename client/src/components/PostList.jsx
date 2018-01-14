@@ -22,7 +22,7 @@ class PostList extends React.Component {
     })
   }
   render() {
-    // console.log(this.props.name);
+    console.log('This is the logged in name', this.props.name);
     return (
       <div>
         <CreatePost onClick={this.receivePostText.bind(this)} getAllPosts={this.props.getAllPosts.bind(this)} name={this.props.name} />
