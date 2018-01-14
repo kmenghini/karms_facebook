@@ -589,11 +589,20 @@ body {
 }
 
 .newUserInput input::placeholder {
-  color: rgba(83, 83, 83, 0.767) !important;
+  color: rgba(73, 73, 73, 0.767) !important;
+  font-size: 16px !important;
 }
 
 .signIn-card {
   margin-top: -4px !important;
+}
+
+#terms {
+  font-size: 11px;
+  line-height: 14px;
+  width: 285px;
+  margin: 25px 0 5px 0;
+  color: rgb(78, 78, 78)
 }
 
       
