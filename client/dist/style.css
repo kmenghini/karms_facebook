@@ -323,6 +323,15 @@ body {
   margin-bottom: 8px !important;
 }
 
+/*.makePost {
+  grid-row: 1
+  overflow: hidden; 
+  min-width: 0;  
+  /*display: flex;*/
+/*  justify-content: center
+>>>>>>> work on about view for profile page
+}
+
 .placeHolder {
   grid-row: 1 / 9;
   grid-column: 4 / 5;

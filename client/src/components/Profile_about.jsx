@@ -23,6 +23,9 @@ class Profile_about extends React.Component {
           </div>
           <div className="sections">
             <div clasName="section overview"> Overview </div>
+            <div className="sectionDetailsOverview">
+            
+            </div>
             <div clasName="section workAndEducation"> Work and Education </div>
             <div clasName="section placesLived"> Places Lived </div>
             <div clasName="section contactAndBasicInfo"> Contact and Basic Info </div>
