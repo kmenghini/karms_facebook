@@ -87,6 +87,19 @@ module.exports = {
       }
     });
   },
+  getLikers: (text, callback) => {
+    let queryStr =
+    `SELECT users.first_name, users.last_name FROM users INNER JOIN 
+    user_posts_liked ON users.id = user_posts_liked.user_id INNER JOIN 
+    posts ON posts.id = user_posts_liked.post_id AND posts.post_text = '${text}'`;
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, res.rows);
+      }
+    })
+  },
   searchSomeone: (name, callback) => {
     const queryStr = `SELECT * FROM users WHERE username LIKE '%${name}%';`; // selects all names that begin with searched query
     client.query(queryStr, (err, res) => {

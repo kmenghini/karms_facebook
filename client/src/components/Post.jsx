@@ -3,6 +3,7 @@ import { Card, Icon, Button, Label, Comment } from 'semantic-ui-react';
 import moment from 'moment';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 
 class Post extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Post extends React.Component {
       liked: false,
       likeCount: 0,
       clickedUsername: '',
-      redirect: false
+      redirect: false,
+      likers: ''
     };
   }
   componentDidMount() {
@@ -89,6 +91,23 @@ class Post extends React.Component {
       redirect: true
     })
   }
+  getLikers() {
+    axios.get('/likers', { params: { 'text': this.props.post.post_text }})
+      .then((likers) => {
+        console.log('Got all likers', likers);
+        let likerStr = ''
+        likers.data.map((liker) => {
+          likerStr += `${liker.first_name} ${liker.last_name}<br>`
+        })
+        console.log(likerStr);
+        this.setState({
+          likers: likerStr
+        })
+      })
+      .catch((err) => {
+        console.log('Error getting likers', err);
+      })
+  }
   render() {
     console.log(this.props.post.first_name);
     let clickedProfilePath = '/' + this.state.clickedUsername + '/profile/' + this.props.name;
@@ -112,13 +131,14 @@ class Post extends React.Component {
             <hr className="postHorizontal" />
             <p className="postText">{this.props.post.post_text}</p>
             <div className="postButtonRow">
-              <Button className="likeButton" onClick={this.toggleLike.bind(this)} as='div' labelPosition='right'>
+              <Button onMouseOver={this.getLikers.bind(this)} data-multiline='true' data-tip={this.state.likers}className="likeButton" onClick={this.toggleLike.bind(this)} as='div' labelPosition='right'>
                 <Button className="likeHeartButton">
                   <Icon name="heart" />
                   {(this.state.likeCount)}&nbsp;{(this.state.likeCount !== 1) ? 'likes' : 'like'}
                   {/* {(this.state.liked) ? this.state.likeCount-- : this.state.likeCount++} {(this.state.likeCount === 1) ? 'Likes' : 'Like'} */}
                 </Button>
               </Button>
+              <ReactTooltip />
               <Button className="commentButton">
                 1 Comment
               </Button>
