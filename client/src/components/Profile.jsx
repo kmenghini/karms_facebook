@@ -50,7 +50,6 @@ class Profile extends React.Component {
     var username = this.state.username;
     axios.get(`/${username}/posts/${username}`)
       .then((response) => {
-        console.log('posts....', response.data);
         this.setState({
           posts: response.data
         });
@@ -62,7 +61,7 @@ class Profile extends React.Component {
 
   getFriends() {
     var username = this.state.username;
-    var otherUsername = this.state.username;
+    var otherUsername = 'mattupham';
     axios.get(`/${username}/friendsList/${otherUsername}`)
       .then((response) => {
         console.log('friends....', response.data);
@@ -78,6 +77,7 @@ class Profile extends React.Component {
   }
 
   checkIfFriend(username, friendsList, otherUsername) {
+    console.log(username, friendsList);
     for (var i = 0; i < friendsList.length; i++) {
       var user = friendsList[i];
       if (user.username === username) {
@@ -90,7 +90,7 @@ class Profile extends React.Component {
   addFriend() {
     var username = 'mattupham';
     var friendToAdd = 'rayango';
-    axios.post(`/${username}/${friendToAdd}`)
+    axios.post(`/${username}/addFriend/${friendToAdd}`)
       .then((response) => {
         this.getFriends();
       })
@@ -100,7 +100,15 @@ class Profile extends React.Component {
   } 
 
   removeFriend() {
-
+    var username = 'mattupham';
+    var friendToRemove = 'rayango';
+    axios.post(`/${username}/removeFriend/${friendToRemove}`)
+      .then((response) => {
+        this.getFriends();
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
   }
 
   handleNavigation(event) {

@@ -239,14 +239,51 @@ module.exports = {
       }  
     });
   },
-  findPostsByNonFriends: (username, callback) => {
-    console.log('USERNAME IN FIND POSTS BY NON FRIENDS', username)
-    // console.log('in db findPostsByNonFriends')
-    let queryStr = 
-    `SELECT posts.*, users.first_name, users.last_name FROM posts 
-    INNER JOIN users ON posts.user_id = users.id AND users.id IN (SELECT users.id FROM users WHERE users.id NOT IN (SELECT user_friends.friend_id 
-      FROM user_friends WHERE user_friends.username = 
-      '${username}')) ORDER BY posts.id DESC`;
+  addFriend: (username, friendToAdd, callback) => {
+    var queryOne = `INSERT INTO user_friends (username, friend_id) VALUES ('${username}', (SELECT id FROM users WHERE username = '${friendToAdd}'))`;
+    var queryTwo = `INSERT INTO user_friends (username, friend_id) VALUES ('${friendToAdd}', (SELECT id FROM users WHERE username = '${username}'))`;
+    client.query(queryOne, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('successfully added one permutation of friends');
+        client.query(queryTwo, (err, res) => {
+          if (err) {
+            console.log('Error', err)
+            callback(err, null);
+          } else {  
+            console.log('successfully added both permutations of friends');
+            callback(null, res.rows);
+          }  
+        });
+      }  
+    });
+  },
+  removeFriend: (username, friendToRemove, callback) => {
+    var queryOne = `DELETE FROM user_friends where username = '${username}' AND friend_id = (SELECT id FROM users WHERE username = '${friendToRemove}')`;
+    var queryTwo = `DELETE FROM user_friends where username = '${friendToRemove}' AND friend_id = (SELECT id FROM users WHERE username = '${username}')`;
+    client.query(queryOne, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('successfully removed one permutation of friends');
+        client.query(queryTwo, (err, res) => {
+          if (err) {
+            console.log('Error', err)
+            callback(err, null);
+          } else {  
+            console.log('successfully removed both permutations of friends');
+            callback(null, res.rows);
+          }  
+        });
+      }  
+    });
+  },
+  getFriendsList: (username, callback) => {
+    console.log('in db getFriendsList')
+    let queryStr = `SELECT users.* FROM users INNER JOIN user_friends ON (user_friends.friend_id = users.id) WHERE user_friends.username = '${username}';`
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err)

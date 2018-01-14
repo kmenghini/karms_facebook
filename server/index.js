@@ -209,10 +209,23 @@ app.post('/:username', (req, res) => {
 });
 
 // route to add friend
-app.post('/:username/:friendToAdd', (req, res) => {
+app.post('/:username/addFriend/:friendToAdd', (req, res) => {
   var username = req.params.username;
   var friendToAdd = req.params.friendToAdd;
   db.addFriend(username, friendToAdd, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
+
+// route to remove a friend
+app.post('/:username/removeFriend/:friendToRemove', (req, res) => {
+  var username = req.params.username;
+  var friendToRemove = req.params.friendToRemove;
+  db.removeFriend(username, friendToRemove, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
