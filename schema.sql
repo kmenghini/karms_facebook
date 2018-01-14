@@ -46,8 +46,8 @@ INSERT INTO user_friends (id, username, friend_id) VALUES (1, 'mattupham', 2);
 -- INSERT INTO user_friends (id, username, friend_id) VALUES (5, 'mattupham', 5);
 -- INSERT INTO user_friends (id, username, friend_id) VALUES (6, 'mattupham', 6);
 INSERT INTO user_friends (id, username, friend_id) VALUES (2, 'albertchanged', 1);
-INSERT INTO user_friends (id, username, friend_id) VALUES (3, 'mattupham', 3);
-INSERT INTO user_friends (id, username, friend_id) VALUES (4, 'rayango', 1);
+-- INSERT INTO user_friends (id, username, friend_id) VALUES (3, 'mattupham', 3);
+-- INSERT INTO user_friends (id, username, friend_id) VALUES (4, 'rayango', 1);
 
 CREATE TABLE user_posts_liked (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
@@ -59,12 +59,12 @@ INSERT INTO user_posts_liked (id, user_id, post_id) VALUES (1, 2, 1);
 
 CREATE TABLE user_profiles (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+    user_id INTEGER REFERENCES users(id),
     user_data jsonb
 );
 
-INSERT INTO user_profiles (id, user_data) VALUES (1,
+INSERT INTO user_profiles (id, user_id, user_data) VALUES (1, 1,
   '{
-    "user_id": 1,
     "profile_picture": "https://www.what-dog.net/Images/faces2/scroll001.jpg", 
     "cover_picture": "https://static.pexels.com/photos/210186/pexels-photo-210186.jpeg",
     "intro": "I like to play tag", 
@@ -75,9 +75,8 @@ INSERT INTO user_profiles (id, user_data) VALUES (1,
   }'
 );
 
-INSERT INTO user_profiles (id, user_data) VALUES (2, 
+INSERT INTO user_profiles (id, user_id, user_data) VALUES (2, 2,
   '{
-    "user_id": 2,
     "profile_picture": "https://www.petmd.com/sites/default/files/petmd-cat-happy-13.jpg", 
     "cover_picture": "http://cdn.mos.cms.futurecdn.net/FUE7XiFApEqWZQ85wYcAfM.jpg",
     "intro": "I like to play frisbee", 
@@ -88,9 +87,8 @@ INSERT INTO user_profiles (id, user_data) VALUES (2,
   }'
 );
 
-INSERT INTO user_profiles (id, user_data) VALUES (3, 
+INSERT INTO user_profiles (id, user_id, user_data) VALUES (3, 3,
   '{
-    "user_id": 3,
     "profile_picture": "https://kids.nationalgeographic.com/content/dam/kids/photos/animals/Reptiles/A-G/gecko-on-leaf.adapt.945.1.jpg", 
     "cover_picture": "https://www.nationalgeographic.com/content/dam/photography/photos/000/000/6.jpg",
     "intro": "I like to run around", 

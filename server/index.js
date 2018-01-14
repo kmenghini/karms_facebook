@@ -260,6 +260,18 @@ app.post('/:username/removeFriend/:friendToRemove', (req, res) => {
   });
 });
 
+app.get('/:username/profilePage', (req, res) => {
+  var username = req.params.username;
+  console.log('-------username...', username);
+  db.getProfilePageInfo(username, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
+
 app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);
 });

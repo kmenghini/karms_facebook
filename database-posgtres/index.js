@@ -300,6 +300,18 @@ module.exports = {
         });
       }  
     });
+  },
+  getProfilePageInfo: (username, callback) => {
+    console.log('getting profile page info....');
+    var query = `SELECT * from user_profiles WHERE user_id = (SELECT id FROM users WHERE username = '${username}')`;
+    client.query(query, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {  
+        // console.log('res', res);
+        callback(null, res.rows);
+      }  
+    });
   }
 }
 

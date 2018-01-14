@@ -22,6 +22,7 @@ class Profile extends React.Component {
       friend: false,
       username: props.match.params.friendname, // not an error, do not change
       profilePageOwner: props.match.params.username, // not an error, do not change
+      profilePageInfo: '',
       isOwner: true,
       userInfo: {},
       view: 'Timeline'
@@ -32,16 +33,31 @@ class Profile extends React.Component {
     this.getUserInfo();
     this.getUserPosts();
     this.getFriends();
+    this.getUserProfileInfo();
   }  
 
   getUserInfo() {
     var user = this.state.profilePageOwner;
     axios.get(`/${user}`)
-      .then((response) => {
-        console.log('user info...', response.data);
+      .then((responseUserInfo) => {
         this.setState({
-          userInfo: response.data[0],
+          userInfo: responseUserInfo.data[0],
           isOwner: this.state.username === this.state.profilePageOwner
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+  }
+
+  getUserProfileInfo() {
+    var user = this.state.profilePageOwner;
+    console.log('user...', this.state.profilePageOwner)
+    axios.get(`/${user}/profilePage`)
+      .then((responseUserProfileInfo) => {
+        console.log('profile page info....', responseUserProfileInfo);
+        this.setState({
+          profilePageInfo: responseUserProfileInfo.data[0]
         });
       })
       .catch((error) => {
