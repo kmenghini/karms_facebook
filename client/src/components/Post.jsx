@@ -3,6 +3,7 @@ import { Card, Icon, Button, Label, Comment } from 'semantic-ui-react';
 import moment from 'moment';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 
 class Post extends React.Component {
   constructor(props) {
@@ -11,16 +12,15 @@ class Post extends React.Component {
       liked: false,
       likeCount: 0,
       clickedUsername: '',
-      redirect: false
+      redirect: false,
+      likers: ''
     };
   }
   componentDidMount() {
     this.getLikeAmount();
   }
   getLikeAmount() {
-    let username = this.props.name;
-    // console.log('This is the post text', this.props.post.post_text);
-    axios.get(`/likes/${username}`, { params: { 'text': this.props.post.post_text }})
+    axios.get(`/likes`, { params: { 'text': this.props.post.post_text }})
       .then((res) => {
         console.log('This is the number of likes', res.data.length);
         this.setState({
@@ -32,43 +32,49 @@ class Post extends React.Component {
       })
   }
   toggleLike() {
-    this.setState({
-      liked: !this.state.liked
-    })
     this.executeToggleLike();
   }
   executeToggleLike() {
     let username = this.props.name;
     console.log(username);
-    let friendname = 'mattupham';
     // let timestampReplaceT = this.props.post.post_timestamp.replace('T', ' ');
     // let indexOfDot = this.props.post.post_timestamp.indexOf('.');
     // let indexOfHyphen = this.props.post.post_timestamp.indexOf('-');
     // let timestamp = timestampReplaceT.substring(0, indexOfDot) + timestampReplaceT.substring(indexOfHyphen, timestampReplaceT.length) + '00';
     // console.log(timestamp);
-    if (!this.state.liked) {
-      console.log('Liked!');
-      // query db to add like entry
-      console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
-      axios.post(`/likes/${username}`, { 'text': this.props.post.post_text })
-        .then((res) => {
-          console.log('This is the res', res);
-          this.getLikeAmount();
-        })
-        .catch((err) => {
-          console.error('This is the err', err);
-        })
-    } else {
-      axios.delete(`/likes/${username}`, { params: { 'text': this.props.post.post_text }})
-        .then((res) => {
-          console.log('This is the res', res);
-          this.getLikeAmount();
-        })
-        .catch((err) => {
-          console.error('This is the err', err);
-        })
-      console.log('Unliked');
-    }
+    console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
+    axios.get(`/${username}/post/author`, { params: { 'text': this.props.post.post_text }})
+      .then((author) => {
+        console.log('author', author.data[0].username);
+        if (!this.state.liked) {
+          axios.post(`/likes/${author.data[0].username}`, { 'text': this.props.post.post_text, 'username': this.props.name })
+            .then((res) => {
+              console.log('Liked!');
+              this.setState({
+                liked: true
+              })
+              this.getLikeAmount();
+            })
+            .catch((err) => {
+              console.error('This is the err', err);
+            })
+        } else {
+          axios.delete(`/likes/${author.data[0].username}`, { params: { 'text': this.props.post.post_text, 'username': this.props.name }})
+            .then((res) => {
+              console.log('Unliked!');
+              this.setState({
+                liked: false
+              })
+              this.getLikeAmount();
+            })
+            .catch((err) => {
+              console.error('This is the err', err);
+            })
+        }
+      })
+      .catch((err) => {
+        console.error('Error', err);
+      })
   }
   handleClickedProfile() {
     axios.get(`/${this.props.post.first_name}/${this.props.post.last_name}`)
@@ -84,6 +90,23 @@ class Post extends React.Component {
     this.setState({
       redirect: true
     })
+  }
+  getLikers() {
+    axios.get('/likers', { params: { 'text': this.props.post.post_text }})
+      .then((likers) => {
+        console.log('Got all likers', likers);
+        let likerStr = ''
+        likers.data.map((liker) => {
+          likerStr += `${liker.first_name} ${liker.last_name}<br>`
+        })
+        console.log(likerStr);
+        this.setState({
+          likers: likerStr
+        })
+      })
+      .catch((err) => {
+        console.log('Error getting likers', err);
+      })
   }
   render() {
     console.log(this.props.post.first_name);
@@ -108,13 +131,14 @@ class Post extends React.Component {
             <hr className="postHorizontal" />
             <p className="postText">{this.props.post.post_text}</p>
             <div className="postButtonRow">
-              <Button className="likeButton" onClick={this.toggleLike.bind(this)} as='div' labelPosition='right'>
+              <Button onMouseOver={this.getLikers.bind(this)} data-multiline='true' data-tip={this.state.likers}className="likeButton" onClick={this.toggleLike.bind(this)} as='div' labelPosition='right'>
                 <Button className="likeHeartButton">
                   <Icon name="heart" />
                   {(this.state.likeCount)}&nbsp;{(this.state.likeCount !== 1) ? 'likes' : 'like'}
                   {/* {(this.state.liked) ? this.state.likeCount-- : this.state.likeCount++} {(this.state.likeCount === 1) ? 'Likes' : 'Like'} */}
                 </Button>
               </Button>
+              <ReactTooltip />
               <Button className="commentButton">
                 1 Comment
               </Button>

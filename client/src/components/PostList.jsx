@@ -4,6 +4,7 @@ import CreatePost from './CreatePost.jsx';
 import axios from 'axios';
 import UserList from './UserList.jsx';
 import Header from './Header.jsx';
+import FadeIn from 'react-fade-in';
 
 class PostList extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class PostList extends React.Component {
       receivedText: ''
     }
   }
-  getNewPosts() {
+  getAllPosts() {
     this.props.getAllPosts();
   }
   receivePostText(text) {
@@ -22,20 +23,22 @@ class PostList extends React.Component {
     })
   }
   render() {
-    // console.log(this.props.name);
+    console.log('This is the logged in name', this.props.name);
     return (
       <div>
-        <CreatePost onClick={this.receivePostText.bind(this)} getAllPosts={this.props.getAllPosts.bind(this)} name={this.props.name} />
+        <CreatePost onClick={this.receivePostText.bind(this)} getAllPosts={this.getAllPosts.bind(this)} name={this.props.name} />
         <br />
         {
           this.props.postList.map((post, index) => (
+            <FadeIn>
             <div key={index}>
-            <Post
-              post={post}
-              name={this.props.name}
-            />
-            <br />
+              <Post
+                post={post}
+                name={this.props.name}
+              />
+              <br />
             </div>
+            </FadeIn>
           ))
         }
       </div>

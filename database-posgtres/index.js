@@ -2,7 +2,7 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://kmenghini@localhost:5432/fb_database'
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
 });
 
 client.connect();
@@ -29,17 +29,17 @@ module.exports = {
       // client.end();
     });
   },
-  likePost: (username, text, callback) => {
+  likePost: (author, text, username, callback) => {
     let queryStr = 
     `INSERT INTO user_posts_liked (user_id, post_id) 
-    VALUES ((SELECT id FROM users WHERE username = '${username}'), 
+    VALUES ((SELECT id FROM users WHERE username = '${username}'),
     (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
       posts.user_id AND posts.post_text = 
       '${text}' AND posts.user_id = 
-      (SELECT id FROM users WHERE username = '${username}')))`;
+      (SELECT id FROM users WHERE username = '${author}')))`;
       // console.log('This is my queryStr', queryStr);
       // console.log('In DB', username);
-      // console.log('In DB', friendname);
+      // console.log('In DB', author);
       // console.log('In DB', text);
     client.query(queryStr, (err, res) => {
       if (err) {
@@ -50,15 +50,15 @@ module.exports = {
       }
     })
   },
-  unlikePost: (username, text, callback) => {
+  unlikePost: (author, text, username, callback) => {
     let queryStr = 
     `DELETE FROM user_posts_liked WHERE user_id = 
     (SELECT id FROM users WHERE username = '${username}')
     AND post_id = (SELECT posts.id FROM posts INNER JOIN users ON users.id = 
       posts.user_id AND posts.post_text = 
       '${text}' AND posts.user_id = 
-      (SELECT id FROM users WHERE username = '${username}'))`;
-      // console.log('This is my queryStr', queryStr);
+      (SELECT id FROM users WHERE username = '${author}'))`;
+      console.log('This is my queryStr', queryStr);
       // console.log('In DB', username);
       // console.log('In DB', friendname);
       console.log('In DB', text);
@@ -66,12 +66,12 @@ module.exports = {
       if (err) {
         callback(err, null);
       } else {
-        // console.log('Liking post!');
+        console.log('Unliking post!');
         callback(null, res.rows);
       }
     })
   },
-  getLikeAmount: (username, text, callback) => {
+  getLikeAmount: (text, callback) => {
     // console.log(username);
     // console.log(text);
     let queryStr =
@@ -86,6 +86,19 @@ module.exports = {
         callback(null, res.rows);
       }
     });
+  },
+  getLikers: (text, callback) => {
+    let queryStr =
+    `SELECT users.first_name, users.last_name FROM users INNER JOIN 
+    user_posts_liked ON users.id = user_posts_liked.user_id INNER JOIN 
+    posts ON posts.id = user_posts_liked.post_id AND posts.post_text = '${text}'`;
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, res.rows);
+      }
+    })
   },
   searchSomeone: (name, callback) => {
     const queryStr = `SELECT * FROM users WHERE username LIKE '%${name}%';`; // selects all names that begin with searched query
@@ -129,9 +142,24 @@ module.exports = {
         console.log('Error', err)
         callback(err, null);
       } else {  
-        console.log('Got username from db', res.rows)
+        // console.log('Got username from db', res.rows)
         callback(null, res.rows);
       } 
+    })
+  },
+  getPostAuthor: (text, callback) => {
+    let queryStr = 
+    `SELECT username FROM users INNER JOIN posts ON users.id = posts.user_id
+    AND posts.post_text = '${text}'`;
+    console.log('This is my query', queryStr);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        console.log('Error', err);
+        callback(err, null);
+      } else {
+        // console.log('Got post author from db', res.rows);
+        callback(null, res.rows);
+      }
     })
   },
   //add user to db
@@ -198,7 +226,8 @@ module.exports = {
     let queryStr =
     `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN 
     users ON users.id = posts.user_id INNER JOIN user_friends ON 
-    (user_friends.friend_id = posts.user_id) AND user_friends.username = '${username}';`
+    (user_friends.friend_id = posts.user_id) AND user_friends.username = 
+    '${username}' ORDER BY posts.id DESC`;
     // console.log('This is my queryStr', queryStr);
     client.query(queryStr, (err, res) => {
       if (err) {
@@ -213,14 +242,18 @@ module.exports = {
   findPostsByNonFriends: (username, callback) => {
     console.log('USERNAME IN FIND POSTS BY NON FRIENDS', username)
     // console.log('in db findPostsByNonFriends')
-    let queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.id IN (SELECT users.id FROM USERS WHERE users.id NOT IN (SELECT user_friends.friend_id FROM user_friends WHERE user_friends.username = '${username}')) ORDER BY posts.id DESC;`
+    let queryStr = 
+    `SELECT posts.*, users.first_name, users.last_name FROM posts 
+    INNER JOIN users ON posts.user_id = users.id AND users.id IN (SELECT users.id FROM users WHERE users.id NOT IN (SELECT user_friends.friend_id 
+      FROM user_friends WHERE user_friends.username = 
+      '${username}')) ORDER BY posts.id DESC`;
     client.query(queryStr, (err, res) => {
       if (err) {
         console.log('Error', err)
         callback(err, null);
       } else {  
         console.log('/:username/posts/nonfriends posts from db...')
-        console.log('res', res);
+        // console.log('res', res);
         callback(null, res.rows);
       }  
     });

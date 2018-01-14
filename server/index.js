@@ -6,19 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client/dist'));
 
-
 let port = 3000;
-
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
-//     if (err) {
-//       res.status(500).send(err);
-//     }
-//   })
-// });
-// Get all posts
-
-
 
 //gets post of all friends
 app.get('/:username/posts/friends', function(req, res) {
@@ -35,7 +23,7 @@ app.get('/:username/posts/friends', function(req, res) {
   })
 });
 
-//gets post of all friends
+//gets post of non friends
 app.get('/:username/posts/nonFriends', function(req, res) {
   // console.log("GETTING ALL NON FRIENDS POSTS");
   // console.log('NON FRIENDS USERNAME', req.params.username)
@@ -50,7 +38,6 @@ app.get('/:username/posts/nonFriends', function(req, res) {
     }
   })
 });
-
 
 
 app.get('/:username/posts', function(req, res) {
@@ -95,12 +82,12 @@ app.post('/:username/posts', function(req, res) {
   })		
 });
 
-app.post('/likes/:username', function(req, res) {
-  // console.log('Are you liking');
-  // console.log(req.params.username);
-  // console.log(req.params.username);
+app.post('/likes/:author', function(req, res) {
+  console.log('Are you liking');
+  // console.log(req.params.author);
   // console.log(req.body.text);
-  db.likePost(req.params.username, req.body.text, (err, data) => {
+  // console.log(req.body.username)
+  db.likePost(req.params.author, req.body.text, req.body.username, (err, data) => {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
@@ -112,12 +99,12 @@ app.post('/likes/:username', function(req, res) {
   })
 })
 
-app.delete('/likes/:username', function(req, res) {
-  // console.log('Are you unliking');
-  // console.log(req.params.username);
-  // console.log(req.params.username);
-  // console.log(req.query);
-  db.unlikePost(req.params.username, req.query.text, (err, data) => {
+app.delete('/likes/:author', function(req, res) {
+  console.log('Are you unliking');
+  // console.log(req.params.author);
+  // console.log(req.query.text);
+  // console.log(req.query.username);
+  db.unlikePost(req.params.author, req.query.text, req.query.username, (err, data) => {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
@@ -129,15 +116,26 @@ app.delete('/likes/:username', function(req, res) {
   })
 })
 
-app.get('/likes/:username', function(req, res) {
-  // console.log('Getting number of likes!');
-  // console.log('Getting likes for ', req.params.username, '\'s post');
+app.get('/likes', function(req, res) {
+  console.log('Getting number of likes!');
   // console.log('Getting likes for post with this text', req.query.text);
-  db.getLikeAmount(req.params.username, req.query.text, (err, data) => {
+  db.getLikeAmount(req.query.text, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
       console.log('Successfully got like count', data);
+      res.status(200).json(data);
+    }
+  })
+})
+
+app.get('/likers', function(req, res) {
+  console.log('Getting all likers!');
+
+  db.getLikers(req.query.text, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
       res.status(200).json(data);
     }
   })
@@ -180,7 +178,16 @@ app.get('/:firstname/:lastname', (req, res) => {
     }
   })
 })
-
+// Get author of post
+app.get('/:username/post/author', (req, res) => {
+  db.getPostAuthor(req.query.text, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  })
+})
 // Add new user to db
 app.post('/:username', (req, res) => {
   var username = req.params.username;
