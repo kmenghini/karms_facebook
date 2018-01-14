@@ -48,16 +48,14 @@ class NewUser extends React.Component {
     }
     return(
       <div className="newUser">
-        <h3><font color="red"> Username '{this.props.username}' not found. </font></h3>
+        {this.props.usernameError ?
+        <h3><font color="red"> Username '{this.props.username}' doesn't match any account.</font></h3> : null}
         <h4 id="new-account-title">Create a New Account</h4>
         <Card className="new-user-card">
           <Image className="ui tiny images" src="/images/profile_default.jpg"/>
           <Form className="input-form" onSubmit={this.handleSubmit.bind(this)}>
-            <p className="newUserLabel"><strong>Username</strong></p>
             <Input className="newUserInput" name="username" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Username"/>
-            <p className="newUserLabel"><strong>First Name</strong></p>
             <Input className="newUserInput" name="firstName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="First name"/>
-            <p className="newUserLabel"><strong>Last Name</strong></p>
             <Input className="newUserInput" name="lastName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Last name"/>
             <Input className="login-button" id="create-account" type="submit" value="Create Account"/>
           </Form>
