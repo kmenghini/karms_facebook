@@ -55,11 +55,11 @@ app.get('/:username/posts', function(req, res) {
 });
 
 // Get posts by a certain user
-app.get('/:username/posts/:otherusername', function(req, res) {
-  // console.log('username...', req.params.otherusername);
-  db.getUserPosts(req.params.otherusername, (error, data) => {
+app.get('/:username/posts/:certainUser', function(req, res) {
+  // console.log('username...', req.params.certainUser);
+  db.getUserPosts(req.params.certainUser, (error, data) => {
     if (error) {
-      console.log(`error retrieving ${req.params.otherusername}'s posts`, error);
+      console.log(`error retrieving ${req.params.certainUser}'s posts`, error);
     } else {
       console.log('data....', data);
       res.status(200).json(data);
@@ -75,11 +75,11 @@ app.post('/:username/posts', function(req, res) {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
-      res.sendStatus(404);		
-    } else {		
-      res.status(200).json(data);		
-    }		
-  })		
+      res.sendStatus(404);    
+    } else {    
+      res.status(200).json(data);   
+    }   
+  })    
 });
 
 app.post('/likes/:author', function(req, res) {
@@ -91,11 +91,11 @@ app.post('/likes/:author', function(req, res) {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
-      res.sendStatus(404);		
+      res.sendStatus(404);    
     } else {
       console.log('This is my data', data);
-      res.status(200).json(data);	
-    }		
+      res.status(200).json(data); 
+    }   
   })
 })
 
@@ -108,11 +108,11 @@ app.delete('/likes/:author', function(req, res) {
     if (err) {
       console.log(res);
       console.log('This is my error', err);
-      res.sendStatus(404);		
+      res.sendStatus(404);    
     } else {
       console.log('This is my data', data);
-      res.status(200).json(data);	
-    }		
+      res.status(200).json(data); 
+    }   
   })
 })
 
@@ -209,7 +209,7 @@ app.post('/:username', (req, res) => {
 });
 
 // route to add friend
-app.post('/:username/:friendToAdd', (req, res) => {
+app.post('/:username/addFriend/:friendToAdd', (req, res) => {
   var username = req.params.username;
   var friendToAdd = req.params.friendToAdd;
   db.addFriend(username, friendToAdd, (err, data) => {
@@ -234,6 +234,18 @@ app.get('/:username/friendsList/:otherUsername', (req, res) => {
   });
 });
 
+// route to remove a friend
+app.post('/:username/removeFriend/:friendToRemove', (req, res) => {
+  var username = req.params.username;
+  var friendToRemove = req.params.friendToRemove;
+  db.removeFriend(username, friendToRemove, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(data);
+    }
+  });
+});
 
 app.listen(process.env.PORT || port, function() {
   console.log(`listening on port ${port}`);

@@ -17,7 +17,7 @@ class Profile_photos extends React.Component {
           Photos
         </Header>
         <span className="photosCount">
-          &nbsp; · &nbsp; {'2 photos'}
+          &nbsp; · &nbsp; {'6 photos'}
         </span>
         <div className="photos">
           {/*

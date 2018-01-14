@@ -24,14 +24,10 @@ class Profile_friends extends React.Component {
             this.props.friends.slice(0, 9).map((friend) => (
               <div className="friend">
                 <img src="/images/profile_default.jpg" />
-                {/*<span className="friendName"> {friend.first_name} {friend.last_name} </span>*/}
+                <span className="friendName"> {friend.first_name} {friend.last_name} </span>
               </div>  
             ))
           }
-          <img src="/images/profile_default.jpg" />
-          <img src="/images/profile_default.jpg" />
-          <img src="/images/profile_default.jpg" />
-          <img src="/images/profile_default.jpg" />
         </div>
       </div>
     );
