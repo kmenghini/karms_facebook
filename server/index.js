@@ -201,8 +201,6 @@ app.post('/:username', (req, res) => {
   }  
 });
 
-
-
 // route to add friend
 app.post('/:username/:friendToAdd', (req, res) => {
   var username = req.params.username;
