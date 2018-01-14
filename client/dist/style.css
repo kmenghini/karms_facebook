@@ -1,3 +1,9 @@
+body {
+  background: #F2F2F2 !important;
+}
+
+/******************************************** Search / Header Component ******************************************************/
+
 .search-input {
   width: 350px !important;
   height: 30px;
@@ -9,7 +15,6 @@
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
 }
-
 .search-btn {
   height: 30px;
   width: 45px;
@@ -20,21 +25,17 @@
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
-
 .search-bar {
   float: left;
 }
-
 .header {
   height: 47px;
   background-color: #3b5998;
   margin-bottom: 20px;
 }
-
 .header-btn {
   margin-right: 140px;
 }
-
 .btn {
   margin-top: 6px;
   float: right;
@@ -45,11 +46,9 @@
   border-style: none;
   cursor: pointer;
 }
-
 .btn:hover {
   background-color: #365899;
 }
-
 .logo {
   height: 29px;
   width: 30px;
@@ -57,7 +56,8 @@
   margin: 8px 0 7px 140px;
   border-radius: 1px;
 }
-/******************************************** Profile page ******************************************************/
+
+/******************************************** Profile Component ******************************************************/
 
 .profile {
   display: grid;
@@ -66,7 +66,6 @@
   background-color: #f2f2f2;
   grid-gap: 10px;
 }
-
 .backgroundAndProfilePic {
   grid-row: 1 / 2;
   grid-column: 2 / 4;
@@ -74,14 +73,12 @@
   grid-template-rows: 5.5fr 4fr 1fr 1fr;
   grid-template-columns: 2% repeat(10, 1fr);
 }
-
 .backgroundPicture {
   grid-row: 1 / 5;
   grid-column: 1 / 12;
   max-height: 100%;
   width: 100%;
 }
-
 .profilePicture {
   border: 4px solid #f2f2f2;
   grid-row: 2 / 5;
@@ -91,7 +88,6 @@
   width: 100%;
   margin-top: 20%;
 }
-
 .backgroundAndProfilePic .name {
   grid-column: 4 / 6;
   grid-row: 3 / 5;
@@ -103,7 +99,6 @@
   justify-self: left;
   margin-left: 10% !important;
 }
-
 .backgroundAndProfilePic .friendStatus {
   grid-column: 8 / 10;
   grid-row: 3 / 4;
@@ -111,7 +106,6 @@
   width: 75%;
   justify-self: center;
 }
-
 .backgroundAndProfilePic .messageFriend {
   grid-column: 10 / 12;
   grid-row: 3 / 4;
@@ -119,7 +113,6 @@
   width: 75%;
   justify-self: left;
 }
-
 .profileNavigation {
   grid-row: 2;
   grid-column: 2 / 4;
@@ -131,18 +124,15 @@
   max-width: 100%;
   width: 100%;
 }
-
 .profileNavigation > .navigationButtons {
   width: 100%;
-  max-height: 100%
+  max-height: 100%;
   grid-column: 2 / 4;
   margin-left: 38% !important;
 }
-
 .active {
   background-color: #e6e6e6;
 }
-
 .intro {
   grid-row: 3;
   grid-column: 2;
@@ -153,18 +143,15 @@
   max-width: 100%;
   max-height: 100%;
 }
-
 .intro > .items > .introduction {
   vertical-align: center;
   text-align: center;
   margin-bottom: 3%;
 }
-
 .intro > .list {
   margin: 3% !important; 
   margin-top: 5% !important;
 }
-
 .intro > .header {
   background-color: transparent;
   height: auto;
@@ -172,13 +159,11 @@
   padding-top: 1% !important;
   margin-bottom: 0px !important;
 }
-
 .intro > .header > .introLogo {
   width: 70%;
   height: auto;
   margin-right: 2% !important;
 }
-
 .friendsList {
   grid-row: 4;
   grid-column: 2;
@@ -188,7 +173,6 @@
   max-height: 100%;
   width: 100%;
 }
-
 .friendsList > .header {
   background-color: transparent;
   height: auto;
@@ -196,14 +180,12 @@
   margin-bottom: 3% !important;
   display: inline-block !important;
 }
-
 .friendsList > .friendsCount {
   background-color: transparent;
   height: auto;
   margin-top: 5% !important;
   margin-bottom: 5%;
 }
-
 .friendsList > .friends {
   display: grid;
   max-width: 100% !important;
@@ -213,13 +195,11 @@
   grid-auto-flow: row;
   grid-gap: 2%;
 }
-
 .friends img, .photos img {
   max-width: 100% !important;
   width: 120%;
   height: 100% !important;
 }
-
 .photosList {
   grid-row: 5;
   grid-column: 2;
@@ -229,7 +209,6 @@
   max-height: 100%;
   width: 100%;
 }
-
 .photosList > .header {
   background-color: transparent;
   height: auto;
@@ -237,14 +216,12 @@
   margin-bottom: 3% !important;
   display: inline-block !important;
 }
-
 .photosList > .photosCount {
   background-color: transparent;
   height: auto;
   margin-top: 5% !important;
   margin-bottom: 5%;
 }
-
 .photosList > .photos {
   display: grid;
   max-width: 100% !important;
@@ -255,7 +232,6 @@
   grid-auto-flow: row;
   grid-gap: 2%;
 }
-
 .postSection {
   grid-row: 3 / 9;
   grid-column: 3;
@@ -264,44 +240,37 @@
   min-height: 0;
   min-width: 0;
 }
-
 .postSection .items {
   overflow-y: auto;
   height: 150vh;
   grid-row: 2;
 }
-
 .postSection .postCard {
   max-height: 100%;
   width: 100%;
   margin-bottom: 2.5%;
 }
-
 .postSection .createPostBody {
   grid-row: 1;
   /*width: 100%;*/
 }
-
 .hide {
   display: none;
 }
-
 .aboutContainer {
   grid-row: 3 / 5;
   grid-column: 2 / 4;
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
-
 .about {
   background-color: white;
   grid-row: 1 / 2;
   border: 2px solid #e6e6e6;
   display: grid;
   grid-template-rows: 1fr 4fr;
-  grid-template columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr;
 }
-
 .title {
   grid-row: 1;
   grid-column: 1;
@@ -309,18 +278,15 @@
   padding-left: 2%;
   border-bottom: 2px solid #e6e6e6;
 }
-
 .title .header {
   background-color: transparent;
   height: auto;
   margin-top: 0% !important;
   margin-bottom: 1.5% !important;
 }
-
 .title .tabs {
   
 }
-
 /*.makePost {
   grid-row: 1
   overflow: hidden; 
@@ -328,7 +294,6 @@
   /*display: flex;*/
 /*  justify-content: center
 }
-
 .makePost .createPostBody {*/
   /*height: 100% !important;*/
   /*max-width: 100%;*/
@@ -336,34 +301,27 @@
   height: 90% !important;*/
   /*flex-grow: 1;*/
 /*}*/
-
 .placeHolder {
   grid-row: 1 / 9;
   grid-column: 4 / 5;
   border: 2px solid black;
 }
-
 .messageFriends > .placeHolder1 {
   border: 2px solid #e6e6e6;
   grid-row: 1;
 }
-
 .messageFriends > .placeHolder2 {
   border: 2px solid #e6e6e6;
   grid-row: 2;
 }
-
 .messageFriends > .friendsList {
   margin-top: 0px !important;
   border: 2px solid #e6e6e6;
   background-color: #f2f2f2;
 }
 
-/******************************************** Profile page ******************************************************/
+/******************************************** Post Component ******************************************************/
 
-body {
-  background: #F2F2F2 !important;
-}
 .postCard {
   width: 35%;
 }
@@ -432,6 +390,8 @@ body {
   padding-bottom: 4%;
 }
 
+/******************************************** CreatePost Component ****************************************************/
+
 .createPostHeader {
   background-color: #D8D8D8;
 }
@@ -471,6 +431,8 @@ body {
   width: 35%;
 }
 
+/******************************************** Feed Component ******************************************************/
+
 .feedContainer {
   display: grid;
   grid-column-gap: 20px;
@@ -479,33 +441,96 @@ body {
   padding-left: 13%;
   padding-right: 13%;
 }
-
 .feedContainer .postCard {
   max-height: 100%;
   width: 100%;
 }
-
 .feedContainer .createPostBody {
   max-height: 100%;
   width: 100%;
 }
+.feedSidebarUser {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  padding-bottom: 40px;
+  margin-top: -1.5px;
+}
+.exploreTag {
+  padding-bottom: 4%;
+}
+.feedSidebarExplore {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  padding-bottom: 20px;
+}
+.feedSideBarUserButton {
+  color:black !important;
+}
+.feedSideBarUserButtonImage {
+  height: 20px;
+  width: 20px;
+}
+.feedSidebarTrending {
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #D0D0D0;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 10px;
+  margin-bottom: 17.5px;
+}
+.feedTrendingLabel {
+  margin-bottom: -5px;
+}
+.feedSidebarTrendingItem {
+  border-radius: 5px;
+}
+.feedSidebarTrendingTopicHeader {
+  font-weight: bold;
+}
+.feedSidebarAds {
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #D0D0D0;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 12.5px;
+  padding-right: 10px;
+}
+.feedSidebarAdItem {
+  border-radius: 5px;
+}
+.ad {
+  margin-right: 20px !important;
+}
+.adPic {
+  margin-top: -12.5px;
+}
+.description {
+  margin-left: -22.5px;
+}
+.trendingDescription {
+  margin-left: 0px;
+}
+
+/******************************************** SignIn / NewUser Component ******************************************************/
 
 .signIn-page {
   display: grid;
   grid-template-columns: 60% 40%;
   grid-template-areas:"logo login";
 }
-
 .right-column {
   display: grid;
   grid-area: login;
 }
-
 .signIn-card, .new-user-card {
   padding: 15px !important;
   width: 400px !important;
 }
-
 #sign-in, #new-account-title {
   color: #333;
   font-size: 28px;
@@ -513,7 +538,6 @@ body {
   font-weight: bold !important;
   letter-spacing: normal;
 }
-
 #login, #create-new-account {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif !important;
   font-size: 14px;
@@ -525,13 +549,11 @@ body {
   color: #fff;
   font-weight: bold !important;
 }
-
 #create-account-text {
   padding-top: 18px;
   font-weight: bold;
   font-size: 12px;
 }
-
 #create-new-account {
   background-color: #42b72a;
   border-color: #42b72a;
@@ -539,7 +561,6 @@ body {
   padding: 0 19px;
   line-height: 32px;
 }
-
 .login-button #create-account {
   font-size: 19px;
   font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
@@ -554,49 +575,38 @@ body {
   color: #fff !important;
   margin-top: 5px !important;
 }
-
 .bottom.aligned.content {
   padding: 5px 0 0 0 !important;
 }
-
 .signIn-page input {
   width: 200px !important;
   display: block !important;
   margin-bottom: 7px !important;
 }
-
 .signInLabel {
   margin-top: -10px !important;
 }
-
 .username-input {
   margin-top: 5px;
   width: 220px;
 }
-
 .newUserLabel {
   margin-top: 5px !important;
 }
-
 .newUser img {
   margin-bottom: 10px !important;
   margin-left: 2px !important;
 }
-
 .newUserInput {
   margin-bottom: -2px;
-
 }
-
 .newUserInput input::placeholder {
   color: rgba(73, 73, 73, 0.767) !important;
   font-size: 16px !important;
 }
-
 .signIn-card {
   margin-top: -4px !important;
 }
-
 #terms {
   font-size: 11px;
   line-height: 14px;
@@ -604,74 +614,6 @@ body {
   margin: 25px 0 5px 0;
   color: rgb(78, 78, 78)
 }
-
-
-
-.feedSidebarUser {
-  display: grid;
-  grid-row-gap: 10px;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  padding-bottom: 40px;
-  margin-top: -1.5px;
-}
-
-.feedSidebarExplore {
-  display: grid;
-  grid-row-gap: 10px;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  padding-bottom: 20px;
-}
-
-.feedSideBarUserButton {
-  color:black !important;
-}
-
-.feedSideBarUserButtonImage {
-  height: 20px;
-  width: 20px;
-}
-
-.feedSidebarTrending {
-  border-radius: 5px;
-  background-color: white;
-  border: 1px solid #D0D0D0;
-  padding-top: 10px;
-  padding-bottom: 15px;
-  padding-left: 12.5px;
-  padding-right: 10px;
-  margin-bottom: 17.5px;
-}
-
-.feedTrendingLabel {
-  margin-bottom: -5px;
-}
-
-.feedSidebarTrendingItem {
-  border-radius: 5px;
-}
-
-.feedSidebarTrendingTopicHeader {
-  font-weight: bold;
-}
-
-.feedSidebarAds {
-  border-radius: 5px;
-  background-color: white;
-  border: 1px solid #D0D0D0;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 8px;
-  padding-right: 10px;
-}
-
-.feedSidebarAdItem {
-  border-radius: 5px;
-}
-
-.ad {
-  margin-right: 20px !important;
-}
-
 .signIn-page .undefined-user-error {
   width: 230px;
   margin: 10px 0;

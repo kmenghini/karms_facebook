@@ -30,58 +30,49 @@ class Post extends React.Component {
       })
   }
   toggleLike() {
-    this.setState({
-      liked: !this.state.liked
-    })
     this.executeToggleLike();
   }
   executeToggleLike() {
     let username = this.props.name;
     console.log(username);
-    // let friendname = this.props.post.username;
     // let timestampReplaceT = this.props.post.post_timestamp.replace('T', ' ');
     // let indexOfDot = this.props.post.post_timestamp.indexOf('.');
     // let indexOfHyphen = this.props.post.post_timestamp.indexOf('-');
     // let timestamp = timestampReplaceT.substring(0, indexOfDot) + timestampReplaceT.substring(indexOfHyphen, timestampReplaceT.length) + '00';
     // console.log(timestamp);
-    if (!this.state.liked) {
-      // query db to add like entry
-      console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
-      axios.get(`/${username}/post/author`, { params: { 'text': this.props.post.post_text }})
-        .then((author) => {
-          console.log('author', author.data[0].username);
+    console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
+    axios.get(`/${username}/post/author`, { params: { 'text': this.props.post.post_text }})
+      .then((author) => {
+        console.log('author', author.data[0].username);
+        if (!this.state.liked) {
           axios.post(`/likes/${author.data[0].username}`, { 'text': this.props.post.post_text, 'username': this.props.name })
             .then((res) => {
               console.log('Liked!');
-              console.log('This is the res', res);
+              this.setState({
+                liked: true
+              })
               this.getLikeAmount();
             })
             .catch((err) => {
               console.error('This is the err', err);
             })
-        })
-        .catch((err) => {
-          console.log('Error', err);
-        })
-    } else {
-      axios.get(`/${username}/post/author`, { params: { 'text': this.props.post.post_text }})
-        .then((author) => {
-          console.log('author', author.data[0].username);
-            axios.delete(`/likes/${author.data[0].username}`, { params: { 'text': this.props.post.post_text, 'username': this.props.name }})
+        } else {
+          axios.delete(`/likes/${author.data[0].username}`, { params: { 'text': this.props.post.post_text, 'username': this.props.name }})
             .then((res) => {
-              console.log('This is the res', res);
               console.log('Unliked!');
+              this.setState({
+                liked: false
+              })
               this.getLikeAmount();
             })
             .catch((err) => {
               console.error('This is the err', err);
             })
-        })
-        .catch((err) => {
-          console.log('Error', err);
-        })
-
-    }
+        }
+      })
+      .catch((err) => {
+        console.error('Error', err);
+      })
   }
   handleClickedProfile() {
     axios.get(`/${this.props.post.first_name}/${this.props.post.last_name}`)
