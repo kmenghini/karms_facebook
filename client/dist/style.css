@@ -323,13 +323,31 @@ body {
   margin-bottom: 8px !important;
 }
 
+.detail {
+  margin-bottom: 5%;
+}
+
+.detail > .header {
+  background-color: transparent;
+  margin-bottom: 0% !important;
+  height: 100%;
+}
+
+.detail > .divider {
+  margin-top: 4px !important;
+  margin-bottom: 8px !important;
+}
+
+/*.detail > .button {
+  margin-top: 2% !important;
+}*/
+
 /*.makePost {
   grid-row: 1
   overflow: hidden; 
   min-width: 0;  
   /*display: flex;*/
 /*  justify-content: center
->>>>>>> work on about view for profile page
 }
 
 .placeHolder {
