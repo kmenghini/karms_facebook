@@ -30,13 +30,9 @@ class Profile_about extends React.Component {
             <div clasName="section otherDetails"> Other Details </div>
             <div clasName="section lifeEvents"> Life Events </div>
           </div>
-<<<<<<< HEAD
-          <Profile_about_overview aboutView={this.state.aboutView} />
-=======
           <div className="sectionDetails">
             <Profile_about_overview aboutView={this.state.aboutView} />
           </div>  
->>>>>>> work on editing in About
         </div>
       </div>
     );

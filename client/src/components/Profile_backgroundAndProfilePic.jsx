@@ -17,7 +17,11 @@ class Profile_backgroundAndProfilePic extends React.Component {
         <Header size="large" inverted color="grey" textAlign="center" className="name"> 
           {this.props.userInfo.first_name} {this.props.userInfo.last_name} 
         </Header>
-        { this.props.friend ?
+        {this.props.isOwner ? 
+
+          <span></span> :
+
+          this.props.friend ?
 
           <Button compact animated inverted size="small" className="friendStatus removeFriend" onClick={this.props.removeFriend.bind(this)} >
             <Button.Content visible> 
