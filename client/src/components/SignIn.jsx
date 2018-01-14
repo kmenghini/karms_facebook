@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import {Input, Button, Card} from 'semantic-ui-react';
+import {Input, Button, Card, Icon} from 'semantic-ui-react';
 import NewUser from './NewUser.jsx'
 import { Redirect, Link } from 'react-router-dom';
 
@@ -14,14 +14,15 @@ class SignIn extends React.Component {
       getNewUser: false,
       redirect: false,
       profileShows: false,
-      headerShows: false
+      headerShows: false,
+      undefinedUsername: false,
+      usernameError: false
     };
   }
 
   handleUsernameInput (e) { 
     this.setState({
-      username: e.target.value,
-      newUser: false
+      username: e.target.value
     });
   }
 
@@ -33,27 +34,42 @@ class SignIn extends React.Component {
   }
   handleLogIn(e) {
     e.preventDefault();
+    if (!this.state.username) {
+      console.log('invalid username')
+      this.setState({
+        undefinedUsername: true
+      });
+    } else {
+      $.get(`/${this.state.username}`, (data) => {
+        console.log(data[0]);
+        if (data.length) {
+          this.setState({
+            username: data[0].username,
+            newUser: false,
+            redirect: true
+          });
+          this.getUsername();
+          console.log('need to route to feed for', this.state.username)
+          //route to feed for this user
+        } else {
+          this.setState({
+            newUser: true,
+            getNewUser: true,
+            redirect: false,
+            usernameError: true
+          });
+        }
+        console.log('in client siginin get request', data)
+      })
+    }  
+  }
 
-    $.get(`/${this.state.username}`, (data) => {
-      console.log(data[0]);
-      if (data.length) {
-        this.setState({
-          username: data[0].username,
-          newUser: false,
-          redirect: true
-        });
-        this.getUsername();
-        console.log('need to route to feed for', this.state.username)
-        //route to feed for this user
-      } else {
-        this.setState({
-          newUser: true,
-          getNewUser: true,
-          redirect: false
-        });
-      }
-      console.log('in client siginin get request', data)
-    })
+  handleSignUp(e) {
+    e.preventDefault();
+    console.log('in sign up')
+    this.setState({
+      newUser: true
+    });
   }
 
   getUsername() {
@@ -73,10 +89,13 @@ class SignIn extends React.Component {
           <form onSubmit={this.handleSubmit.bind(this)}>
           <Card className="signIn-card">
             <h5 className="signInLabel bottom aligned content">Username</h5>
+            {this.state.undefinedUsername ? <h5 className="undefined-user-error"><Icon name="warning circle"/>Please enter your username.</h5> : null}
             <Input className="username-input" type="text" onChange={this.handleUsernameInput.bind(this)}/>
-            <Link onClick={this.handleLogIn.bind(this)} to={feedPath}><Button className="login-button"> Log In </Button></Link>
+            <Link onClick={this.handleLogIn.bind(this)} to={feedPath}><Button className="login-button" id="login"> Log In </Button></Link>
+            <div id="create-account-text">Don't have an account yet?</div>
+            <div><Button className="login-button" id="create-new-account" onClick={this.handleSignUp.bind(this)}>Sign Up</Button></div>
           </Card>
-          {this.state.newUser ? <NewUser newUsername={this.state.newUsername} getNewUsername={this.props.getNewUsername} /> : null }
+          {this.state.newUser ? <NewUser usernameError={this.state.usernameError} newUsername={this.state.newUsername} getNewUsername={this.props.getNewUsername} username={this.state.username}/> : null }
           </form>
         </div>
       
