@@ -8,24 +8,8 @@ class Header extends React.Component {
     super(props);
     this.state = {
       profilePath: '',
-      feedPath: '',
-      redirectProfile: false,
-      username: window.location.pathname.substring(1, window.location.pathname.indexOf('/feed'))
+      feedPath: ''
     }
-  }
-  componentDidMount() {
-    // console.log(this.props.name);
-  }
-  handleFeedClick() {
-    
-  }
-  handleProfileClick() {
-    this.setState({
-      redirectProfile: true
-    })
-  }
-  handleLogOutClick() {
-
   }
   getUserProfile(user) {
     this.props.getProfile(user);
@@ -40,9 +24,9 @@ class Header extends React.Component {
         <Image className="logo" src="/images/rbook.png"></Image>
         <Search getUserProfile={this.getUserProfile.bind(this)}/>
         <div className="header-btn">
-          <Link to='/login'><button className="btn" onClick={this.handleLogOutClick.bind(this)}>Log Out</button></Link>
+          <Link to='/login'><button className="btn">Log Out</button></Link>
           <Link to={profilePath}><button className="btn">Profile</button></Link>
-          <Link to={feedPath}><button className="btn" onClick={this.handleFeedClick.bind(this)}>Feed</button></Link>
+          <Link to={feedPath}><button className="btn">Feed</button></Link>
         </div>
       </div>
     );

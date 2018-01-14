@@ -80,8 +80,8 @@ class Feed extends React.Component {
             </Button>
           </div>
 
-          <div>Explore</div>
-
+          <div className="exploreTag">Explore</div>
+            
           <div className = "feedSidebarExplore" >
             <Button icon labelPosition='left' fluid className="feedSideBarUserButton">
               <Icon name='calendar' />
@@ -115,8 +115,8 @@ class Feed extends React.Component {
                 <Icon name='lightning' />
                 <Item.Content>  
                   <div className="feedSidebarTrendingTopicHeader">Trending Topic</div>
-                  <Item.Description>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  <Item.Description className="trendingDescription">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
                   </Item.Description>
                   <Item.Extra>loremipsum.com</Item.Extra>
                 </Item.Content>
@@ -127,8 +127,8 @@ class Feed extends React.Component {
                 <Icon name='lightning' />
                 <Item.Content>  
                   <div className="feedSidebarTrendingTopicHeader">Trending Topic</div>
-                  <Item.Description>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  <Item.Description className="trendingDescription">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
                   </Item.Description>
                   <Item.Extra>loremipsum.com</Item.Extra>
                 </Item.Content>
@@ -139,8 +139,8 @@ class Feed extends React.Component {
                 <Icon name='lightning' />
                 <Item.Content>  
                   <div className="feedSidebarTrendingTopicHeader">Trending Topic</div>
-                  <Item.Description>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  <Item.Description className="trendingDescription">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
                   </Item.Description>
                   <Item.Extra>loremipsum.com</Item.Extra>
                 </Item.Content>
@@ -155,7 +155,7 @@ class Feed extends React.Component {
               <Item.Content>  
                 <div className="feedSidebarTrendingTopicHeader">Advertisement</div>
                 <Item.Description>
-                  <img src="http://www.littletoyboat.com/wp-content/uploads/2014/07/logo.png" />
+                  <img className="adPic" src="http://www.littletoyboat.com/wp-content/uploads/2014/07/logo.png" />
                   {/* <Advertisement unit='medium rectangle' test='Medium Rectangle' centered="true"/> */}
                 </Item.Description>
                 {/* <Item.Extra>loremipsum.com</Item.Extra> */}
