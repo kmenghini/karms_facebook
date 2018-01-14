@@ -605,7 +605,7 @@ body {
   color: rgb(78, 78, 78)
 }
 
-      
+
 
 .feedSidebarUser {
   display: grid;
@@ -634,12 +634,12 @@ body {
 .feedSidebarTrending {
   border-radius: 5px;
   background-color: white;
-  border: 1px solid #A4A4A4;
+  border: 1px solid #D0D0D0;
   padding-top: 10px;
   padding-bottom: 15px;
   padding-left: 12.5px;
   padding-right: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 17.5px;
 }
 
 .feedTrendingLabel {
@@ -657,7 +657,7 @@ body {
 .feedSidebarAds {
   border-radius: 5px;
   background-color: white;
-  border: 1px solid #A4A4A4;
+  border: 1px solid #D0D0D0;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 8px;
