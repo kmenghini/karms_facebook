@@ -22,7 +22,8 @@ class SignIn extends React.Component {
 
   handleUsernameInput (e) { 
     this.setState({
-      username: e.target.value
+      username: e.target.value,
+      usernameError: false
     });
   }
 
@@ -51,7 +52,6 @@ class SignIn extends React.Component {
           this.getUsername();
           this.props.getSignedIn(true);
           console.log('need to route to feed for', this.state.username)
-          //route to feed for this user
         } else {
           this.setState({
             newUser: true,

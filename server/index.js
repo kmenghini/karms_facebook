@@ -248,7 +248,7 @@ app.post('/:username', (req, res) => {
     }
     db.addUser(newUserData, (err, data) => {
       if (err) {
-        res.status(500).send(err);
+        res.status(500).json(err);
       } else {
         // res.status(200).json(data);
         db.addNewUserProfileInfo(newUserData.username, (err, data) => {

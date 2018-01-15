@@ -13,7 +13,8 @@ class NewUser extends React.Component {
       pictureUrl: '/images/profile_default.jpg',
       newUsername: '',
       redirect: false,
-      invalidInput: false
+      invalidInput: false,
+      duplicateUsername: false
     }
   }
 
@@ -21,7 +22,9 @@ class NewUser extends React.Component {
     const value = event.target.value;
     const name = event.target.name;
     this.setState({
-      [name]: value
+      [name]: value, 
+      duplicateUsername: false,
+      invalidInput: false
     });
   }
 
@@ -35,9 +38,8 @@ class NewUser extends React.Component {
       this.setState({
         newUsername: this.state.username
       })
-      $.post(`/${this.state.username}`, this.state, (data) => {
+      $.post(`/${this.state.username}`, this.state, () => {
         console.log('post into db done!')
-        //route to feed for this user
         this.setState({
           redirect: true,
           newUsername: this.state.username
@@ -45,13 +47,18 @@ class NewUser extends React.Component {
         this.props.getNewUsername(this.state.username);
         this.props.getSignedIn(true);
       })
+      .fail((err) => {
+        if (err.responseJSON.includes('Key (username)=') && err.responseJSON.includes('already exists.')) {
+          this.setState({
+            duplicateUsername: true
+          });
+        }
+      });
     }
   }
   
   render() {
-    // console.log(this.state.newUsername);
     let newUserFeedPath = '/' + this.state.newUsername + '/feed';
-    // console.log(newUserFeedPath);
     if (this.state.redirect) {
       return <Redirect push to={newUserFeedPath} />;
     }
@@ -64,6 +71,7 @@ class NewUser extends React.Component {
           <Image className="ui tiny images" src="/images/profile_default.jpg"/>
           <Form className="input-form" onSubmit={this.handleSubmit.bind(this)}>
           {this.state.invalidInput ? <h5 className="undefined-user-error"><Icon name="warning circle"/>All fields are required. Please enter your info and try again.</h5> : null}
+          {this.state.duplicateUsername ? <h5 className="undefined-user-error"><Icon name="warning circle"/>Username is already in the system. Please log in above or choose a different username.</h5> : null}
             <Input className="newUserInput" name="username" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Username"/>
             <Input className="newUserInput" name="firstName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="First name"/>
             <Input className="newUserInput" name="lastName" type="text" onChange={this.handleInputChange.bind(this)} placeholder="Last name"/>
