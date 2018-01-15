@@ -792,7 +792,7 @@ textarea {
   color: rgb(78, 78, 78)
 }
 .signIn-page .undefined-user-error {
-  width: 230px;
+  width: 300px;
   margin: 10px 0;
   color: red;
 }
