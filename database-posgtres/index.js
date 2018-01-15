@@ -87,6 +87,28 @@ module.exports = {
       }
     });
   },
+  getPersonalLikeAmount: (username, text, callback) => {
+    // console.log(username);
+    // console.log(text);
+    // let queryStr =
+    // `SELECT COUNT(user_id) FROM user_posts_liked INNER JOIN WHERE post_id = 
+    // (SELECT id FROM posts WHERE post_text = '${text}')`;
+    let queryStr =
+    `SELECT count(user_id) FROM user_posts_liked INNER JOIN 
+    users ON users.id = user_posts_liked.user_id AND 
+    user_posts_liked.user_id = (SELECT id FROM users WHERE username = '${username}') 
+    WHERE post_id = (SELECT id FROM posts WHERE posts.post_text = '${text}');
+    `
+    console.log('This is my queryStr', queryStr);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        // console.log('Getting number of likes!');
+        callback(null, res.rows);
+      }
+    });
+  },
   getLikers: (text, callback) => {
     let queryStr =
     `SELECT users.first_name, users.last_name FROM users INNER JOIN 
