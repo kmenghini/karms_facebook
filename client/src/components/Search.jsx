@@ -324,23 +324,6 @@ export default SearchBar;
   //   })
   // }
 
-<<<<<<< HEAD
-  render() {
-    return (
-      <form className="search-bar" onSubmit={this.handleSearch.bind(this)}>
-        <input 
-          className="search-input" 
-          type="text" 
-          placeholder="Search" 
-          ref="searchUser" 
-        />
-        <button className="search-btn"><Icon className="search icon"></Icon></button>
-        {/* <input className="search-btn" type="image" src="images/rbook.png" /> */}
-      </form>
-    )
-  }
-}
-=======
 //   render() {
 //     return (
 //       <form className="search-bar" onSubmit={this.handleSearch.bind(this)}>
@@ -356,6 +339,5 @@ export default SearchBar;
 //     )
 //   }
 // }
->>>>>>> complete rough draft of custom search
 
 // export default Search;
