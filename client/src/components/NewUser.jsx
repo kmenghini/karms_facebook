@@ -43,6 +43,7 @@ class NewUser extends React.Component {
           newUsername: this.state.username
         })
         this.props.getNewUsername(this.state.username);
+        this.props.getSignedIn(true);
       })
     }
   }

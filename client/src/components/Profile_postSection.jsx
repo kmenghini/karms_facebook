@@ -25,11 +25,13 @@ class Profile_postSection extends React.Component {
 
           <List className="items">
           {
-            this.props.posts.map((post) => (
-              <div>
-                <Post post={post} key={post.id} />
+            this.props.posts.map((post, index) => (
+              <FadeIn>
+              <div key={index} className="profilePostBorder">
+                <Post post={post} />
                 <br />
               </div>
+              </FadeIn>
             ))
           }
           </List>
@@ -40,7 +42,7 @@ class Profile_postSection extends React.Component {
           {
             this.props.posts.map((post, index) => (
               <FadeIn>
-              <div key={index}>
+              <div key={index} className="profilePostBorder">
                 <Post post={post} />
                 <br />
               </div>

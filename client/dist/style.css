@@ -17,7 +17,7 @@ body {
 }
 .search-btn {
   height: 30px;
-  width: 45px;
+  /* width: 45px; */
   border: none;
   margin: 8px 0 7px 0;
   background-color: #f6f7f9;
@@ -30,7 +30,7 @@ body {
 }
 .header {
   height: 47px;
-  background-color: #3b5998;
+  background-color: #3F5FA4;
   margin-bottom: 20px;
 }
 .header-btn {
@@ -50,11 +50,18 @@ body {
   background-color: #365899;
 }
 .logo {
-  height: 29px;
+  height: 30px;
   width: 30px;
   float: left;
-  margin: 8px 0 7px 140px;
+  margin: 8.25px 0 7px 140px;
+  margin-right: 0.25%;
+  
   border-radius: 1px;
+  
+}
+.headerFont {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif !important;
+  font-size: 15px;
 }
 
 /******************************************** Profile Component ******************************************************/
@@ -250,16 +257,21 @@ body {
   overflow-y: auto;
   height: 150vh;
   grid-row: 1 / 3;
+  margin-top: -0.1px !important;
 }
 .postSection .items {
   overflow-y: auto;
   height: 150vh;
   grid-row: 2;
+  /* border: 1px solid #D0D0D0; */
+  
 }
 .postSection .postCard {
   max-height: 100%;
   width: 100%;
   margin-bottom: -5px;
+  border: 1px solid #D0D0D0;
+  border-radius: 5px;
 }
 .postSection .createPostBody {
   grid-row: 1;
@@ -466,6 +478,9 @@ textarea {
   width: 100%;
   padding-right: 0px;
 }
+.nameLink {
+  color: #4183c4;
+}
 .postOverall, .postCommentOverall {
   padding: 15px;
 }
@@ -558,7 +573,7 @@ textarea {
   align-items: end;
 }
 .createPostButton {
-  background-color: #3b5998 !important;
+  background-color: #3F5FA4 !important;
   color: white !important;
 }
 .cancelPostButton {
@@ -655,10 +670,35 @@ textarea {
 
 /******************************************** SignIn / NewUser Component ******************************************************/
 
+.signInLogoLabel {
+  margin-top: 10% !important;
+  padding-left: 15%;
+  font-size: 30px;
+}
+.signInLogo {
+  width: 65%;
+  margin-left: 12%;
+  margin-top: -50px !important;
+}
+.signInTag {
+  margin-top: 6.5%;
+  padding-left: 15%;
+  font-size: 30px;
+  color: #A4A4A4;
+}
+.programmersLabel {
+  font-family: 'Inconsolata', monospace;
+  color: #686868;
+}
 .signIn-page {
   display: grid;
   grid-template-columns: 60% 40%;
+  grid-template-rows: 10px 10px;
   grid-template-areas:"logo login";
+}
+.right-column {
+  display: grid;
+  grid-area: logo;
 }
 .right-column {
   display: grid;
@@ -679,8 +719,8 @@ textarea {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif !important;
   font-size: 14px;
   width: 220px !important;
-  background-color: #365899;
-  border-color: #365899;
+  background-color: #3F5FA4;
+  border-color: #3F5FA4;
   line-height: 42px;
   padding: 0 24px;
   color: #fff;

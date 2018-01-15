@@ -31,19 +31,34 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    this.getUserInfo();
-    this.getUserPosts();
-    this.getFriends();
-    this.getUserProfileInfo();
+    console.log(this.props.match.params.friendname);
+    console.log(this.props.match.params.username);
+    this.getUserInfo(this.state.profilePageOwner);
+    this.getUserPosts(this.state.profilePageOwner);
+    this.getFriends(this.state.profilePageOwner);
+    this.getUserProfileInfo(this.state.profilePageOwner);
   }  
 
-  getUserInfo() {
-    var user = this.state.profilePageOwner;
+  componentWillReceiveProps(nextProps) {
+    // console.log('I received props');
+    if (nextProps.location.pathname !== this.props.location.pathname) {
+      // console.log('Yes it is different');
+      console.log(nextProps.match.params.friendname);
+      this.getUserInfo(nextProps.match.params.friendname);
+      this.getUserPosts(nextProps.match.params.friendname);
+      this.getFriends(nextProps.match.params.friendname);
+      this.getUserProfileInfo(nextProps.match.params.friendname);
+    }
+  }
+
+  getUserInfo(user) {
+    // var user = this.state.profilePageOwner;
+    // console.log(user, ' is profile owner');
     axios.get(`/${user}`)
       .then((responseUserInfo) => {
         this.setState({
           userInfo: responseUserInfo.data[0],
-          isOwner: this.state.username === this.state.profilePageOwner
+          isOwner: this.state.username === user
         });
       })
       .catch((error) => {
@@ -51,9 +66,9 @@ class Profile extends React.Component {
       }); 
   }
 
-  getUserProfileInfo() {
-    var user = this.state.profilePageOwner;
-    console.log('user...', this.state.profilePageOwner)
+  getUserProfileInfo(user) {
+    // var user = this.state.profilePageOwner;
+    // console.log('user...', this.state.profilePageOwner)
     axios.get(`/${user}/profilePage`)
       .then((responseUserProfileInfo) => {
         console.log('profile page info....', responseUserProfileInfo);
@@ -66,9 +81,9 @@ class Profile extends React.Component {
       }); 
   }
 
-  getUserPosts() {
+  getUserPosts(user) {
     var username = this.state.username;
-    var profilePageOwner = this.state.profilePageOwner;
+    var profilePageOwner = user;
     axios.get(`/${username}/posts/${profilePageOwner}`)
       .then((response) => {
         this.setState({
@@ -80,9 +95,9 @@ class Profile extends React.Component {
       }); 
   }
 
-  getFriends() {
+  getFriends(user) {
     var username = this.state.username;
-    var otherUsername = this.state.profilePageOwner;
+    var otherUsername = user;
     axios.get(`/${username}/friendsList/${otherUsername}`)
       .then((response) => {
         console.log('friends list...', response.data);
@@ -129,7 +144,7 @@ class Profile extends React.Component {
       })
       .catch((error) => {
         console.log(error);
-      }); 
+      });
   }
 
   handleNavigation(event) {

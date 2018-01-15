@@ -2,7 +2,7 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://rngo@localhost:5432/fb_database'
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
 });
 
 client.connect();
@@ -32,7 +32,7 @@ module.exports = {
     let queryStr =
       `INSERT INTO posts (post_text, user_id)
       VALUES ('${text}', (SELECT id FROM users WHERE username = '${username}'))`;
-    // console.log('This is my query string', queryStr);
+    console.log('This is my query string', queryStr);
     client.query(queryStr, (err, res) => {
       if (err) {
         callback(err, null);

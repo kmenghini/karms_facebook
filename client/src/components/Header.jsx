@@ -8,11 +8,15 @@ class Header extends React.Component {
     super(props);
     this.state = {
       profilePath: '',
-      feedPath: ''
+      feedPath: '',
+      clickedProfile: false,
     }
   }
   getUserProfile(user) {
     this.props.getProfile(user);
+  }
+  setSignedOut() {
+    this.props.getSignedIn(false);
   }
   render() {
     const profilePath = '/' + this.props.name + '/profile/' + this.props.name;
@@ -20,14 +24,21 @@ class Header extends React.Component {
     const feedPath = '/' + this.props.name + '/feed';
     console.log(feedPath);
     return (
-      <div className="header"> 
-        <Image className="logo" src="/images/rbook.png"></Image>
-        <Search getUserProfile={this.getUserProfile.bind(this)}/>
-        <div className="header-btn">
-          <Link to='/login'><button className="btn">Log Out</button></Link>
-          <Link to={profilePath}><button className="btn">Profile</button></Link>
-          <Link to={feedPath}><button className="btn">Feed</button></Link>
-        </div>
+      <div className="header">
+        {
+          (this.props.signedIn) ? 
+          <div>
+            <Image className="logo" src="/images/rbooktransparent.png"></Image>
+            <Search getUserProfile={this.getUserProfile.bind(this)}/>
+            <div className="header-btn">
+              <Link onClick={this.setSignedOut.bind(this)} to='/login'><button className="btn"><span className="headerFont">Log Out</span></button></Link>
+              <Link to={profilePath}><button className="btn"><span className="headerFont">Profile</span></button></Link>
+              <Link to={feedPath}><button className="btn"><span className="headerFont">Feed</span></button></Link>
+            </div>
+          </div>
+          :
+          null
+        }
       </div>
     );
   }

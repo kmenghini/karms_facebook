@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Icon } from 'semantic-ui-react';
 
 class Search extends React.Component {
   constructor(props) {
@@ -45,8 +46,8 @@ class Search extends React.Component {
           placeholder="Search" 
           ref="searchUser" 
         />
-        <button className="search-btn">Find</button>
-
+        <button className="search-btn"><Icon className="search icon"></Icon></button>
+        {/* <input className="search-btn" type="image" src="images/rbook.png" /> */}
       </form>
     )
   }
