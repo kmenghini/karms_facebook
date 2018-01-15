@@ -101,7 +101,7 @@ class SignIn extends React.Component {
             <div id="create-account-text">Don't have an account yet?</div>
             <div><Button className="login-button" id="create-new-account" onClick={this.handleSignUp.bind(this)}>Sign Up</Button></div>
           </Card>
-          {this.state.newUser ? <NewUser usernameError={this.state.usernameError} newUsername={this.state.newUsername} getNewUsername={this.props.getNewUsername} username={this.state.username}/> : null }
+          {this.state.newUser ? <NewUser usernameError={this.state.usernameError} newUsername={this.state.newUsername} getNewUsername={this.props.getNewUsername} username={this.state.username} getSignedIn={this.props.getSignedIn}/> : null }
           </form>
         </div>
       </div>  
