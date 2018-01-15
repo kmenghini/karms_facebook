@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from './Search.jsx';
+import SearchBar from './Search.jsx';
 import { Icon, Image } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
 
@@ -9,7 +9,8 @@ class Header extends React.Component {
     this.state = {
       profilePath: '',
       feedPath: '',
-      clickedProfile: false,
+      redirectProfile: false,
+      // username: window.location.pathname.substring(1, window.location.pathname.indexOf('/feed'))
     }
   }
   getUserProfile(user) {
@@ -29,7 +30,7 @@ class Header extends React.Component {
           (this.props.signedIn) ? 
           <div>
             <Image className="logo" src="/images/rbooktransparent.png"></Image>
-            <Search getUserProfile={this.getUserProfile.bind(this)}/>
+            <SearchBar getUserProfile={this.getUserProfile.bind(this)} loggedInUser={this.props.name}/>
             <div className="header-btn">
               <Link onClick={this.setSignedOut.bind(this)} to='/login'><button className="btn"><span className="headerFont">Log Out</span></button></Link>
               <Link to={profilePath}><button className="btn"><span className="headerFont">Profile</span></button></Link>

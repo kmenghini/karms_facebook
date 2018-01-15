@@ -172,6 +172,20 @@ module.exports = {
       }  
     });
   },
+  //retrieves all users
+  getAllUsers: (callback) => {
+    // console.log('in db getUser, looking for', username)
+    client.query(`SELECT * FROM users;`, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('searched for user in db', res.rows)
+        callback(null, res.rows);
+      }  
+    });
+  },
+
   getUsername: (firstname, lastname, callback) => {
     client.query(`SELECT username FROM users WHERE first_name='${firstname}' AND last_name='${lastname}'`, (err, res) => {
       if (err) {
