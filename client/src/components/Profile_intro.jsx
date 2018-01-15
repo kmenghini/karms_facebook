@@ -31,7 +31,7 @@ class Profile_intro extends React.Component {
           </List.Item>
           <List.Item> 
             <Icon name="student"></Icon>
-            &nbsp; Hack Reactor
+            &nbsp; {this.props.profilePageInfo.education}
           </List.Item>
           <List.Item>
             <Icon name="heart outline"></Icon>

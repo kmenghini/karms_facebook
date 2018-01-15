@@ -84,6 +84,7 @@ class Profile extends React.Component {
     var otherUsername = this.state.profilePageOwner;
     axios.get(`/${username}/friendsList/${otherUsername}`)
       .then((response) => {
+        console.log('friends list...', response.data);
         var isFriend = this.checkIfFriend(username, response.data, otherUsername);
         this.setState({
           friends: response.data,
@@ -145,7 +146,7 @@ class Profile extends React.Component {
       <div className="profile">
         <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} isOwner={this.state.isOwner} profilePageInfo={this.state.profilePageInfo} />
         <Profile_navigation handleNavigation={this.handleNavigation.bind(this)} view={this.state.view} />
-        <Profile_about view={this.state.view} />
+        <Profile_about view={this.state.view} profilePageInfo={this.state.profilePageInfo} />
         <Profile_intro view={this.state.view} profilePageInfo={this.state.profilePageInfo} />
         <Profile_friends friends={this.state.friends} view={this.state.view} />
         <Profile_photos view={this.state.view} />

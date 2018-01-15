@@ -12,6 +12,7 @@ class Profile_about extends React.Component {
   }
 
   render() {
+        console.log('profile page info....', this.props.profilePageInfo);
     return (
       <div className={this.props.view === 'about' ? "aboutContainer" : "hide"}>
         <div className="about"> 
@@ -31,7 +32,7 @@ class Profile_about extends React.Component {
             <div clasName="section lifeEvents"> Life Events </div>
           </div>
           <div className="sectionDetails">
-            <Profile_about_overview aboutView={this.state.aboutView} />
+            <Profile_about_overview aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo}/>
           </div>  
         </div>
       </div>

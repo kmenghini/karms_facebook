@@ -15,10 +15,8 @@ CREATE TABLE users (
 INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'Matt', 'Upham', 'https://data.whicdn.com/images/14922648/large.jpg');
 INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'Albert', 'Chang', 'https://img.buzzfeed.com/buzzfeed-static/static/2017-07/5/14/enhanced/buzzfeed-prod-fastlane-03/enhanced-17346-1499278727-21.jpg?downsize=715:*&output-format=auto&output-quality=auto');
 INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'rayango', 'Ryan', 'Ngo', 'http://cdn.litlepups.net/2015/08/02/cute-small-dog-breeds-in-india-sweet.jpg');
--- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'imafriend3', 'Sam', 'Smith', 'http://fb.com/test3');
--- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (4, 'imafriend4', 'Katie', 'Kelly', 'http://fb.com/test4');
--- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (5, 'imafriend5', 'James', 'John', 'http://fb.com/test5');
--- INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (6, 'imnotafriend1', 'Cassie', 'Luck', 'http://fb.com/test5');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'kmenghini', 'Kaitlyn', 'Menghini', 'https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpghttps://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpg');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'sjain', 'Shubhra', 'Jain', 'https://petcube.com/blog/content/images/2017/04/kitten-supplies-cover-1.jpg');
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
@@ -27,12 +25,11 @@ CREATE TABLE posts (
     post_timestamp TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (6, 6, 'imnotafriend1 post', '2004-10-19 10:23:54+02');
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (1, 1, 'matt upham post', '2004-10-19 10:23:54+02');
--- INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (3, 3, 'imafriend3', '2004-10-19 10:23:54+02');
--- INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (4, 4, 'imafriend4', '2004-10-19 10:23:54+02');
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (2, 2, 'albert chang post', '2004-10-19 10:23:55+02');
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (3, 3, 'ryan ngo post', '2004-10-19 10:23:56+02');
+INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (2, 2, 'kaitlyn menghini post', '2004-10-19 10:23:55+02');
+INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (3, 3, 'shubhra jain post', '2004-10-19 10:23:56+02');
 
 CREATE TABLE user_friends (
     id SERIAL PRIMARY KEY UNIQUE,
@@ -41,13 +38,7 @@ CREATE TABLE user_friends (
 );
 
 INSERT INTO user_friends (id, username, friend_id) VALUES (1, 'mattupham', 2);
--- INSERT INTO user_friends (id, username, friend_id) VALUES (3, 'mattupham', 3);
--- INSERT INTO user_friends (id, username, friend_id) VALUES (4, 'mattupham', 4);
--- INSERT INTO user_friends (id, username, friend_id) VALUES (5, 'mattupham', 5);
--- INSERT INTO user_friends (id, username, friend_id) VALUES (6, 'mattupham', 6);
 INSERT INTO user_friends (id, username, friend_id) VALUES (2, 'albertchanged', 1);
--- INSERT INTO user_friends (id, username, friend_id) VALUES (3, 'mattupham', 3);
--- INSERT INTO user_friends (id, username, friend_id) VALUES (4, 'rayango', 1);
 
 CREATE TABLE user_posts_liked (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
@@ -65,11 +56,11 @@ CREATE TABLE user_profiles (
 
 INSERT INTO user_profiles (id, user_id, user_data) VALUES (1, 1,
   '{
-    "profile_picture": "http://www.petwave.com/~/media/Images/Center/Care-and-Nutrition/Cat/Kittensv2/Kitten-3.ashx", 
+    "profile_picture": "https://data.whicdn.com/images/14922648/large.jpg", 
     "cover_picture": "https://static.pexels.com/photos/210186/pexels-photo-210186.jpeg",
     "intro": "I like to play tag", 
     "residence": "San Francisco", 
-    "school": "Hack Reactor",
+    "education": "Hack Reactor",
     "work": "Student", 
     "relationship_status": "Single", 
     "birthday": "January 1, 2008"
@@ -78,11 +69,11 @@ INSERT INTO user_profiles (id, user_id, user_data) VALUES (1, 1,
 
 INSERT INTO user_profiles (id, user_id, user_data) VALUES (2, 2,
   '{
-    "profile_picture": "https://www.petmd.com/sites/default/files/petmd-cat-happy-13.jpg", 
+    "profile_picture": "https://img.buzzfeed.com/buzzfeed-static/static/2017-07/5/14/enhanced/buzzfeed-prod-fastlane-03/enhanced-17346-1499278727-21.jpg?downsize=715:*&output-format=auto&output-quality=auto", 
     "cover_picture": "http://cdn.mos.cms.futurecdn.net/FUE7XiFApEqWZQ85wYcAfM.jpg",
     "intro": "I like to play frisbee", 
     "residence": "San Francisco", 
-    "school": "Hack Reactor",
+    "education": "Hack Reactor",
     "work": "Student", 
     "relationship_status": "Single", 
     "birthday": "December 11, 2017"
@@ -91,13 +82,37 @@ INSERT INTO user_profiles (id, user_id, user_data) VALUES (2, 2,
 
 INSERT INTO user_profiles (id, user_id, user_data) VALUES (3, 3,
   '{
-    "profile_picture": "https://kids.nationalgeographic.com/content/dam/kids/photos/animals/Reptiles/A-G/gecko-on-leaf.adapt.945.1.jpg", 
+    "profile_picture": "http://cdn.litlepups.net/2015/08/02/cute-small-dog-breeds-in-india-sweet.jpg", 
     "cover_picture": "https://www.nationalgeographic.com/content/dam/photography/photos/000/000/6.jpg",
     "intro": "I like to run around", 
     "residence": "San Francisco", 
-    "school": "Hack Reactor",
+    "education": "Hack Reactor",
     "work": "Student",  
     "relationship_status": "Single", 
     "birthday": "February 27, 2017"
+  }'
+
+  INSERT INTO user_profiles (id, user_id, user_data) VALUES (4, 4,
+  '{
+    "profile_picture": "https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpghttps://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpg", 
+    "cover_picture": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Half_Dome_from_Glacier_Point%2C_Yosemite_NP_-_Diliff.jpg/1200px-Half_Dome_from_Glacier_Point%2C_Yosemite_NP_-_Diliff.jpg",
+    "intro": "I like to jump", 
+    "residence": "San Francisco", 
+    "education": "Hack Reactor",
+    "work": "Student",  
+    "relationship_status": "Single", 
+    "birthday": "February 5, 2017"
+  }'
+
+  INSERT INTO user_profiles (id, user_id, user_data) VALUES (5, 5,
+  '{
+    "profile_picture": "https://petcube.com/blog/content/images/2017/04/kitten-supplies-cover-1.jpg", 
+    "cover_picture": "https://fthmb.tqn.com/Eynp5TR-E6oyLoepG69ZgBrfw8M=/3666x2444/filters:fill(auto,1)/MtWhitney_PinyaPhotography_GettyImages_2-56e04db03df78c5ba054f849.jpg",
+    "intro": "I like to run around", 
+    "residence": "San Francisco", 
+    "education": "Hack Reactor",
+    "work": "Student",  
+    "relationship_status": "Single", 
+    "birthday": "February 10, 2017"
   }'
 );      
