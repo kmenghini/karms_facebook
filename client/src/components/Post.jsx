@@ -37,7 +37,7 @@ class Post extends React.Component {
   }
   executeToggleLike() {
     let username = this.props.name;
-    console.log(username);
+    console.log('liked.........', username);
     // let timestampReplaceT = this.props.post.post_timestamp.replace('T', ' ');
     // let indexOfDot = this.props.post.post_timestamp.indexOf('.');
     // let indexOfHyphen = this.props.post.post_timestamp.indexOf('-');
@@ -118,7 +118,10 @@ class Post extends React.Component {
       })
   }
   render() {
-    console.log(this.props.post.first_name);
+    console.log('post owner',this.props.post.first_name);
+    console.log('logged in name', this.props.name)
+    console.log('this is missing on own profile', this.state.clickedUsername)
+    if (!this.state.clickedUsername) {this.setState({clickedUsername: this.props.name})};
     let clickedProfilePath = '/' + this.state.clickedUsername + '/profile/' + this.props.name;
     console.log(clickedProfilePath);
     if (this.state.redirect) {
