@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Main from './Main.jsx';
 import Post from './components/Post.jsx';
 import PostList from './components/PostList.jsx';
-import Search from './components/Search.jsx';
+import SearchBar from './components/Search.jsx';
 import Profile from './components/Profile.jsx';
 import Header from './components/Header.jsx';
 import Feed from './components/Feed.jsx';

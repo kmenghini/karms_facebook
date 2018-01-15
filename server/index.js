@@ -8,6 +8,29 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 let port = 3000;
 
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
+//     if (err) {
+//       res.status(500).send(err);
+//     }
+//   })
+// });
+// Get all posts
+
+app.get('/search/users', function(req, res) {
+  // console.log("GETTING ALL FRIENDS POSTS");
+  db.getAllUsers((err, data) => {
+    // console.log("Error", err, "data", data);
+    if (err) {
+      console.log('This is my error', err);
+      res.sendStatus(404);
+    } else {
+      // console.log('This is my data', data);
+      res.status(200).json(data);
+    }
+  })
+});
+
 //gets post of all friends
 app.get('/:username/posts/friends', function(req, res) {
   // console.log("GETTING ALL FRIENDS POSTS");
