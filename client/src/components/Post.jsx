@@ -9,11 +9,11 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      liked: false,
       likeCount: 0,
       clickedUsername: '',
       redirect: false,
-      likers: ''
+      likers: '',
+      personalLikeCount: 0
     };
   }
   componentDidMount() {
@@ -42,35 +42,43 @@ class Post extends React.Component {
     // let indexOfHyphen = this.props.post.post_timestamp.indexOf('-');
     // let timestamp = timestampReplaceT.substring(0, indexOfDot) + timestampReplaceT.substring(indexOfHyphen, timestampReplaceT.length) + '00';
     // console.log(timestamp);
-    console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
+    // console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
+
+    // Get the author's username
     axios.get(`/${username}/post/author`, { params: { 'text': this.props.post.post_text }})
       .then((author) => {
         console.log('author', author.data[0].username);
-        if (!this.state.liked) {
-          axios.post(`/likes/${author.data[0].username}`, { 'text': this.props.post.post_text, 'username': this.props.name })
-            .then((res) => {
-              console.log('Liked!');
-              this.setState({
-                liked: true
-              })
-              this.getLikeAmount();
-            })
-            .catch((err) => {
-              console.error('This is the err', err);
-            })
-        } else {
-          axios.delete(`/likes/${author.data[0].username}`, { params: { 'text': this.props.post.post_text, 'username': this.props.name }})
-            .then((res) => {
-              console.log('Unliked!');
-              this.setState({
-                liked: false
-              })
-              this.getLikeAmount();
-            })
-            .catch((err) => {
-              console.error('This is the err', err);
-            })
-        }
+        // Get the number of times you have liked the post
+        axios.get(`/${username}/likes`, { params: { 'text': this.props.post.post_text }})
+          .then((count) => {
+            let personalLikeCount = count.data[0].count;
+            console.log(`${username} has liked this post ${personalLikeCount} times`);
+            // If you haven't liked it yet
+            if (personalLikeCount < 1) {
+              axios.post(`/likes/${author.data[0].username}`, { 'text': this.props.post.post_text, 'username': username })
+                .then((res) => {
+                  console.log(`${username} has liked the post!`);
+                  this.getLikers();
+                  this.getLikeAmount();
+                })
+                .catch((err) => {
+                  console.error('This is the err', err);
+                })
+            } else { // Time to unlike!
+              axios.delete(`/likes/${author.data[0].username}`, { params: { 'text': this.props.post.post_text, 'username': username }})
+                .then((res) => {
+                  console.log(`${username} has unliked the post!`);
+                  this.getLikers();
+                  this.getLikeAmount();
+                })
+                .catch((err) => {
+                  console.error('This is the err', err);
+                })
+            }
+          })
+          .catch((err) => {
+            console.log('Error getting personal like count', err);
+          })
       })
       .catch((err) => {
         console.error('Error', err);
@@ -135,7 +143,6 @@ class Post extends React.Component {
                 <Button className="likeHeartButton">
                   <Icon name="heart" />
                   {(this.state.likeCount)}&nbsp;{(this.state.likeCount !== 1) ? 'likes' : 'like'}
-                  {/* {(this.state.liked) ? this.state.likeCount-- : this.state.likeCount++} {(this.state.likeCount === 1) ? 'Likes' : 'Like'} */}
                 </Button>
               </Button>
               <ReactTooltip />

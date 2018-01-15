@@ -2,7 +2,7 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://rngo@localhost:5432/fb_database'
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
 });
 
 client.connect();
@@ -78,6 +78,28 @@ module.exports = {
     `SELECT user_id FROM user_posts_liked WHERE post_id = 
     (SELECT id FROM posts WHERE post_text = '${text}')`;
     // console.log('This is my queryStr', queryStr);
+    client.query(queryStr, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        // console.log('Getting number of likes!');
+        callback(null, res.rows);
+      }
+    });
+  },
+  getPersonalLikeAmount: (username, text, callback) => {
+    // console.log(username);
+    // console.log(text);
+    // let queryStr =
+    // `SELECT COUNT(user_id) FROM user_posts_liked INNER JOIN WHERE post_id = 
+    // (SELECT id FROM posts WHERE post_text = '${text}')`;
+    let queryStr =
+    `SELECT count(user_id) FROM user_posts_liked INNER JOIN 
+    users ON users.id = user_posts_liked.user_id AND 
+    user_posts_liked.user_id = (SELECT id FROM users WHERE username = '${username}') 
+    WHERE post_id = (SELECT id FROM posts WHERE posts.post_text = '${text}');
+    `
+    console.log('This is my queryStr', queryStr);
     client.query(queryStr, (err, res) => {
       if (err) {
         callback(err, null);

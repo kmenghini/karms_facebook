@@ -17,7 +17,7 @@ class Profile_friends extends React.Component {
           Friends
         </Header>
         <span className="friendsCount">
-          &nbsp; · &nbsp; {this.props.friends.length} friends
+          &nbsp; · &nbsp; {this.props.friends.length} {(this.props.friends.length === 1) ? 'friend' : 'friends'}
         </span>
         <div className="friends">
           {

@@ -253,11 +253,11 @@ body {
 .postSection .postCard {
   max-height: 100%;
   width: 100%;
-  margin-bottom: 2.5%;
+  margin-bottom: -5px;
 }
 .postSection .createPostBody {
   grid-row: 1;
-/*  width: 100%;*/
+  width: 100%;
   margin-top: 3px;
   margin-bottom: -12.5px;
 }
@@ -564,7 +564,7 @@ body {
   margin-top: -12.5px;
 }
 .description {
-  margin-left: -22.5px;
+  margin-left: 2.5px;
 }
 .trendingDescription {
   margin-left: 0px;

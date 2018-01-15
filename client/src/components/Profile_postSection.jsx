@@ -2,6 +2,7 @@ import React from 'react';
 import CreatePost from './CreatePost.jsx';
 import Post from './Post.jsx';
 import { List } from 'semantic-ui-react';
+import FadeIn from 'react-fade-in';
 
 class Profile_postSection extends React.Component {
   constructor(props) {
@@ -17,11 +18,13 @@ class Profile_postSection extends React.Component {
         <CreatePost renderNewPost={this.props.getUserPosts.bind(this)} name={this.props.username}/>  
         <List className="items">
           {
-            this.props.posts.map((post) => (
-              <div>
-                <Post post={post} key={post.id} />
+            this.props.posts.map((post, index) => (
+              <FadeIn>
+              <div key={index}>
+                <Post post={post} />
                 <br />
               </div>
+              </FadeIn>
             ))
           }
         </List>
