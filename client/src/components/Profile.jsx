@@ -39,16 +39,16 @@ class Profile extends React.Component {
     this.getUserProfileInfo();
   }  
 
-  componentWillReceiveProps(nextProps) {
-    // console.log('I received props');
-    if (nextProps.location.pathname !== this.props.location.pathname) {
-      // console.log('Yes it is different');
-      console.log(nextProps.match.params.friendname);
-      this.getUserInfo(nextProps.match.params.friendname);
-      this.getUserPosts(nextProps.match.params.friendname);
-      this.getFriends(nextProps.match.params.friendname);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   // console.log('I received props');
+  //   if (nextProps.location.pathname !== this.props.location.pathname) {
+  //     // console.log('Yes it is different');
+  //     console.log(nextProps.match.params.friendname);
+  //     this.getUserInfo(nextProps.match.params.friendname);
+  //     this.getUserPosts(nextProps.match.params.friendname);
+  //     this.getFriends(nextProps.match.params.friendname);
+  //   }
+  // }
 
   getUserInfo(user) {
     console.log('Getting info for ', this.state.profilePageOwner);
