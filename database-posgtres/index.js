@@ -2,7 +2,7 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
+  connectionString: process.env.DATABASE_URL || 'postgres://rngo@localhost:5432/fb_database'
 });
 
 client.connect();
@@ -11,6 +11,20 @@ module.exports = {
     client.query('SELECT * FROM users;', (err, res) => {
       if (err) callback(err, null);
       callback(null, res.rows);
+    });
+  },
+  updateProfilePageInfo: (username, change, callback) => {
+    var edit = {};
+    edit[change[0]] = change[1];
+    edit = JSON.stringify(edit);
+    var query = `UPDATE user_profiles set user_data = user_data::jsonb || '${edit}' where user_id = (SELECT id FROM users WHERE username = '${username}')`;
+    console.log('updating database....');
+    client.query(query, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {  
+        callback(null, res.rows);
+      }  
     });
   },
   createPost: (username, text, callback) => {
@@ -192,11 +206,27 @@ module.exports = {
         console.log('Error', err)
         callback(err, null);
       } else {  
+        console.log('added user in db!');
+        callback(null, res.rows);
+      }
+    });
+  },   
+  addNewUserProfileInfo: (username, callback) => {
+    console.log('adding new user profile info', username);
+    var defaultProfile = {};
+    defaultProfile.profile_picture = '/images/profile_default.jpg'
+    defaultProfile = JSON.stringify(defaultProfile);
+    console.log('defaultProfile', defaultProfile);
+    client.query(`INSERT INTO user_profiles (user_id, user_data) VALUES ((SELECT id FROM users WHERE username='${username}'), '${defaultProfile}')`, (err, res) => {
+      if (err) {
+        console.log('Error', err);
+        callback(err, null);
+      } else {  
         console.log('added user in db!')
         callback(null, res.rows);
       }
     });
-  },      
+  },     
   getUserPosts: (username, callback) => {
     // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
     // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
@@ -298,6 +328,18 @@ module.exports = {
             callback(null, res.rows);
           }  
         });
+      }  
+    });
+  },
+  getProfilePageInfo: (username, callback) => {
+    console.log('getting profile page info....');
+    var query = `SELECT * from user_profiles WHERE user_id = (SELECT id FROM users WHERE username = '${username}')`;
+    client.query(query, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {  
+        // console.log('res', res);
+        callback(null, res.rows);
       }  
     });
   }

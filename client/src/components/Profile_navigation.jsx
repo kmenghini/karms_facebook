@@ -10,7 +10,6 @@ class Profile_navigation extends React.Component {
   }
 
   render() {
-    console.log('view....', this.props.view);
     return (
      <div className="profileNavigation">
         <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">

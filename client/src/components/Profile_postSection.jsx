@@ -15,8 +15,28 @@ class Profile_postSection extends React.Component {
   render() {
     return (
       <div className={this.props.view === 'Timeline' ? "postSection" : "hide"}>
-        <CreatePost renderNewPost={this.props.getUserPosts.bind(this)} name={this.props.username}/>  
-        <List className="items">
+        {this.props.isOwner ? 
+          <CreatePost renderNewPost={this.props.getUserPosts.bind(this)} name={this.props.username}/>
+          :
+          <span></span>
+        }
+
+        {this.props.isOwner ? 
+
+          <List className="items">
+          {
+            this.props.posts.map((post) => (
+              <div>
+                <Post post={post} key={post.id} />
+                <br />
+              </div>
+            ))
+          }
+          </List>
+
+          :
+
+          <List className="visitorView">
           {
             this.props.posts.map((post, index) => (
               <FadeIn>
@@ -27,7 +47,8 @@ class Profile_postSection extends React.Component {
               </FadeIn>
             ))
           }
-        </List>
+          </List>  
+        }  
       </div>
     );
   }

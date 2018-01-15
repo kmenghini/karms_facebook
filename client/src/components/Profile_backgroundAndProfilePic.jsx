@@ -10,10 +10,11 @@ class Profile_backgroundAndProfilePic extends React.Component {
   }
 
   render() {
+    console.log('profile page info...', this.props.profilePageInfo.user_data)
     return (
       <div className="backgroundAndProfilePic">
-        <Image className="backgroundPicture" src="/images/pexels.jpeg"></Image>
-        <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
+        <Image className="backgroundPicture" src={this.props.profilePageInfo.cover_picture}></Image>
+        <Image className="profilePicture" src={this.props.profilePageInfo.profile_picture}></Image>
         <Header size="large" inverted color="grey" textAlign="center" className="name"> 
           {this.props.userInfo.first_name} {this.props.userInfo.last_name} 
         </Header>
