@@ -110,7 +110,7 @@ class SearchBar extends Component {
 
   handleResultSelect(e, { result }) { 
     //go to profile
-    alert(result.description)
+    // alert(result.description)
     this.setState({
       redirect: true,
       clickedName: result.description
