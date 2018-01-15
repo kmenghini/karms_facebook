@@ -5,8 +5,8 @@ import NewUser from './NewUser.jsx'
 import { Redirect, Link } from 'react-router-dom';
 
 class SignIn extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: '',
       newUsername: '',
@@ -49,6 +49,7 @@ class SignIn extends React.Component {
             redirect: true
           });
           this.getUsername();
+          this.props.getSignedIn(true);
           console.log('need to route to feed for', this.state.username)
           //route to feed for this user
         } else {
@@ -84,6 +85,11 @@ class SignIn extends React.Component {
     }
     return(
       <div className="signIn-page">
+        <div className="left-column">
+          <h1 className="signInLogoLabel">Welcome to</h1>
+          <img className="signInLogo" src='/images/rebasebookblue.png' />
+          <h3 className="signInTag">The social media for <span className="programmersLabel">&#60;programmers&#62;</span>.</h3>
+        </div>
         <div className="right-column">
           <h3 id="sign-in"> Sign In </h3>
           <form onSubmit={this.handleSubmit.bind(this)}>
@@ -98,7 +104,6 @@ class SignIn extends React.Component {
           {this.state.newUser ? <NewUser usernameError={this.state.usernameError} newUsername={this.state.newUsername} getNewUsername={this.props.getNewUsername} username={this.state.username}/> : null }
           </form>
         </div>
-      
       </div>  
     )
   }

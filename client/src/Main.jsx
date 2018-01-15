@@ -12,7 +12,8 @@ class Main extends React.Component {
     super(props);
     this.state = {
       username: '',
-      newUsername: ''
+      newUsername: '',
+      signedIn: ''
     }
   }
   getProfile(user) {
@@ -32,15 +33,21 @@ class Main extends React.Component {
       username: newUsername
     })
   }
+  getSignedIn(signedIn) {
+    console.log(signedIn);
+    this.setState({
+      signedIn: signedIn
+    })
+  }
   render() {
     return (
       <main>
         <div>
-        <Header getProfile={this.getProfile.bind(this)} name={this.state.username} />
+        <Header getProfile={this.getProfile.bind(this)} name={this.state.username} signedIn={this.state.signedIn} getSignedIn={this.getSignedIn.bind(this)}/>
         <Switch>
-          <Route exact path='/' component={() => <SignIn getUsername={this.getUsername.bind(this)} getNewUsername={this.getNewUsername.bind(this)} getProfile={this.getProfile.bind(this)} /> } />
+          <Route exact path='/' component={() => <SignIn getUsername={this.getUsername.bind(this)} getNewUsername={this.getNewUsername.bind(this)} getProfile={this.getProfile.bind(this)} getSignedIn={this.getSignedIn.bind(this)}/> } />
           <Route path='/:username/feed' component={Feed} />
-          <Route path='/login' component={SignIn} />
+          <Route path='/login' component={() =><SignIn getUsername={this.getUsername.bind(this)} getNewUsername={this.getNewUsername.bind(this)} getProfile={this.getProfile.bind(this)} getSignedIn={this.getSignedIn.bind(this)}/>} />
           <Route path='/:username/profile/:friendname' component={Profile} />
         </Switch>
         </div>

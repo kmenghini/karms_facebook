@@ -132,7 +132,7 @@ class Post extends React.Component {
               <img className="postPic" src="https://www.doghealth.com/images/stories/doghealth/front_page_puppy.jpg"/>
               <div className="postBody">
                 <p className="postName">
-                  <strong><span onClick={this.handleClickedProfile.bind(this)}>{this.props.post.first_name}&nbsp;{this.props.post.last_name}</span></strong>
+                  <strong><span className="nameLink" onClick={this.handleClickedProfile.bind(this)}><a>{this.props.post.first_name}&nbsp;{this.props.post.last_name}</a></span></strong>
                   <br /><span className="postTimestamp">{moment(this.props.post.post_timestamp).fromNow()}</span>
                 </p>
               </div>
