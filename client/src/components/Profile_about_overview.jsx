@@ -45,9 +45,9 @@ class Profile_about_overview extends React.Component {
   saveChanges() {
     let changes = document.getElementById('edits').value.replace(`'`, `''`);
     document.getElementById('edits').value = '';
-    var data = {};
-    data[this.state.fieldToEdit] = changes;
+    var data = [this.state.fieldToEdit, changes];
     this.props.updateProfile(data);
+    this.cancelEditField();
   }
 
   cancelEditField() {

@@ -13,6 +13,20 @@ module.exports = {
       callback(null, res.rows);
     });
   },
+  updateProfilePageInfo: (username, change, callback) => {
+    var edit = {};
+    edit[change[0]] = change[1];
+    edit = JSON.stringify(edit);
+    var query = `UPDATE user_profiles set user_data = user_data::jsonb || '${edit}' where user_id = (SELECT id FROM users WHERE username = '${username}')`;
+    console.log('updating database....');
+    client.query(query, (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {  
+        callback(null, res.rows);
+      }  
+    });
+  },
   createPost: (username, text, callback) => {
     // console.log('This is my client', client);
     let queryStr =
