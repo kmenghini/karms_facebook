@@ -1,6 +1,7 @@
 import React from 'react';
 import { Divider, Header, List, Icon, Grid, Image, Button } from 'semantic-ui-react';
 import Profile_about_overview from './Profile_about_overview.jsx';
+import Profile_about_profileAndCoverPicture from './Profile_about_profileAndCoverPicture.jsx';
 
 class Profile_about extends React.Component {
   constructor(props) {
@@ -11,8 +12,13 @@ class Profile_about extends React.Component {
     }
   }
 
+  changeAboutView(e) {
+    this.setState({
+      aboutView: e.target.id
+    });
+  }
+
   render() {
-        console.log('profile page info....', this.props.profilePageInfo);
     return (
       <div className={this.props.view === 'about' ? "aboutContainer" : "hide"}>
         <div className="about"> 
@@ -23,16 +29,23 @@ class Profile_about extends React.Component {
             </Header>
           </div>
           <div className="sections">
-            <div clasName="section overview"> Overview </div>
-            <div clasName="section workAndEducation"> Work and Education </div>
-            <div clasName="section placesLived"> Places Lived </div>
-            <div clasName="section contactAndBasicInfo"> Contact and Basic Info </div>
-            <div clasName="section familyAndRelationships"> Family and Relationships </div>
-            <div clasName="section otherDetails"> Other Details </div>
-            <div clasName="section lifeEvents"> Life Events </div>
+            <div className={this.state.aboutView === 'overview' ? "section active" : "section"} onClick={(e) => this.changeAboutView(e)} id="overview"> Overview </div>
+            <div className={this.state.aboutView === 'workAndEducation' ? "section active" : "section"} onClick={(e) => this.changeAboutView(e)} id="workAndEducation"> Work and Education </div>
+            <div className={this.state.aboutView === 'placesLived' ? "section active" : "section"} onClick={(e) => this.changeAboutView(e)} id="placesLived"> Places Lived </div>
+            <div className={this.state.aboutView === 'contactAndBasicInfo' ? "section active" : "section"} onClick={(e) => this.changeAboutView(e)} id="contactAndBasicInfo"> Contact and Basic Info </div>
+            <div className={this.state.aboutView === 'familyAndRelationships' ? "section active" : "section"} onClick={(e) => this.changeAboutView(e)} id="familyAndRelationships"> Family and Relationships </div>
+            <div className={this.state.aboutView === 'otherDetails' ? "section active" : "section"} onClick={(e) => this.changeAboutView(e)} id="otherDetails"> Other Details </div>
+            <div className={this.state.aboutView === 'lifeEvents' ? "section active" : "section"} onClick={(e) => this.changeAboutView(e)} id="lifeEvents"> Life Events </div>
+            {
+              this.props.isOwner ? 
+              <div className={this.state.aboutView === 'profileAndCoverPicture' ? "section active" : "section"} id="profileAndCoverPicture" onClick={(e) => this.changeAboutView(e)}> Profile / Cover Picture </div>
+              :
+              <div></div>
+            }
           </div>
           <div className="sectionDetails">
-            <Profile_about_overview aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo} updateProfile={this.props.updateProfile}/>
+            <Profile_about_overview aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo} updateProfile={this.props.updateProfile} />
+            <Profile_about_profileAndCoverPicture aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo} updateProfile={this.props.updateProfile} />
           </div>  
         </div>
       </div>

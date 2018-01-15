@@ -7,7 +7,7 @@ class Profile_about_overview extends React.Component {
     this.state = {
       introView: 'display',
       residenceView: 'display',
-      workplaceView: 'display',
+      workView: 'display',
       educationView: 'display',
       birthdayView: 'display',
       relationshipStatusView: 'display',
@@ -19,7 +19,7 @@ class Profile_about_overview extends React.Component {
     if (Object.values(this.state).indexOf('edit') !== -1) {
       alert('Please finish editing the open field');
       return;
-    }  
+    } 
     var viewToEdit = e.target.id.slice(4, 5).toLowerCase() + e.target.id.slice(5) + 'View';
     var fieldToEdit = e.target.id.slice(4, 5).toLowerCase() + e.target.id.slice(5);
     var editState = {};
@@ -54,7 +54,7 @@ class Profile_about_overview extends React.Component {
     this.setState({
       introView: 'display',
       residenceView: 'display',
-      workplaceView: 'display',
+      workView: 'display',
       educationView: 'display',
       birthdayView: 'display',
       relationshipStatusView: 'display',
@@ -82,9 +82,9 @@ class Profile_about_overview extends React.Component {
         </div> 
         <div className="detail work">
           <Header> Workplace </Header>
-          <Icon size="large" link name="edit" id="editWorkplace" onClick={(e) => this.edit(e)}></Icon>
+          <Icon size="large" link name="edit" id="editWork" onClick={(e) => this.edit(e)}></Icon>
           <Divider />
-          {this.state.workplaceView === 'display' ? <span> {this.props.profilePageInfo.work} </span> : this.createEditField()}
+          {this.state.workView === 'display' ? <span> {this.props.profilePageInfo.work} </span> : this.createEditField()}
         </div>
         <div className="detail education">
           <Header> Education </Header>
