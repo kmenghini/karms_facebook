@@ -227,7 +227,14 @@ app.post('/:username', (req, res) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.status(200).json(data);
+        // res.status(200).json(data);
+        db.addNewUserProfileInfo(newUserData.username, (err, data) => {
+          if (err) {
+            res.status(404).send(err);
+          } else {
+            res.status(200).json(data);
+          }
+        });
       }
     })
   }  

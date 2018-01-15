@@ -206,11 +206,27 @@ module.exports = {
         console.log('Error', err)
         callback(err, null);
       } else {  
+        console.log('added user in db!');
+        callback(null, res.rows);
+      }
+    });
+  },   
+  addNewUserProfileInfo: (username, callback) => {
+    console.log('adding new user profile info', username);
+    var defaultProfile = {};
+    defaultProfile.profile_picture = '/images/profile_default.jpg'
+    defaultProfile = JSON.stringify(defaultProfile);
+    console.log('defaultProfile', defaultProfile);
+    client.query(`INSERT INTO user_profiles (user_id, user_data) VALUES ((SELECT id FROM users WHERE username='${username}'), '${defaultProfile}')`, (err, res) => {
+      if (err) {
+        console.log('Error', err);
+        callback(err, null);
+      } else {  
         console.log('added user in db!')
         callback(null, res.rows);
       }
     });
-  },      
+  },     
   getUserPosts: (username, callback) => {
     // var queryStr = `SELECT posts.*, users.* FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = (SELECT users.id FROM users WHERE users.username = ${username})`;
     // var queryStr = `SELECT posts.*, users.first_name, users.last_name FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY id DESC`;
