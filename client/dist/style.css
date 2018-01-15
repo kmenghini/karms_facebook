@@ -4,9 +4,19 @@ body {
 
 /******************************************** Search / Header Component ******************************************************/
 
+.ui.icon.input {
+  height: 33px !important;
+  margin-top: 10px;
+}
+
+.ui.grid {
+  width: 630px !important;
+  margin-right: 0px !important;
+}
+
 .search-input {
-  width: 350px !important;
-  height: 30px;
+  width: 220px !important;
+  height: 5px !important;
   margin: 8px 0 7px 7px;
   float: left;
   border: none;
@@ -28,16 +38,17 @@ body {
 .search-bar {
   float: left;
 }
-.header {
-  height: 47px;
+.global-header {
+  height: 55px;
   background-color: #3F5FA4;
+  padding-bottom: 20px;
   margin-bottom: 20px;
 }
 .header-btn {
   margin-right: 140px;
 }
 .btn {
-  margin-top: 6px;
+  margin-top: 10px;
   float: right;
   width: 70px;
   height: 35px;
@@ -53,8 +64,8 @@ body {
   height: 30px;
   width: 30px;
   float: left;
-  margin: 8.25px 0 7px 140px;
-  margin-right: 0.25%;
+  margin: 19px -25px 7px 185px;
+  /* margin-right: 0.25%; */
   
   border-radius: 1px;
   
@@ -160,14 +171,14 @@ body {
   margin: 3% !important; 
   margin-top: 5% !important;
 }
-.intro > .header {
+.intro > .global-header {
   background-color: transparent;
   height: auto;
   padding-left: 1% !important;
   padding-top: 1% !important;
   margin-bottom: 0px !important;
 }
-.intro > .header > .introLogo {
+.intro > .global-header > .introLogo {
   width: 70%;
   height: auto;
   margin-right: 2% !important;
@@ -181,7 +192,7 @@ body {
   max-height: 100%;
   width: 100%;
 }
-.friendsList > .header {
+.friendsList > .global-header {
   background-color: transparent;
   height: auto;
   margin-top: 0% !important;
@@ -222,7 +233,7 @@ body {
   max-height: 100%;
   width: 100%;
 }
-.photosList > .header {
+.photosList > .global-header {
   background-color: transparent;
   height: auto;
   margin-top: 5% !important;
@@ -306,7 +317,7 @@ body {
   align-self: center;
   padding-bottom: 1%;
 }
-.title .header {
+.title .global-header {
   background-color: transparent;
   margin-bottom: 0% !important;
   height: 100%;
@@ -349,7 +360,7 @@ body {
   margin-bottom: 5%;
 }
 
-.detail > .header {
+.detail > .global-header {
   background-color: transparent;
   margin-bottom: 0% !important;
   height: 100%;
@@ -369,7 +380,7 @@ body {
   margin-bottom: 5%;
 }
 
-.detail > .header {
+.detail > .global-header {
   background-color: transparent;
   margin-bottom: 0% !important;
   height: 100%;
@@ -413,7 +424,7 @@ textarea {
   margin-top: 2.5%;
 }
 
-.title .header {
+.title .global-header {
   background-color: transparent;
   margin-bottom: 0% !important;
   height: 100%;

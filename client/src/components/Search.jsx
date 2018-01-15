@@ -139,16 +139,19 @@ class SearchBar extends Component {
     }
     return (
       <Grid>
-        <Grid.Column width={8}>
+        {/* <Grid.Column width={2}> */}
+        <form className="search-bar" onSubmit={this.handleSearchChange.bind(this)}>
           <Search
             loading={isLoading}
             onResultSelect={this.handleResultSelect.bind(this)}
             onSearchChange={this.handleSearchChange.bind(this)}
             results={results}
             value={value}
+            className="search-input"
             // {...this.props}
           />
-        </Grid.Column>
+        </form>
+        {/* </Grid.Column> */}
         {/* <Grid.Column width={8}>
           <Header>State</Header>
           <pre>{JSON.stringify(this.state, null, 2)}</pre>
@@ -159,6 +162,17 @@ class SearchBar extends Component {
     )
   }
 }
+
+//       <form className="search-bar" onSubmit={this.handleSearch.bind(this)}>
+//         <input 
+//           className="search-input" 
+//           type="text" 
+//           placeholder="Search" 
+//           ref="searchUser" 
+//         />
+//         <button className="search-btn">Find</button>
+
+//       </form>
 
 export default SearchBar;
 
