@@ -18,6 +18,7 @@ class Post extends React.Component {
   }
   componentDidMount() {
     this.getLikeAmount();
+    this.getLikers();
   }
   getLikeAmount() {
     axios.get(`/likes`, { params: { 'text': this.props.post.post_text }})

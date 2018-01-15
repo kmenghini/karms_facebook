@@ -31,6 +31,8 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.match.params.friendname);
+    console.log(this.props.match.params.username);
     this.getUserInfo();
     this.getUserPosts();
     this.getFriends();
