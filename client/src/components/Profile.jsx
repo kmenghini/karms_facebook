@@ -7,6 +7,7 @@ import Profile_friends from './Profile_friends.jsx';
 import Profile_photos from './Profile_photos.jsx';
 import Profile_intro from './Profile_intro.jsx';
 import Profile_about from './Profile_about.jsx';
+import Profile_allFriends from './Profile_allFriends.jsx';
 import Profile_navigation from './Profile_navigation.jsx';
 import Profile_backgroundAndProfilePic from './Profile_backgroundAndProfilePic.jsx';
 import Profile_postSection from './Profile_postSection.jsx';
@@ -155,6 +156,7 @@ class Profile extends React.Component {
         <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} isOwner={this.state.isOwner} profilePageInfo={this.state.profilePageInfo} />
         <Profile_navigation handleNavigation={this.handleNavigation.bind(this)} view={this.state.view} />
         <Profile_about view={this.state.view} profilePageInfo={this.state.profilePageInfo} updateProfile={this.updateProfile.bind(this)} isOwner={this.state.isOwner} />
+        <Profile_allFriends view={this.state.view} friends={this.state.friends} />
         <Profile_intro view={this.state.view} profilePageInfo={this.state.profilePageInfo} />
         <Profile_friends friends={this.state.friends} view={this.state.view} />
         <Profile_photos view={this.state.view} />

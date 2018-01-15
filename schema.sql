@@ -15,8 +15,8 @@ CREATE TABLE users (
 INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (1, 'mattupham', 'Matt', 'Upham', 'https://data.whicdn.com/images/14922648/large.jpg');
 INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (2, 'albertchanged', 'Albert', 'Chang', 'https://img.buzzfeed.com/buzzfeed-static/static/2017-07/5/14/enhanced/buzzfeed-prod-fastlane-03/enhanced-17346-1499278727-21.jpg?downsize=715:*&output-format=auto&output-quality=auto');
 INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'rayango', 'Ryan', 'Ngo', 'http://cdn.litlepups.net/2015/08/02/cute-small-dog-breeds-in-india-sweet.jpg');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'kmenghini', 'Kaitlyn', 'Menghini', 'https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpghttps://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpg');
-INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (3, 'sjain', 'Shubhra', 'Jain', 'https://petcube.com/blog/content/images/2017/04/kitten-supplies-cover-1.jpg');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (4, 'kmenghini', 'Kaitlyn', 'Menghini', 'https://lh4.ggpht.com/4nDELzdauqt2pyNaf-JI-ZDo6Ur87KgtQi9ASUaQF-l8qMIfufBXz0FLh1BV5oxGbDw=h900');
+INSERT INTO users (id, username, first_name, last_name, picture_url) VALUES (5, 'sjain', 'Shubhra', 'Jain', 'https://petcube.com/blog/content/images/2017/04/kitten-supplies-cover-1.jpg');
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY NOT NULL UNIQUE,
@@ -28,8 +28,8 @@ CREATE TABLE posts (
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (1, 1, 'matt upham post', '2004-10-19 10:23:54+02');
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (2, 2, 'albert chang post', '2004-10-19 10:23:55+02');
 INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (3, 3, 'ryan ngo post', '2004-10-19 10:23:56+02');
-INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (2, 2, 'kaitlyn menghini post', '2004-10-19 10:23:55+02');
-INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (3, 3, 'shubhra jain post', '2004-10-19 10:23:56+02');
+INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (4, 4, 'kaitlyn menghini post', '2004-10-19 10:23:55+02');
+INSERT INTO posts (id, user_id, post_text, post_timestamp) VALUES (5, 5, 'shubhra jain post', '2004-10-19 10:23:56+02');
 
 CREATE TABLE user_friends (
     id SERIAL PRIMARY KEY UNIQUE,
@@ -91,10 +91,11 @@ INSERT INTO user_profiles (id, user_id, user_data) VALUES (3, 3,
     "relationship_status": "Single", 
     "birthday": "February 27, 2017"
   }'
+);  
 
   INSERT INTO user_profiles (id, user_id, user_data) VALUES (4, 4,
   '{
-    "profile_picture": "https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpghttps://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpg", 
+    "profile_picture": "https://lh4.ggpht.com/4nDELzdauqt2pyNaf-JI-ZDo6Ur87KgtQi9ASUaQF-l8qMIfufBXz0FLh1BV5oxGbDw=h900", 
     "cover_picture": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Half_Dome_from_Glacier_Point%2C_Yosemite_NP_-_Diliff.jpg/1200px-Half_Dome_from_Glacier_Point%2C_Yosemite_NP_-_Diliff.jpg",
     "intro": "I like to jump", 
     "residence": "San Francisco", 
@@ -103,12 +104,13 @@ INSERT INTO user_profiles (id, user_id, user_data) VALUES (3, 3,
     "relationship_status": "Single", 
     "birthday": "February 5, 2017"
   }'
+);  
 
   INSERT INTO user_profiles (id, user_id, user_data) VALUES (5, 5,
   '{
     "profile_picture": "https://petcube.com/blog/content/images/2017/04/kitten-supplies-cover-1.jpg", 
     "cover_picture": "https://fthmb.tqn.com/Eynp5TR-E6oyLoepG69ZgBrfw8M=/3666x2444/filters:fill(auto,1)/MtWhitney_PinyaPhotography_GettyImages_2-56e04db03df78c5ba054f849.jpg",
-    "intro": "I like to run around", 
+    "intro": "I like to skip", 
     "residence": "San Francisco", 
     "education": "Hack Reactor",
     "work": "Student",  

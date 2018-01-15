@@ -10,7 +10,7 @@ class Profile_about_overview extends React.Component {
       workView: 'display',
       educationView: 'display',
       birthdayView: 'display',
-      relationshipStatusView: 'display',
+      relationship_statusView: 'display',
       fieldToEdit: ''               
     }
   }
@@ -57,7 +57,7 @@ class Profile_about_overview extends React.Component {
       workView: 'display',
       educationView: 'display',
       birthdayView: 'display',
-      relationshipStatusView: 'display',
+      relationship_statusView: 'display',
       fieldToEdit: '' 
     });
   }
@@ -70,39 +70,63 @@ class Profile_about_overview extends React.Component {
           <Header> 
             Intro &nbsp;
           </Header>
-          <Icon size="large" link name="edit" id="editIntro" onClick={(e) => this.edit(e)}></Icon>
+          {this.props.isOwner ?
+            <Icon size="large" link name="edit" id="editIntro" onClick={(e) => this.edit(e)}></Icon>
+            :
+            <span></span>
+          }
           <Divider />
           {this.state.introView === 'display' ? <span> {this.props.profilePageInfo.intro} </span> : this.createEditField()}
         </div> 
         <div className="detail residence">
           <Header> Residence </Header>
-          <Icon size="large" link name="edit" id="editResidence" onClick={(e) => this.edit(e)}></Icon>
+          {this.props.isOwner ?
+            <Icon size="large" link name="edit" id="editResidence" onClick={(e) => this.edit(e)}></Icon>
+            :
+            <span></span>
+          }
           <Divider />
           {this.state.residenceView === 'display' ? <span> {this.props.profilePageInfo.residence} </span> : this.createEditField()}
         </div> 
         <div className="detail work">
           <Header> Workplace </Header>
-          <Icon size="large" link name="edit" id="editWork" onClick={(e) => this.edit(e)}></Icon>
+          {this.props.isOwner ?
+            <Icon size="large" link name="edit" id="editWork" onClick={(e) => this.edit(e)}></Icon>
+            :
+            <span></span>
+          }
           <Divider />
           {this.state.workView === 'display' ? <span> {this.props.profilePageInfo.work} </span> : this.createEditField()}
         </div>
         <div className="detail education">
           <Header> Education </Header>
-          <Icon size="large" link name="edit" id="editEducation" onClick={(e) => this.edit(e)}></Icon>
+          {this.props.isOwner ?
+            <Icon size="large" link name="edit" id="editEducation" onClick={(e) => this.edit(e)}></Icon>
+            :
+            <span></span>
+          }
           <Divider />
           {this.state.educationView === 'display' ? <span> {this.props.profilePageInfo.education} </span> : this.createEditField()}
         </div>
         <div className="detail birthday">
           <Header> Birthday </Header>
-          <Icon size="large" link name="edit" id="editBirthday" onClick={(e) => this.edit(e)}></Icon>
+          {this.props.isOwner ?
+            <Icon size="large" link name="edit" id="editBirthday" onClick={(e) => this.edit(e)}></Icon>
+            :
+            <span></span>
+          }
           <Divider />
           {this.state.birthdayView === 'display' ? <span> {this.props.profilePageInfo.birthday} </span> : this.createEditField()}
         </div>
-        <div className="detail relationshipStatus">
+        <div className="detail relationship_status">
           <Header> Relationship Status </Header>
-          <Icon size="large" link name="edit" id="editRelationshipStatus" onClick={(e) => this.edit(e)}></Icon>
+          {this.props.isOwner ?
+            <Icon size="large" link name="edit" id="editRelationship_status" onClick={(e) => this.edit(e)}></Icon>
+            :
+            <span></span>
+          }
           <Divider />
-          {this.state.relationshipStatusView === 'display' ? <span> {this.props.profilePageInfo.relationshipStatus} </span> : this.createEditField()}
+          {this.state.relationship_statusView === 'display' ? <span> {this.props.profilePageInfo.relationship_status} </span> : this.createEditField()}
         </div>  
       </div>
     );

@@ -17,7 +17,7 @@ class Profile_photos extends React.Component {
           Photos
         </Header>
         <span className="photosCount">
-          &nbsp; · &nbsp; {'6 photos'}
+          &nbsp; · &nbsp; {'1 photo'}
         </span>
         <div className="photos">
           {/*
@@ -28,12 +28,7 @@ class Profile_photos extends React.Component {
               </div>  
             ))
           */}
-          <img src="/images/profile_default.jpg" />
-          <img src="/images/profile_default.jpg" />
-          <img src="/images/profile_default.jpg" />
-          <img src="/images/profile_default.jpg" />
-          <img src="/images/profile_default.jpg" />
-          <img src="/images/profile_default.jpg" />
+          <img src="https://pbs.twimg.com/profile_images/926008201127931904/MQI9hqOg.jpg" />
         </div>
       </div>
     );

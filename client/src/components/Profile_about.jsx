@@ -44,8 +44,8 @@ class Profile_about extends React.Component {
             }
           </div>
           <div className="sectionDetails">
-            <Profile_about_overview aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo} updateProfile={this.props.updateProfile} />
-            <Profile_about_profileAndCoverPicture aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo} updateProfile={this.props.updateProfile} />
+            <Profile_about_overview aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo} updateProfile={this.props.updateProfile} isOwner={this.props.isOwner} />
+            <Profile_about_profileAndCoverPicture aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo} updateProfile={this.props.updateProfile} isOwner={this.props.isOwner} />
           </div>  
         </div>
       </div>
