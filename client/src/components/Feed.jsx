@@ -17,7 +17,6 @@ class Feed extends React.Component {
   componentDidMount() {
     this.getAllPosts();
   }
-
   getAllPosts() {
     // console.log(this.props);
     let username = this.props.match.params.username;
@@ -26,14 +25,11 @@ class Feed extends React.Component {
       username: username
     })
     //create new route
-
     axios.get(`/${username}/posts/friends`)
       .then((res1) => {
         console.log('ALL FRIENDS POSTS', res1.data);
-
         axios.get(`/${username}/posts/nonFriends`)
           .then((res2) => {
-
             console.log('ALL NON-FRIENDS POSTS', res2.data);
             //concats all friends posts, then all non-friends posts
             this.setState({
@@ -48,7 +44,6 @@ class Feed extends React.Component {
         console.log(err);
       });
   }
-
   render() {
     return (
       <div className="feedContainer">

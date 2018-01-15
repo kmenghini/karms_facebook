@@ -8,7 +8,8 @@ class Header extends React.Component {
     super(props);
     this.state = {
       profilePath: '',
-      feedPath: ''
+      feedPath: '',
+      clickedProfile: false
     }
   }
   getUserProfile(user) {

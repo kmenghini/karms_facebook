@@ -21,7 +21,6 @@ class App extends React.Component {
       username: ''
     };
   }
-
   getProfile(user) {
     // axios call to db to get profile
     axios.get(`/${user}`) 
@@ -39,7 +38,6 @@ class App extends React.Component {
       console.log('err: ', err);
     })
   }
-
   render() {
     return (
       <div>
