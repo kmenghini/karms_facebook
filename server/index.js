@@ -129,6 +129,19 @@ app.get('/likes', function(req, res) {
   })
 })
 
+app.get('/:username/likes', function(req, res) {
+  console.log('Getting number of personal likes!');
+  // console.log('Getting likes for post with this text', req.query.text);
+  db.getPersonalLikeAmount(req.params.username, req.query.text, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log('Successfully got personal like count', data);
+      res.status(200).json(data);
+    }
+  })
+})
+
 app.get('/likers', function(req, res) {
   console.log('Getting all likers!');
 
