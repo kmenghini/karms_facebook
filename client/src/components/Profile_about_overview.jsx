@@ -10,7 +10,8 @@ class Profile_about_overview extends React.Component {
       workplaceView: 'display',
       educationView: 'display',
       birthdayView: 'display',
-      relationshipStatusView: 'display'               
+      relationshipStatusView: 'display',
+      fieldToEdit: ''               
     }
   }
 
@@ -20,8 +21,10 @@ class Profile_about_overview extends React.Component {
       return;
     }  
     var viewToEdit = e.target.id.slice(4, 5).toLowerCase() + e.target.id.slice(5) + 'View';
+    var fieldToEdit = e.target.id.slice(4, 5).toLowerCase() + e.target.id.slice(5);
     var editState = {};
     editState[viewToEdit] = 'edit'
+    editState['fieldToEdit'] = fieldToEdit;
     this.setState(editState);
   }
 
@@ -41,12 +44,10 @@ class Profile_about_overview extends React.Component {
 
   saveChanges() {
     let changes = document.getElementById('edits').value.replace(`'`, `''`);
-    console.log('changes.....', changes);
     document.getElementById('edits').value = '';
-    
-    // this.setState({
-    //   postText: postInput
-    // })
+    var data = {};
+    data[this.state.fieldToEdit] = changes;
+    this.props.updateProfile(data);
   }
 
   cancelEditField() {
@@ -56,7 +57,8 @@ class Profile_about_overview extends React.Component {
       workplaceView: 'display',
       educationView: 'display',
       birthdayView: 'display',
-      relationshipStatusView: 'display' 
+      relationshipStatusView: 'display',
+      fieldToEdit: '' 
     });
   }
 

@@ -32,7 +32,7 @@ class Profile_about extends React.Component {
             <div clasName="section lifeEvents"> Life Events </div>
           </div>
           <div className="sectionDetails">
-            <Profile_about_overview aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo}/>
+            <Profile_about_overview aboutView={this.state.aboutView} profilePageInfo={this.props.profilePageInfo} updateProfile={this.props.updateProfile}/>
           </div>  
         </div>
       </div>

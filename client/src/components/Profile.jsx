@@ -137,8 +137,16 @@ class Profile extends React.Component {
     });
   }
 
-  updateProfile() {
-
+  updateProfile(changes) {
+    var username = this.state.username;
+    console.log('sending update profile request to server', changes);
+    axios.patch(`/${username}/updateProfile`, changes)
+      .then((response) => {
+        this.getUserProfileInfo();
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
   }
 
   render() {
@@ -146,7 +154,7 @@ class Profile extends React.Component {
       <div className="profile">
         <Profile_backgroundAndProfilePic userInfo={this.state.userInfo} friend={this.state.friend} addFriend={this.addFriend.bind(this)} removeFriend={this.removeFriend.bind(this)} isOwner={this.state.isOwner} profilePageInfo={this.state.profilePageInfo} />
         <Profile_navigation handleNavigation={this.handleNavigation.bind(this)} view={this.state.view} />
-        <Profile_about view={this.state.view} profilePageInfo={this.state.profilePageInfo} />
+        <Profile_about view={this.state.view} profilePageInfo={this.state.profilePageInfo} updateProfile={this.updateProfile.bind(this)} />
         <Profile_intro view={this.state.view} profilePageInfo={this.state.profilePageInfo} />
         <Profile_friends friends={this.state.friends} view={this.state.view} />
         <Profile_photos view={this.state.view} />
